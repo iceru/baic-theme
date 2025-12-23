@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap");
 
 @import url(https://fonts.bunny.net/css?family=raleway:400);
 @import 'tailwindcss';
@@ -9,8 +10,28 @@
 @source '../../vendor/tailpress/framework/**/**/*.php';
 
 @utility container {
-    margin-inline: auto;
-    padding-inline: 2rem;
+  margin-inline: auto;
+  padding-inline: 2rem;
+}
+
+:root {
+  --jhl-black: #151515;
+  --jhl-foreground: #d9d9d9;
+  --jhl-background: #060606;
+  --jhl-gray-1: #808285;
+  --jhl-gray-2: #939598;
+  --jhl-gray-3: #b1b4b6;
+  --beijing-black: #3E3A39;
+}
+
+@theme {
+  --color-jhl-black: #151515;
+  --color-jhl-foreground: #d9d9d9;
+  --color-jhl-background: #060606;
+  --color-jhl-gray-1: #808285;
+  --color-jhl-gray-2: #939598;
+  --color-jhl-gray-3: #b1b4b6;
+  --color-beijing-black: #3E3A39;
 }
 
 /*
@@ -22,6 +43,7 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
+
   *,
   ::after,
   ::before,
@@ -29,4 +51,109 @@
   ::file-selector-button {
     border-color: var(--color-zinc-200, currentColor);
   }
+}
+
+
+body,
+html {
+  font-family: "Montserrat", sans-serif;
+  color: var(--color-jhl-black);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Newsreader", serif;
+}
+
+h3 {
+  font-weight: 300;
+  font-size: 27px;
+  line-height: 36px;
+}
+
+h2 {
+  font-weight: 300;
+  font-size: 44px;
+  line-height: 53px;
+}
+
+h5 {
+  letter-spacing: 1%;
+  @apply text-jhl-gray-2 font-medium text-base;
+}
+
+p.body {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+#banners .slick-dots {
+  display: flex !important;
+  width: 100%;
+  bottom: 36px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  align-items: flex-end;
+  /* Aligns dots to bottom */
+}
+
+#banners .slick-dots li {
+  flex-grow: 1;
+  margin: 0;
+  height: 4px;
+  background: var(--jhl-gray-3);
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+#banners .slick-dots li.slick-active {
+  height: 8px;
+  background: var(--jhl-gray-1);
+}
+
+#banners .slick-dots li button {
+  display: none;
+}
+
+/* Car Slider Scaling */
+.car-list-slider .slick-center .car-img-wrapper {
+  transform: scale(1.1);
+}
+
+/* 2. The Active (Center) Car */
+.car-list-slider .slick-center .car-img-container {
+  transform: scale(1.1);
+  opacity: 1;
+  margin-top: 0;
+}
+
+.car-list-slider .car-img-container {
+  transform: scale(0.9);
+  opacity: 1;
+  opacity: 40%;
+}
+
+.car-list-slider .car-img-container img {
+  height: 300px;
+  object-fit: contain;
+}
+
+.car-list-slider .slick-center .car-active-element {
+  opacity: 1;
+  /* Show logo and button */
+}
+
+/* Optional: Add a subtle glow/reflection under the active car */
+.car-list-slider .slick-center .car-img-container::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 10%;
+  right: 10%;
+  height: 40px;
+  z-index: -1;
 }

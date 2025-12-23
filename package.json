@@ -9,7 +9,7 @@
   },
   "theme_uri": "https://github.com/tailpress/tailpress",
   "author_uri": "https://tailpress.io",
-  "text_domain": "baic-theme",
+  "text_domain": "baic-theme ",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
