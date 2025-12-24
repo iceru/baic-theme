@@ -60,13 +60,6 @@ html {
   color: var(--color-jhl-black);
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: "Newsreader", serif;
-}
-
 h3 {
   font-weight: 300;
   font-size: 27px;
@@ -74,9 +67,9 @@ h3 {
 }
 
 h2 {
-  font-weight: 300;
-  font-size: 44px;
-  line-height: 53px;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 30px;
 }
 
 h5 {
@@ -156,4 +149,8 @@ p.body {
   right: 10%;
   height: 40px;
   z-index: -1;
+}
+
+a {
+  text-decoration: none !important;
 }
