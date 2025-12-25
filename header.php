@@ -55,7 +55,7 @@
 
                                 <ul
                                     class="absolute left-1/2 -translate-x-1/2 top-full py-6 w-[700px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out">
-                                    <div class="p-[24px] space-y-3 isolate relative">
+                                    <div class="px-10 py-8 space-y-3 isolate relative">
                                         <div
                                             class="absolute inset-0 mb-0 bg-[#171717]/30 backdrop-blur-2xl rounded-xl shadow-2xl -z-10 border border-white/10">
                                         </div>
@@ -63,10 +63,10 @@
                                         <div>
                                             <h5 class="!text-white mb-6 text-lg font-semibold">Products</h5>
 
-                                            <div class="grid grid-cols-3 gap-6">
+                                            <div class="grid grid-cols-3 gap-14">
                                                 <?php
                                                 $args = array(
-                                                    'post_type' => 'cars',
+                                                    'post_type' => 'car',
                                                     'posts_per_page' => 6, // Adjust number of cars to show
                                                     'orderby' => 'title',
                                                     'order' => 'ASC',
@@ -80,13 +80,12 @@
                                                         $car_image = get_the_post_thumbnail_url(get_the_ID(), 'medium');
                                                         ?>
 
-                                                        <div class="flex flex-col items-center text-center space-y-3">
-                                                            <div
-                                                                class="w-full aspect-video overflow-hidden rounded-lg bg-white/5">
+                                                        <div class="flex flex-col items-center text-center space-y-5">
+                                                            <div class="w-full aspect-video overflow-hidden rounded-lg">
                                                                 <?php if ($car_image): ?>
                                                                     <img src="<?php echo esc_url($car_image); ?>"
                                                                         alt="<?php the_title(); ?>"
-                                                                        class="w-full h-full object-contain hover:scale-105 transition-transform duration-300">
+                                                                        class="w-full h-full object-contain transition-transform duration-300">
                                                                 <?php endif; ?>
                                                             </div>
 
@@ -94,8 +93,12 @@
                                                             </h6>
 
                                                             <a href="<?php the_permalink(); ?>"
-                                                                class="px-4 py-2 border border-white/30 text-white text-[11px] uppercase tracking-widest hover:bg-white hover:text-black transition-colors duration-300 rounded">
-                                                                Explore
+                                                                class="px-4 py-2 border border-white text-white text-[11px] uppercase 
+                                                                tracking-widest hover:bg-white/20 transition-colors 
+                                                                duration-300 rounded flex items-center space-x-2 group">
+                                                                <img src="<?php echo get_template_directory_uri() ?>/images/chev-right-white.png"
+                                                                    class="" alt="">
+                                                                <span>Explore</span>
                                                             </a>
                                                         </div>
 
@@ -111,14 +114,14 @@
                             </li>
 
                             <li>
-                                <a href="/news" class="uppercase text-[13px] font-medium !no-underline">
+                                <a href="/service" class="uppercase text-[13px] font-medium !no-underline">
                                     Service
                                 </a>
                             </li>
 
 
                             <li>
-                                <a href="/news" class="uppercase text-[13px] font-medium !no-underline">
+                                <a href="/promotions" class="uppercase text-[13px] font-medium !no-underline">
                                     Promotion
                                 </a>
                             </li>

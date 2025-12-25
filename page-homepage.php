@@ -8,9 +8,7 @@
             $banners->the_post(); ?>
             <div class="relative h-[96vh] w-full aspect-video">
                 <?php the_post_thumbnail('full', ['class' => 'w-full h-full object-cover']); ?>
-                <div class="absolute inset-0 flex items-center px-12">
-                    <h2 class="text-white text-6xl font-bold uppercase"><?php the_title(); ?></h2>
-                </div>
+
             </div>
         <?php endwhile;
         wp_reset_postdata(); ?>
