@@ -1,13 +1,45 @@
 <?php get_header(); ?>
+<?php
+// 1. Try to get the data from the cache (transient) first
+$cache_key = 'external_dealers_data';
+$external_dealers = get_transient($cache_key);
 
+// 2. If the cache is empty, fetch the data from the API
+if (false === $external_dealers) {
+    $source_url = 'https://jhl-auto.codeomnia.com/wp-json/wp/v2/dealers?_embed&per_page=4&orderby=date&order=asc';
+    $response = wp_remote_get($source_url, ['timeout' => 10]);
+
+    if (!is_wp_error($response)) {
+        $external_dealers = json_decode(wp_remote_retrieve_body($response));
+
+        // 3. Save the data to cache for 1 hour (3600 seconds)
+        set_transient($cache_key, $external_dealers, 3600);
+    }
+}
+delete_transient('external_promotions_data');
+$promo_cache_key = 'external_promotions_data';
+$external_promotions = get_transient($promo_cache_key);
+
+// If cache is empty, fetch from API
+if (false === $external_promotions) {
+    // orderby=date & order=asc to keep oldest to newest as requested previously
+    $promo_url = 'https://jhl-auto.codeomnia.com/wp-json/wp/v2/promotions?_embed&per_page=5&orderby=date&order=asc';
+    $promo_response = wp_remote_get($promo_url, ['timeout' => 15]);
+
+    if (!is_wp_error($promo_response)) {
+        $external_promotions = json_decode(wp_remote_retrieve_body($promo_response));
+        set_transient($promo_cache_key, $external_promotions, 3600); // Cache for 1 hour
+    }
+}
+?>
 <section id="banners" class="relative overflow-hidden">
     <div class="banner-slider">
         <?php
         $banners = new WP_Query(['post_type' => 'banner', 'posts_per_page' => 5]);
         while ($banners->have_posts()):
             $banners->the_post(); ?>
-            <div class="relative h-[96vh] w-full aspect-video">
-                <?php the_post_thumbnail('full', ['class' => 'w-full h-full object-cover']); ?>
+            <div class="relative h-[96vh]  w-full">
+                <?php the_post_thumbnail('full', ['class' => 'w-full h-full object-cover aspect-video']); ?>
 
             </div>
         <?php endwhile;
@@ -64,7 +96,7 @@
         <h3 class="max-w-[349px] text-4xl leading-[39px] mb-4">
             BUAT JANJI TEST DRIVE ANDA
         </h3>
-        <a href=""
+        <a href="javascript:void(0)" id="open-contact"
             class="border border-white rounded-full px-7 py-[18.5px] inline-flex items-center space-x-4 text-xs font-semibold tracking-wider">
             <span>Hubungi Kami</span>
             <img src="<?php echo get_template_directory_uri() ?>/images/arrow-white.png" alt="">
@@ -76,6 +108,80 @@
     </div>
 </section>
 
+<div id="contact-popup" class="fixed inset-0 z-[100] hidden items-center justify-center">
+    <div class="absolute inset-0 bg-black/70" id="close-overlay"></div>
+
+    <div class="relative bg-white w-full max-w-6xl  py-8 px-24 shadow-2xl border-jhl-gray-3 border-5 z-10">
+        <button id="close-contact" class="absolute top-4 right-4 text-white/50 hover:text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+
+        <div class="text-[28px] mb-12 uppercase">TEST DRIVE FORM</div>
+
+        <div class="cf7-popup-wrapper td-form">
+            <?php echo do_shortcode('[contact-form-7 id="4fa6cd3" title="Test Drive Form"]'); ?>
+        </div>
+    </div>
+</div>
+
+<style>
+    .td-form .wpcf7-text,
+    .td-form .wpcf7-select,
+    .td-form .wpcf7-textarea,
+    .td-form .wpcf7-date {
+        border-bottom: 1px solid #939598;
+        padding-bottom: 24px;
+        outline: none;
+        width: 100%;
+    }
+
+    .wpcf7-form select {
+        color: #9ca3af;
+    }
+
+    .wpcf7-form select:not(:invalid):not([value=""]):focus,
+    .wpcf7-form select:valid {
+        color: #000000;
+    }
+
+    .wpcf7-form select option {
+        color: #000000;
+    }
+
+    .wpcf7-form select option:first-child {
+        color: #9ca3af;
+    }
+</style>
+
+<script>
+    $(document).ready(function ($) {
+        // 1. Open Popup
+        $('#open-contact').on('click', function (e) {
+            e.preventDefault();
+            $('#contact-popup').removeClass('hidden').addClass('flex');
+            $('body').addClass('overflow-hidden'); // Prevent background scrolling
+        });
+
+        // 2. Function to Close Popup
+        function closePopup() {
+            $('#contact-popup').addClass('hidden').removeClass('flex');
+            $('body').removeClass('overflow-hidden');
+        }
+
+        // Close via 'X' button
+        $('#close-contact').on('click', function () {
+            closePopup();
+        });
+
+        // Close via clicking the dark overlay background
+        $('#close-overlay').on('click', function () {
+            closePopup();
+        });
+    });
+</script>
 
 
 <section class="py-20 bg-beijing-black" id="promotions">
@@ -84,27 +190,32 @@
             PROMOTIONS
         </h2>
         <div class="grid md:grid-cols-5 gap-6">
-            <?php
-            $promo_query = new WP_Query([
-                'post_type' => 'promotion', // Change to your CPT slug
-                'posts_per_page' => 5,
-            ]);
+            <?php if (!empty($external_promotions) && is_array($external_promotions)): ?>
+                <?php foreach ($external_promotions as $promo):
+                    $title = $promo->title->rendered;
+                    $permalink = $promo->link;
 
-            if ($promo_query->have_posts()):
-                while ($promo_query->have_posts()):
-                    $promo_query->the_post(); ?>
+                    // Get Featured Image
+                    $image_url = '';
+                    if (!empty($promo->_embedded->{'wp:featuredmedia'}[0]->source_url)) {
+                        $image_url = $promo->_embedded->{'wp:featuredmedia'}[0]->source_url;
+                    }
+                    ?>
                     <div>
                         <div class="mb-8">
-                            <?php if (has_post_thumbnail()): ?>
-                                <?php the_post_thumbnail('large', ['class' => 'rounded-lg w-full h-auto']); ?>
+                            <?php if ($image_url): ?>
+                                <img src="<?php echo $image_url; ?>" alt="<?php echo esc_attr($title); ?>"
+                                    class="rounded-lg w-full h-auto">
                             <?php else: ?>
                                 <img src="<?php echo get_template_directory_uri() ?>/images/promo-1.png" alt="" class="rounded-lg">
                             <?php endif; ?>
                         </div>
-                        <h5 class="leading-[22px] font-medium mb-8 line-clamp-2 !text-white">
-                            <?php the_title(); ?>
+
+                        <h5 class="leading-[22px] font-medium mb-6 line-clamp-2 !text-white">
+                            <?php echo $title; ?>
                         </h5>
-                        <a href="<?php the_permalink(); ?>"
+
+                        <a href="<?php echo esc_url($permalink); ?>"
                             class="text-xs text-jhl-gray-1 font-semibold uppercase tracking-wide inline-flex space-x-[10px] items-center">
                             <div>
                                 <img src="<?php echo get_template_directory_uri() ?>/images/chev-right.png" alt="">
@@ -112,9 +223,10 @@
                             <span>Learn More</span>
                         </a>
                     </div>
-                <?php endwhile;
-                wp_reset_postdata();
-            endif; ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class="text-white opacity-50">No promotions currently available.</p>
+            <?php endif; ?>
         </div>
     </div>
 </section>
@@ -122,52 +234,61 @@
 <section class="py-[100px] text-jhl-gray-1" id="dealers">
     <div class="container">
         <div class="text-center mb-10 flex justify-between items-center">
-            <h2 class="text-[28px] font-light">
-                FIND A DEALER
-            </h2>
-            <a href="<?php echo get_post_type_archive_link('dealer'); ?>"
-                class="inline-flex items-center space-x-[10px] text-sm font-semibold text-jhl-gray-2 ">
+            <h2 class="text-[28px] font-light">FIND A DEALER</h2>
+            <a href="https://jhl-auto.codeomnia.com/dealer/"
+                class="inline-flex items-center space-x-[10px] text-sm font-semibold text-jhl-gray-2">
                 <div>
                     <img src="<?php echo get_template_directory_uri() ?>/images/chev-right.png" alt="">
                 </div>
                 <span>TELUSURI</span>
             </a>
         </div>
-        <div class="grid md:grid-cols-4 gap-4">
-            <?php
-            $dealer_query = new WP_Query([
-                'post_type' => 'dealer', // Change to your CPT slug
-                'posts_per_page' => 4,
-            ]);
 
-            if ($dealer_query->have_posts()):
-                while ($dealer_query->have_posts()):
-                    $dealer_query->the_post(); ?>
+        <div class="grid md:grid-cols-4 gap-4">
+            <?php if (!empty($external_dealers) && is_array($external_dealers)): ?>
+                <?php foreach ($external_dealers as $post):
+                    $title = $post->title->rendered;
+                    $excerpt = $post->content->rendered;
+                    $address = $post->acf->address ?? '';
+
+                    // Get Featured Image from embedded data
+                    $image_url = '';
+                    if (!empty($post->_embedded->{'wp:featuredmedia'}[0]->source_url)) {
+                        $image_url = $post->_embedded->{'wp:featuredmedia'}[0]->source_url;
+                    }
+                    ?>
                     <div>
                         <div class="mb-4">
-                            <?php if (has_post_thumbnail()): ?>
-                                <?php the_post_thumbnail('large', ['class' => 'rounded-lg h-[318px] object-cover w-full']); ?>
+                            <?php if ($image_url): ?>
+                                <img src="<?php echo $image_url; ?>" class="rounded-lg h-[318px] object-cover w-full"
+                                    alt="<?php echo esc_attr($title); ?>">
                             <?php else: ?>
-                                <img src="<?php echo get_template_directory_uri() ?>/images/alsut.png" alt=""
-                                    class="rounded-lg h-[318px] object-cover w-full">
+                                <img src="<?php echo get_template_directory_uri() ?>/images/alsut.png"
+                                    class="rounded-lg h-[318px] object-cover w-full" alt="">
                             <?php endif; ?>
                         </div>
+
                         <h4 class="leading-7 text-xl mb-4 text-jhl-black">
-                            <?php the_title(); ?>
+                            <?php echo $title; ?>
                         </h4>
-                        <div class="body">
-                            <?php echo wp_trim_words(get_the_excerpt(), 20); ?>
-                        </div>
+
+                        <p class="body text-jhl-gray-2 leading-relaxed">
+                            <?php echo esc_html($address); ?>
+                        </p>
                     </div>
-                <?php endwhile;
-                wp_reset_postdata();
-            endif; ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class="col-span-4 text-center">Unable to load dealers at this time.</p>
+            <?php endif; ?>
         </div>
     </div>
 </section>
-
-<section id="socials">
-
+<section class="py-20 bg-beijing-black" id="socials">
+    <div class="container">
+        <h2 class="text-[28px] uppercase md:text-[44px] mb-8 text-white">
+            Socials
+        </h2>
+    </div>
 </section>
 
 

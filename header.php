@@ -129,14 +129,90 @@
                     </nav>
                 </div>
                 <div>
-                    <a href="#" class="text-[13px] font-medium flex items-center !no-underline space-x-1">
-                        <img src="<?php echo get_template_directory_uri() ?>/images/icon-contact.png" class="size-3"
+                    <a href="/" class="text-[13px] font-medium flex items-center !no-underline space-x-1">
+                        <img src="<?php echo get_template_directory_uri() ?>/images/logo-jhl.png" class="h-7 w-auto"
                             alt="">
-                        <span>Contact</span>
                     </a>
                 </div>
             </div>
         </header>
+
+
+        <div class="fixed bottom-6 right-6 z-[999] flex flex-col items-end space-y-4">
+            <button id="social-toggle"
+                class="w-11 h-11 rounded-full bg-jhl-gray-1 flex items-center justify-center transition-transform duration-300">
+                <svg id="toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 15l-6-6-6 6" />
+                </svg>
+                <img id="toggle-share" src="<?php echo get_template_directory_uri(); ?>/images/icons/share.png"
+                    class="w-5 h-5 rotate-180 hidden" alt="share">
+            </button>
+            <div id="social-expandable" class="flex flex-col space-y-4 mb-2">
+                <a href="mailto:<?php echo get_field('contact_email', 'option') ?: 'info@jhlauto.co.id'; ?>"
+                    class="w-11 h-11 rounded-full bg-jhl-gray-1 flex items-center justify-center hover:bg-[#808285] transition-colors">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/icons/email.png" class="w-5 h-5"
+                        alt="Email">
+                </a>
+
+                <a href="<?php echo get_field('instagram_url', 'option') ?: '#'; ?>" target="_blank"
+                    class="w-11 h-11 rounded-full bg-jhl-gray-1 flex items-center justify-center hover:bg-[#808285] transition-colors">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/icons/instagram.png" class="w-5 h-5"
+                        alt="Instagram">
+                </a>
+
+                <a href="<?php echo get_field('tiktok_url', 'option') ?: '#'; ?>" target="_blank"
+                    class="w-11 h-11 rounded-full bg-jhl-gray-1 flex items-center justify-center hover:bg-[#808285] transition-colors">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/icons/tiktok.png" class="w-5 h-5"
+                        alt="TikTok">
+                </a>
+
+                <a href="<?php echo get_field('facebook_url', 'option') ?: '#'; ?>" target="_blank"
+                    class="w-11 h-11 rounded-full bg-jhl-gray-1 flex items-center justify-center hover:bg-[#808285] transition-colors">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/icons/facebook.png" class="w-5 h-5"
+                        alt="Facebook">
+                </a>
+            </div>
+
+
+            <a href="https://wa.me/<?php echo get_field('whatsapp_number', 'option') ?: '628123456789'; ?>"
+                target="_blank" class="flex items-center  rounded-md  transition-all group !no-underline">
+                <div class="bg-jhl-black rounded-full p-1 mr-3 h-16 w-16 flex justify-center items-center">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/icons/whatsapp.png" class="w-9 h-9"
+                        alt="WhatsApp">
+                </div>
+                <span class=" bg-jhl-foreground p-[9px] rounded font-bold text-sm tracking-widest uppercase">Chat
+                    Now</span>
+            </a>
+        </div>
+
+        <script>
+            $(document).ready(function ($) {
+                $('#social-toggle').css('transform', 'rotate(180deg)');
+                $('#social-toggle').on('click', function () {
+                    const $btn = $(this);
+                    const $container = $('#social-expandable');
+                    const $iconArrow = $('#toggle-icon');
+                    const $iconShare = $('#toggle-share');
+
+                    // Toggle a state class on the button
+                    $btn.toggleClass('is-open');
+
+                    // Animation
+                    $container.slideToggle(300);
+
+                    if ($btn.hasClass('is-open')) {
+                        // EXPANDED STATE
+                        $iconArrow.hide();
+                        $iconShare.show();
+                    } else {
+                        // CLOSED STATE
+                        $iconShare.hide();
+                        $iconArrow.show();
+                    }
+                });
+            });
+        </script>
 
         <div id="content" class="site-content grow">
             <?php if (is_front_page()): ?>
