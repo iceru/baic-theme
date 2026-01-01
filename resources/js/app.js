@@ -26,16 +26,16 @@ $(document).ready(function ($) {
     // List Cars Slider
     $('.car-list-slider').slick({
         centerMode: true,
-        centerPadding: '22%', // Shows partials of side cars
+        centerPadding: '30%', // Shows partials of side cars
         slidesToShow: 1,
-        infinite: false,
+        infinite: true,
         arrows: true,
         dots: false,
         responsive: [
             {
                 breakpoint: 768,
                 settings: {
-                    centerPadding: '10%',
+                    centerPadding: '15%',
                     slidesToShow: 1
                 }
             }

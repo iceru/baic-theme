@@ -1,7 +1,7 @@
 @utility container {
     /* max-width: var(--wp--style--global--wide-size); */
     max-width: 1200px;
-
+    padding-inline: 16px;
 }
 
 @utility alignfull {

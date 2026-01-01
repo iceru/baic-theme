@@ -38,7 +38,7 @@ if (false === $external_promotions) {
         $banners = new WP_Query(['post_type' => 'banner', 'posts_per_page' => 5]);
         while ($banners->have_posts()):
             $banners->the_post(); ?>
-            <div class="relative h-[96vh]  w-full">
+            <div class="relative h-fit md:h-[96vh] max-h-[780px]  w-full">
                 <?php the_post_thumbnail('full', ['class' => 'w-full h-full object-cover aspect-video']); ?>
 
             </div>
@@ -50,7 +50,7 @@ if (false === $external_promotions) {
 </section>
 
 <section id="list-cars" class="py-16 overflow-hidden">
-    <div class="text-[28px] uppercase mb-24 container">
+    <div class="text-[28px] uppercase mb-16 md:mb-24 container text-jhl-gray-1">
         OUR MODELS
     </div>
     <div class="car-list-slider">
@@ -60,10 +60,10 @@ if (false === $external_promotions) {
             $cars->the_post();
             $logo = get_field('logo');
             ?>
-            <div class="px-8 transition-all duration-700 car-slide-item">
+            <div class="px-0 md:px-8 transition-all duration-700 car-slide-item">
                 <div class="relative flex flex-col items-center">
 
-                    <div class="car-active-element opacity-0 transition-opacity duration-500 mb-16">
+                    <div class="car-active-element opacity-0 transition-opacity duration-500 mb-0 md:mb-16">
                         <?php if ($logo): ?>
                             <img src="<?= $logo; ?>" class="h-[17px] w-auto object-contain" alt="brand-logo">
                         <?php endif; ?>
@@ -73,7 +73,7 @@ if (false === $external_promotions) {
                         <?php the_post_thumbnail('large', ['class' => 'w-full']); ?>
                     </div>
 
-                    <div class="car-active-element mt-12 opacity-0 transition-opacity duration-500">
+                    <div class="car-active-element -mt-12 md:mt-12 opacity-0 z-10 relative transition-opacity duration-500">
                         <a href="<?php the_permalink(); ?>"
                             class="flex items-center  text-jhl-gray-1 font-semibold text-xs !no-underline ">
                             <span>Telusuri <?php the_title(); ?></span>
@@ -90,19 +90,19 @@ if (false === $external_promotions) {
     </div>
 </section>
 
-<section class="bg-jhl-gray-1 text-white relative flex justify-between">
+<section class="bg-jhl-gray-1 text-white relative block md:flex justify-between">
 
     <div class="container py-14">
         <h3 class="max-w-[349px] text-4xl leading-[39px] mb-4">
             BUAT JANJI TEST DRIVE ANDA
         </h3>
         <a href="javascript:void(0)" id="open-contact"
-            class="border border-white rounded-full px-7 py-[18.5px] inline-flex items-center space-x-4 text-xs font-semibold tracking-wider">
+            class="border border-white hover:bg-white/30 transition duration-500 rounded-full px-7 py-[18.5px] inline-flex items-center space-x-4 text-xs font-semibold tracking-wider">
             <span>Hubungi Kami</span>
             <img src="<?php echo get_template_directory_uri() ?>/images/arrow-white.png" alt="">
         </a>
     </div>
-    <div class="right-0 absolute h-full">
+    <div class="right-0 static md:absolute h-full">
         <img src="<?php echo get_template_directory_uri() ?>/images/dashboard-car.png"
             class="h-full w-auto object-contain" alt="">
     </div>
@@ -189,7 +189,7 @@ if (false === $external_promotions) {
         <h2 class="text-[28px] md:text-[44px] mb-8 text-white">
             PROMOTIONS
         </h2>
-        <div class="grid md:grid-cols-5 gap-6">
+        <div class="flex overflow-auto md:grid md:grid-cols-5 gap-6">
             <?php if (!empty($external_promotions) && is_array($external_promotions)): ?>
                 <?php foreach ($external_promotions as $promo):
                     $title = $promo->title->rendered;
@@ -201,7 +201,7 @@ if (false === $external_promotions) {
                         $image_url = $promo->_embedded->{'wp:featuredmedia'}[0]->source_url;
                     }
                     ?>
-                    <div>
+                    <div class="w-[75%] md:w-full shrink-0">
                         <div class="mb-8">
                             <?php if ($image_url): ?>
                                 <img src="<?php echo $image_url; ?>" alt="<?php echo esc_attr($title); ?>"
@@ -231,10 +231,10 @@ if (false === $external_promotions) {
     </div>
 </section>
 
-<section class="py-[100px] text-jhl-gray-1" id="dealers">
+<section class="py-14 md:py-[100px] text-jhl-gray-1" id="dealers">
     <div class="container">
-        <div class="text-center mb-10 flex justify-between items-center">
-            <h2 class="text-[28px] font-light">FIND A DEALER</h2>
+        <div class="md:text-center mb-10 block md:flex justify-between items-center">
+            <h2 class="text-[28px] font-light mb-9 md:mb-0">FIND A DEALER</h2>
             <a href="https://jhl-auto.codeomnia.com/dealer/"
                 class="inline-flex items-center space-x-[10px] text-sm font-semibold text-jhl-gray-2">
                 <div>
@@ -243,44 +243,45 @@ if (false === $external_promotions) {
                 <span>TELUSURI</span>
             </a>
         </div>
+    </div>
 
-        <div class="grid md:grid-cols-4 gap-4">
-            <?php if (!empty($external_dealers) && is_array($external_dealers)): ?>
-                <?php foreach ($external_dealers as $post):
-                    $title = $post->title->rendered;
-                    $excerpt = $post->content->rendered;
-                    $address = $post->acf->address ?? '';
 
-                    // Get Featured Image from embedded data
-                    $image_url = '';
-                    if (!empty($post->_embedded->{'wp:featuredmedia'}[0]->source_url)) {
-                        $image_url = $post->_embedded->{'wp:featuredmedia'}[0]->source_url;
-                    }
-                    ?>
-                    <div>
-                        <div class="mb-4">
-                            <?php if ($image_url): ?>
-                                <img src="<?php echo $image_url; ?>" class="rounded-lg h-[318px] object-cover w-full"
-                                    alt="<?php echo esc_attr($title); ?>">
-                            <?php else: ?>
-                                <img src="<?php echo get_template_directory_uri() ?>/images/alsut.png"
-                                    class="rounded-lg h-[318px] object-cover w-full" alt="">
-                            <?php endif; ?>
-                        </div>
+    <div class="flex container pr-0 md:pr-4 overflow-auto md:grid md:grid-cols-4 gap-4">
+        <?php if (!empty($external_dealers) && is_array($external_dealers)): ?>
+            <?php foreach ($external_dealers as $post):
+                $title = $post->title->rendered;
+                $excerpt = $post->content->rendered;
+                $address = $post->acf->address ?? '';
 
-                        <h4 class="leading-7 text-xl mb-4 text-jhl-black">
-                            <?php echo $title; ?>
-                        </h4>
-
-                        <p class="body text-jhl-gray-2 leading-relaxed">
-                            <?php echo esc_html($address); ?>
-                        </p>
+                // Get Featured Image from embedded data
+                $image_url = '';
+                if (!empty($post->_embedded->{'wp:featuredmedia'}[0]->source_url)) {
+                    $image_url = $post->_embedded->{'wp:featuredmedia'}[0]->source_url;
+                }
+                ?>
+                <div class="w-[75%] md:w-full shrink-0">
+                    <div class="mb-4">
+                        <?php if ($image_url): ?>
+                            <img src="<?php echo $image_url; ?>" class="rounded-lg h-[318px] object-cover w-full"
+                                alt="<?php echo esc_attr($title); ?>">
+                        <?php else: ?>
+                            <img src="<?php echo get_template_directory_uri() ?>/images/alsut.png"
+                                class="rounded-lg h-[318px] object-cover w-full" alt="">
+                        <?php endif; ?>
                     </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p class="col-span-4 text-center">Unable to load dealers at this time.</p>
-            <?php endif; ?>
-        </div>
+
+                    <h4 class="leading-7 text-xl mb-4 text-jhl-black">
+                        <?php echo $title; ?>
+                    </h4>
+
+                    <p class="body text-jhl-gray-2 leading-relaxed">
+                        <?php echo esc_html($address); ?>
+                    </p>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class="col-span-4 text-center">Unable to load dealers at this time.</p>
+        <?php endif; ?>
     </div>
 </section>
 <section class="py-20 bg-beijing-black" id="socials">

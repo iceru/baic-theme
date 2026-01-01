@@ -140,35 +140,37 @@
 
         <div class="fixed bottom-6 right-6 z-[999] flex flex-col items-end space-y-4">
             <button id="social-toggle"
-                class="w-11 h-11 rounded-full bg-jhl-gray-1 flex items-center justify-center transition-transform duration-300">
+                class="w-11 h-11 rounded-full bg-jhl-gray-1 flex items-center justify-center shadow-md transition-transform duration-300">
+
                 <svg id="toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden">
                     <path d="M18 15l-6-6-6 6" />
                 </svg>
+
                 <img id="toggle-share" src="<?php echo get_template_directory_uri(); ?>/images/icons/share.png"
-                    class="w-5 h-5 rotate-180 hidden" alt="share">
+                    class="w-5 h-5" alt="share">
             </button>
-            <div id="social-expandable" class="flex flex-col space-y-4 mb-2">
+            <div id="social-expandable" class="flex flex-col space-y-4 mb-2 hidden">
                 <a href="mailto:<?php echo get_field('contact_email', 'option') ?: 'info@jhlauto.co.id'; ?>"
-                    class="w-11 h-11 rounded-full bg-jhl-gray-1 flex items-center justify-center hover:bg-[#808285] transition-colors">
+                    class="w-11 h-11 rounded-full bg-jhl-gray-1 flex items-center justify-center shadow-md hover:bg-[#808285] transition-colors">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/icons/email.png" class="w-5 h-5"
                         alt="Email">
                 </a>
 
                 <a href="<?php echo get_field('instagram_url', 'option') ?: '#'; ?>" target="_blank"
-                    class="w-11 h-11 rounded-full bg-jhl-gray-1 flex items-center justify-center hover:bg-[#808285] transition-colors">
+                    class="w-11 h-11 rounded-full bg-jhl-gray-1 flex items-center justify-center shadow-md hover:bg-[#808285] transition-colors">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/icons/instagram.png" class="w-5 h-5"
                         alt="Instagram">
                 </a>
 
                 <a href="<?php echo get_field('tiktok_url', 'option') ?: '#'; ?>" target="_blank"
-                    class="w-11 h-11 rounded-full bg-jhl-gray-1 flex items-center justify-center hover:bg-[#808285] transition-colors">
+                    class="w-11 h-11 rounded-full bg-jhl-gray-1 flex items-center justify-center shadow-md hover:bg-[#808285] transition-colors">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/icons/tiktok.png" class="w-5 h-5"
                         alt="TikTok">
                 </a>
 
                 <a href="<?php echo get_field('facebook_url', 'option') ?: '#'; ?>" target="_blank"
-                    class="w-11 h-11 rounded-full bg-jhl-gray-1 flex items-center justify-center hover:bg-[#808285] transition-colors">
+                    class="w-11 h-11 rounded-full bg-jhl-gray-1 flex items-center justify-center shadow-md hover:bg-[#808285] transition-colors">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/icons/facebook.png" class="w-5 h-5"
                         alt="Facebook">
                 </a>
@@ -188,27 +190,28 @@
 
         <script>
             $(document).ready(function ($) {
-                $('#social-toggle').css('transform', 'rotate(180deg)');
                 $('#social-toggle').on('click', function () {
                     const $btn = $(this);
                     const $container = $('#social-expandable');
                     const $iconArrow = $('#toggle-icon');
                     const $iconShare = $('#toggle-share');
 
-                    // Toggle a state class on the button
+                    // Toggle state class
                     $btn.toggleClass('is-open');
 
-                    // Animation
+                    // Animation for the menu
                     $container.slideToggle(300);
 
                     if ($btn.hasClass('is-open')) {
-                        // EXPANDED STATE
+                        // OPEN STATE: Show Arrow, Hide Share
+                        $iconShare.hide();
+                        $iconArrow.removeClass('hidden').show();
+                        $btn.css('transform', 'rotate(180deg)');
+                    } else {
+                        // CLOSED STATE (Default): Show Share, Hide Arrow
                         $iconArrow.hide();
                         $iconShare.show();
-                    } else {
-                        // CLOSED STATE
-                        $iconShare.hide();
-                        $iconArrow.show();
+                        $btn.css('transform', 'rotate(0deg)');
                     }
                 });
             });
