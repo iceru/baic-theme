@@ -235,8 +235,7 @@ if (false === $external_promotions) {
     <div class="container">
         <div class="md:text-center mb-10 block md:flex justify-between items-center">
             <h2 class="text-[28px] font-light mb-9 md:mb-0">FIND A DEALER</h2>
-            <a href="https://jhl-auto.codeomnia.com/dealer/"
-                class="inline-flex items-center space-x-[10px] text-sm font-semibold text-jhl-gray-2">
+            <a href="/service" class="inline-flex items-center space-x-[10px] text-sm font-semibold text-jhl-gray-2">
                 <div>
                     <img src="<?php echo get_template_directory_uri() ?>/images/chev-right.png" alt="">
                 </div>

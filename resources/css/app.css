@@ -76,7 +76,8 @@ h5 {
   @apply text-jhl-gray-2 font-medium text-base;
 }
 
-p.body {
+p.body,
+.body {
   font-size: 13px;
   font-weight: 500;
   line-height: 24px;

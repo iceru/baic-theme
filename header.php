@@ -129,7 +129,8 @@
                     </nav>
                 </div>
                 <div>
-                    <a href="/" class="text-[13px] font-medium flex items-center !no-underline space-x-1">
+                    <a href="https://jhl-auto.codeomnia.com"
+                        class="text-[13px] font-medium flex items-center !no-underline space-x-1">
                         <img src="<?php echo get_template_directory_uri() ?>/images/logo-jhl.png" class="h-7 w-auto"
                             alt="">
                     </a>

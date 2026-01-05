@@ -1,58 +1,87 @@
 <?php get_header(); ?>
+<?php
+// 1. Try to get the data from the cache (transient) first
+$cache_key = 'external_dealers_data';
+$external_dealers = get_transient($cache_key);
+
+// 2. If the cache is empty, fetch the data from the API
+if (false === $external_dealers) {
+    $source_url = 'https://jhl-auto.codeomnia.com/wp-json/wp/v2/dealers?_embed&per_page=4&orderby=date&order=asc';
+    $response = wp_remote_get($source_url, ['timeout' => 10]);
+
+    if (!is_wp_error($response)) {
+        $external_dealers = json_decode(wp_remote_retrieve_body($response));
+
+        // 3. Save the data to cache for 1 hour (3600 seconds)
+        set_transient($cache_key, $external_dealers, 3600);
+    }
+}
+?>
+
 <section class="py-28 container">
     <img src="<?php echo get_template_directory_uri() ?>/images/map.png" class="mx-auto w-full" alt="">
 </section>
+
 <section class="pb-28 container !md:px-0">
     <h2 class="text-center uppercase mb-14">Authorized Dealers</h2>
     <div class="grid md:grid-cols-4 gap-4">
         <?php
-        $dealer_query = new WP_Query([
-            'post_type' => 'dealer', // Change to your CPT slug
-            'posts_per_page' => 4,
-        ]);
+        if (!empty($external_dealers) && is_array($external_dealers)):
+            foreach ($external_dealers as $dealer):
+                // Extracting data from the REST API object
+                $title = $dealer->title->rendered;
 
-        if ($dealer_query->have_posts()):
-            while ($dealer_query->have_posts()):
-                $dealer_query->the_post(); ?>
+                // ACF fields usually reside in the 'acf' key in REST API
+                $acf = $dealer->acf;
+                $address = isset($acf->address) ? $acf->address : '';
+                $business_hours = isset($acf->business_hours) ? $acf->business_hours : '';
+                $whatsapp = isset($acf->whatsapp) ? $acf->whatsapp : '#';
+                $phone = isset($acf->phone) ? $acf->phone : '#';
+                $location = isset($acf->location) ? $acf->location : '#';
+
+                // Get featured image from _embedded if available
+                $image_url = get_template_directory_uri() . '/images/alsut.png'; // Fallback
+                if (!empty($dealer->_embedded->{'wp:featuredmedia'}[0]->source_url)) {
+                    $image_url = $dealer->_embedded->{'wp:featuredmedia'}[0]->source_url;
+                }
+                ?>
                 <div>
                     <div class="mb-[30px]">
-                        <?php if (has_post_thumbnail()): ?>
-                            <?php the_post_thumbnail('large', ['class' => 'rounded-lg h-[282px] object-cover w-full']); ?>
-                        <?php else: ?>
-                            <img src="<?php echo get_template_directory_uri() ?>/images/alsut.png" alt=""
-                                class="rounded-lg h-[282px] object-cover w-full">
-                        <?php endif; ?>
+                        <img src="<?php echo $image_url; ?>" alt="<?php echo $title; ?>"
+                            class="rounded-lg h-[282px] object-cover w-full">
                     </div>
-                    <h5 class="mb-7 tracking-wider text-jhl-black">
-                        <?php the_title(); ?>
+                    <h5 class="mb-5 tracking-wider !text-jhl-black">
+                        <?php echo $title; ?>
                     </h5>
-                    <p class="body mb-4">
-                        <?php echo wp_trim_words(get_the_excerpt(), 20); ?>
+                    <p class="body mb-4 !text-jhl-gray-1">
+                        <?php echo $address; ?>
                     </p>
-                    <p class="body text-jhl-black mb-10">
+                    <div class="body text-jhl-black mb-10 h-24">
                         <span class="font-bold">Business Hours:</span>
-                        <?php echo get_field('business_hours') ?>
-                    </p>
+                        <div class="mt-1">
+                            <?php echo nl2br(wp_kses_post($business_hours)); ?>
+                        </div>
+                    </div>
                     <div class="flex space-x-4">
-                        <a href="<?php get_field('whatsapp') ?>" class="bg-jhl-black p-[5px] rounded block">
+                        <a href="<?php echo $whatsapp; ?>" class="bg-jhl-black p-[5px] rounded block">
                             <img src="<?php echo get_template_directory_uri() ?>/images/WhatsApp.png"
                                 class="h-[22px] w-[22px] object-contain" alt="">
                         </a>
-                        <a href="<?php get_field('phone ') ?>" class="bg-jhl-black p-[5px] rounded block">
+                        <a href="<?php echo $phone; ?>" class="bg-jhl-black p-[5px] rounded block">
                             <img src="<?php echo get_template_directory_uri() ?>/images/Phone.png"
                                 class="h-[22px] w-[22px] object-contain" alt="">
                         </a>
-                        <a href="<?php get_field('location') ?>" class="bg-jhl-black p-[5px] rounded block">
-                            <img src="<?php echo get_template_directory_uri() ?>/images/Locaiton.png"
+                        <a href="<?php echo $location; ?>" class="bg-jhl-black p-[5px] rounded block">
+                            <img src="<?php echo get_template_directory_uri() ?>/images/Location.png"
                                 class="h-[22px] w-[22px] object-contain" alt="">
                         </a>
                     </div>
                 </div>
-            <?php endwhile;
-            wp_reset_postdata();
+            <?php endforeach;
         endif; ?>
     </div>
 </section>
+
 <section class="py-20 relative h-[615px]">
     <div class="absolute left-0 top-0 w-full h-[80%] bg-gradient-to-b from-jhl-black to-transparent z-[5] opacity-70">
     </div>
@@ -81,4 +110,4 @@
         </div>
     </div>
 </section>
-<?php get_footer();
+<?php get_footer(); ?>
