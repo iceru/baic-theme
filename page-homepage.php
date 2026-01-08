@@ -189,7 +189,7 @@ if (false === $external_promotions) {
         <h2 class="text-[28px] md:text-[44px] mb-8 text-white">
             PROMOTIONS
         </h2>
-        <div class="flex overflow-auto md:grid md:grid-cols-5 gap-6">
+        <div class="flex -mr-4 md:mr-0 overflow-auto md:grid md:grid-cols-5 gap-6">
             <?php if (!empty($external_promotions) && is_array($external_promotions)): ?>
                 <?php foreach ($external_promotions as $promo):
                     $title = $promo->title->rendered;

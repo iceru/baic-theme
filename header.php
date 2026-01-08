@@ -54,7 +54,7 @@
                                 <div class="uppercase text-[13px] !no-underline cursor-default">Product</div>
 
                                 <ul
-                                    class="absolute left-1/2 -translate-x-1/2 top-full py-6 w-[700px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out">
+                                    class="absolute left-1/2 -translate-x-[40%] top-full py-6 w-[700px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out">
                                     <div class="px-10 py-8 space-y-3 isolate relative">
                                         <div
                                             class="absolute inset-0 mb-0 bg-[#171717]/30 backdrop-blur-2xl rounded-xl shadow-2xl -z-10 border border-white/10">
@@ -67,7 +67,7 @@
                                                 <?php
                                                 $args = array(
                                                     'post_type' => 'car',
-                                                    'posts_per_page' => 6, // Adjust number of cars to show
+                                                    'posts_per_page' => 6, 
                                                     'orderby' => 'title',
                                                     'order' => 'ASC',
                                                 );
@@ -77,7 +77,7 @@
                                                 if ($car_query->have_posts()):
                                                     while ($car_query->have_posts()):
                                                         $car_query->the_post();
-                                                        $car_image = get_the_post_thumbnail_url(get_the_ID(), 'medium');
+                                                        $car_image = get_field('car_image', get_the_ID());
                                                         ?>
 
                                                         <div class="flex flex-col items-center text-center space-y-5">
