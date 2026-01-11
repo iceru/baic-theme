@@ -40,20 +40,20 @@
                     </p>
                     <ul class="text-white space-y-3">
                         <li>
-                            <a href="/our-story" class="text-xs !no-underline">
+                            <a href="https://jhl.codeomnia.com/our-story" class="text-xs !no-underline">
                                 Our Story
                             </a>
                         </li>
                         <li>
-                            <a href="/career" class="text-xs !no-underline">
+                            <a href="https://jhl.codeomnia.com/career" class="text-xs !no-underline">
                                 Career
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="/career" class="text-xs !no-underline">
                                 Contact
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <div class="w-[48%] md:w-fit order-3 md:order-2">
@@ -62,12 +62,12 @@
                     </p>
                     <ul class="text-white space-y-3">
                         <li>
-                            <a href="/our-story" class="text-xs !no-underline">
+                            <a href="/" class="text-xs !no-underline">
                                 BAIC
                             </a>
                         </li>
                         <li>
-                            <a href="/service-center" class="text-xs !no-underline">
+                            <a href="https://jhl.codeomnia.com/service" class="text-xs !no-underline">
                                 Service Center
                             </a>
                         </li>
@@ -79,12 +79,12 @@
                     </p>
                     <ul class="text-white space-y-3">
                         <li>
-                            <a href="/news" class="text-xs !no-underline">
+                            <a href="https://jhl.codeomnia.com/news" class="text-xs !no-underline">
                                 News
                             </a>
                         </li>
                         <li>
-                            <a href="/news?type=promo" class="text-xs !no-underline">
+                            <a href="https://jhl.codeomnia.com/news?type=promo" class="text-xs !no-underline">
                                 Promo
                             </a>
                         </li>

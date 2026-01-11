@@ -127,35 +127,6 @@ if (false === $external_promotions) {
     </div>
 </div>
 
-<style>
-    .td-form .wpcf7-text,
-    .td-form .wpcf7-select,
-    .td-form .wpcf7-textarea,
-    .td-form .wpcf7-date {
-        border-bottom: 1px solid #939598;
-        padding-bottom: 24px;
-        outline: none;
-        width: 100%;
-    }
-
-    .wpcf7-form select {
-        color: #9ca3af;
-    }
-
-    .wpcf7-form select:not(:invalid):not([value=""]):focus,
-    .wpcf7-form select:valid {
-        color: #000000;
-    }
-
-    .wpcf7-form select option {
-        color: #000000;
-    }
-
-    .wpcf7-form select option:first-child {
-        color: #9ca3af;
-    }
-</style>
-
 <script>
     $(document).ready(function ($) {
         // 1. Open Popup

@@ -83,7 +83,8 @@ p.body,
   line-height: 24px;
 }
 
-#banners .slick-dots {
+#banners .slick-dots,
+#banner .slick-dots {
   display: flex !important;
   width: 100%;
   bottom: 6px;
@@ -94,7 +95,8 @@ p.body,
   /* Aligns dots to bottom */
 }
 
-#banners .slick-dots li {
+#banners .slick-dots li,
+#banner .slick-dots li {
   flex-grow: 1;
   margin: 0;
   height: 4px;
@@ -103,12 +105,14 @@ p.body,
   cursor: pointer;
 }
 
-#banners .slick-dots li.slick-active {
+#banners .slick-dots li.slick-active,
+#banner .slick-dots li.slick-active {
   height: 8px;
   background: var(--jhl-gray-1);
 }
 
-#banners .slick-dots li button {
+#banners .slick-dots li button,
+#banner .slick-dots li button {
   display: none;
 }
 
@@ -159,4 +163,45 @@ a {
   margin-bottom: 0;
 }
 
-@media screen and (max-width: 768px) {}
+.body ul {
+  list-style: disc;
+  padding-left: 1rem;
+}
+
+
+
+.td-form .wpcf7-text,
+.td-form .wpcf7-select,
+.td-form .wpcf7-textarea,
+.td-form .wpcf7-date {
+  border-bottom: 1px solid #939598;
+  padding-bottom: 24px;
+  outline: none;
+  width: 100%;
+}
+
+.wpcf7-form select {
+  color: #9ca3af;
+}
+
+.wpcf7-form select:not(:invalid):not([value=""]):focus,
+.wpcf7-form select:valid {
+  color: #000000;
+}
+
+.wpcf7-form select option {
+  color: #000000;
+}
+
+.wpcf7-form select option:first-child {
+  color: #9ca3af;
+}
+
+.color-slick-slider .slick-prev:before {
+  display: none;
+}
+
+
+.color-slick-slider .slick-next:before {
+  display: none;
+}
