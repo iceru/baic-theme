@@ -175,7 +175,7 @@ a {
 .td-form .wpcf7-textarea,
 .td-form .wpcf7-date {
   border-bottom: 1px solid #939598;
-  padding-bottom: 24px;
+  padding: 12px 4px;
   outline: none;
   width: 100%;
 }
@@ -204,4 +204,16 @@ a {
 
 .color-slick-slider .slick-next:before {
   display: none;
+}
+
+.submit-form {
+  @apply flex justify-end font-semibold mt-6
+}
+
+.submit-form .wpcf7-spinner {
+  position: absolute;
+}
+
+.wpcf7-response-output {
+  @apply !border-none !p-0 !m-0
 }

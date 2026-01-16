@@ -39,10 +39,13 @@ while (have_posts()):
         <section id="colors" class="py-20 bg-white">
             <div class="container">
                 <div class="flex items-center justify-between mb-16">
-                    <h2 class="text-center text-3xl font-light tracking-widest uppercase">PILIHAN WARNA</h2>
-                    <div>
+                    <h2 class="text-center text-3xl text-jhl-gray-1 ">PILIHAN WARNA</h2>
+                    <div class="hidden md:block">
                         <img src="<?php echo esc_url(get_field('logo')); ?>" alt="">
                     </div>
+                </div>
+                <div class="flex justify-center md:hidden mb-4">
+                    <img class="h-3.5" src="<?php echo esc_url(get_field('logo')); ?>" alt="">
                 </div>
                 <div class="color-display-container max-w-5xl mx-auto mb-12">
                     <?php if ($colors):
@@ -57,19 +60,19 @@ while (have_posts()):
                                     <?php if ($featured_img): ?>
                                         <div class="px-2">
                                             <img src="<?php echo esc_url($featured_img); ?>"
-                                                class="w-full h-[409px] object-contain rounded-lg" alt="">
+                                                class="w-full h-[250px] md:h-[409px] object-contain rounded-lg" alt="">
                                         </div>
                                     <?php endif; ?>
                                     <?php if ($right_side): ?>
                                         <div class="px-2">
                                             <img src="<?php echo esc_url($right_side); ?>"
-                                                class="w-full h-[409px] object-contain rounded-lg" alt="">
+                                                class="w-full h-[250px] md:h-[409px] object-contain rounded-lg" alt="">
                                         </div>
                                     <?php endif; ?>
                                     <?php if ($back_side): ?>
                                         <div class="px-2">
                                             <img src="<?php echo esc_url($back_side); ?>"
-                                                class="w-full h-[409px] object-contain rounded-lg" alt="">
+                                                class="w-full h-[250px] md:h-[409px] object-contain rounded-lg" alt="">
                                         </div>
                                     <?php endif; ?>
                                 </div>
@@ -152,13 +155,13 @@ while (have_posts()):
         </section>
 
         <section class="bg-beijing-black text-white relative min-h-screen" id="specs">
-            <div class="absolute left-0 top-0 h-full w-[40%]">
+            <div class="md:absolute left-0 top-0 h-[380px] w-full md:h-full md:w-[40%]">
                 <img src="<?php echo get_template_directory_uri() ?>/images/spec.png" alt=""
-                    class="w-full h-full object-cover">
+                    class="w-full h-full object-top object-cover">
             </div>
             <div class="container flex py-16">
-                <div class="w-[45%]"></div>
-                <div class="w-[55%]">
+                <div class="hidden md:block w-[45%]"></div>
+                <div class="w-full md:w-[55%]">
 
                     <h2 class="text-[28px] uppercase mb-14 leading-[30px]">SPESIFIKASI</h2>
 
@@ -450,13 +453,13 @@ while (have_posts()):
                             $acc_img = get_the_post_thumbnail_url($accessory->ID, 'medium');
                             ?>
                             <div class="w-full rounded-xl border p-[18px] pb-7 border-jhl-gray-3 overflow-hidden">
-                                <h6 class="text-jhl-gray-1 mb-10 font-medium">
+                                <h6 class="text-jhl-gray-1 mb-4 md:mb-10 font-medium">
                                     <?php echo get_field('name', $accessory->ID) ?>
                                 </h6>
                                 <?php if ($acc_img): ?>
-                                    <div class="px-4 flex justify-center items-center h-[134px]">
+                                    <div class="md:px-4 flex justify-center items-center max-h-[75px] md:h-[134px]">
                                         <img src="<?php echo esc_url($acc_img); ?>" alt="<?php echo get_field('name') ?>"
-                                            class="w-full h-full max-h-[134px] object-contain">
+                                            class="w-full h-full  max-h-[75px] md:max-h-[134px] object-contain">
                                     </div>
                                 <?php else: ?>
                                     <div class="text-jhl-gray-3 uppercase text-xs">No Image</div>
@@ -468,10 +471,116 @@ while (have_posts()):
             </div>
         </section>
 
+        <section class="py-24 md:py-12 bg-jhl-gray-1" id="forms">
+            <div class="container flex flex-col md:flex-row justify-center space-y-24 md:space-y-0 md:space-x-6">
+                <div class="flex flex-col justify-center items-center">
+                    <div class="mb-6">
+                        <img src="<?php echo get_template_directory_uri() ?>/images/icons/steering.png" alt="test-drive">
+                    </div>
+                    <button id="btn-test-drive"
+                        class="open-form-popup px-6 py-4 text-white  border border-white rounded-full hover:bg-white/10 transition duration-500 flex items-center space-x-4"
+                        data-form="test-drive" data-title="TEST DRIVE FORM">
+                        <span class="text-xs font-semibold">Reservasi Test Drive</span>
+                        <img src="<?php echo get_template_directory_uri() ?>/images/arrow-white.png" alt="arrow-white">
+                    </button>
+                </div>
+                <div class="flex flex-col justify-center items-center">
+                    <div class="mb-6">
+                        <img src="<?php echo get_template_directory_uri() ?>/images/icons/brochure.png" alt="brochure">
+                    </div>
+
+                    <?php
+                    // Fetch the ACF field (ensure the field name matches 'brochure-file')
+                    $brochure_file = get_field('brochure_file');
+                    if ($brochure_file): ?>
+                        <a href="<?php echo esc_url($brochure_file); ?>" download target="_blank" id="btn-get-brochure"
+                            class="px-8 py-4 text-white border border-white rounded-full hover:bg-white/10 transition duration-500 flex items-center space-x-4">
+                            <span class="text-xs font-semibold">Download Brochure</span>
+                            <img src="<?php echo get_template_directory_uri() ?>/images/arrow-white.png" alt="">
+                        </a>
+                    <?php else: ?>
+                        <button
+                            class="opacity-50 cursor-not-allowed px-8 py-4 text-white border border-white rounded-full flex items-center space-x-4"
+                            disabled>
+                            <span class="text-xs font-semibold">Brochure Unavailable</span>
+                        </button>
+                    <?php endif; ?>
+                </div>
+                <div class="flex flex-col justify-center items-center">
+                    <div class="mb-6">
+                        <img src="<?php echo get_template_directory_uri() ?>/images/icons/list.png" alt="brochure">
+                    </div>
+                    <button id="btn-request-pricelist"
+                        class="open-form-popup px-6 py-4 text-white  border border-white rounded-full hover:bg-white/10 transition duration-500 flex items-center space-x-4"
+                        data-form="pricelist" data-title="REQUEST PRICELIST">
+                        <span class="text-xs font-semibold">Request Pricelist</span>
+                        <img src="<?php echo get_template_directory_uri() ?>/images/arrow-white.png" alt="">
+                    </button>
+                </div>
+            </div>
+        </section>
     </main>
 
+    <div id="contact-popup" class="fixed inset-0 z-[100] hidden items-center justify-center">
+        <div class="absolute inset-0 bg-black/70" id="close-overlay"></div>
+
+        <div class="relative bg-white w-full max-w-6xl  py-8 px-24 shadow-2xl border-jhl-gray-3 border-5 z-10">
+            <button id="close-contact" class="absolute top-4 right-4 text-black/50 hover:text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            <div id="popup-heading" class="text-[28px] mb-12 uppercase">TEST DRIVE FORM</div>
+
+            <!-- Form 1: Test Drive -->
+            <div id="form-container-test-drive" class="cf7-popup-wrapper td-form hidden">
+                <?php echo do_shortcode('[contact-form-7 id="4fa6cd3" title="Test Drive Form"]'); ?>
+            </div>
+
+            <!-- Form 3: Pricelist -->
+            <div id="form-container-pricelist" class="cf7-popup-wrapper td-form hidden">
+                <!-- Replace ID/Title if needed -->
+                <?php echo do_shortcode('[contact-form-7 id="a6761b5" title="PRICELIST FORM"]'); ?>
+            </div>
+        </div>
+    </div>
+
     <script>
-        $(document).ready(function () {
+        jQuery(document).ready(function ($) {
+            // Open Popup Logic
+            $('.open-form-popup').on('click', function (e) {
+                e.preventDefault();
+                const title = $(this).data('title');
+                const formType = $(this).data('form'); // test-drive, brochure, pricelist
+
+                // Set Title
+                $('#popup-heading').text(title);
+
+                // Hide all specific forms first
+                $('#contact-popup .cf7-popup-wrapper').addClass('hidden');
+
+                // Show the specific form container
+                $('#form-container-' + formType).removeClass('hidden');
+
+                // Show the modal
+                $('#contact-popup').removeClass('hidden').addClass('flex');
+                $('body').addClass('overflow-hidden');
+            });
+
+            // Function to Close Popup
+            function closePopup() {
+                $('#contact-popup').addClass('hidden').removeClass('flex');
+                $('body').removeClass('overflow-hidden');
+                // Optional: Reset form states if needed
+            }
+
+            // Close events
+            $('#close-contact').on('click', closePopup);
+            $('#close-overlay').on('click', closePopup);
+        });
+        jQuery(document).ready(function ($) {
             // Main Banners Slider
             $('.banner-slider-main').slick({
                 dots: true,
@@ -497,8 +606,8 @@ while (have_posts()):
                         asNavFor: $nav,
                         centerMode: true,
                         infinite: true,
-                        prevArrow: '<button type="button" class="slick-prev !left-10 z-10"><img src="<?php echo get_template_directory_uri(); ?>/images/icons/prev.png" /></button>',
-                        nextArrow: '<button type="button" class="slick-next !right-10 z-10"><img src="<?php echo get_template_directory_uri(); ?>/images/icons/next.png" /></button>',
+                        prevArrow: '<button type="button" class="slick-prev !left-0 !md:left-10 z-10"><img src="<?php echo get_template_directory_uri(); ?>/images/icons/prev.png" /></button>',
+                        nextArrow: '<button type="button" class="slick-next !right-0 !md:right-10 z-10"><img src="<?php echo get_template_directory_uri(); ?>/images/icons/next.png" /></button>',
                         responsive: [
                             {
                                 breakpoint: 768,

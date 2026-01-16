@@ -24,7 +24,7 @@ if (false === $external_dealers) {
 
 <section class="pb-28 container !md:px-0">
     <h2 class="text-center uppercase mb-14">Authorized Dealers</h2>
-    <div class="grid md:grid-cols-4 gap-4">
+    <div class="grid md:grid-cols-4 gap-16 md:gap-4">
         <?php
         if (!empty($external_dealers) && is_array($external_dealers)):
             foreach ($external_dealers as $dealer):
@@ -82,15 +82,15 @@ if (false === $external_dealers) {
     </div>
 </section>
 
-<section class="py-20 relative h-[615px]">
+<section class="py-20 relative min-h-screen md:min-h-auto md:h-[615px]">
     <div class="absolute left-0 top-0 w-full h-[80%] bg-gradient-to-b from-jhl-black to-transparent z-[5] opacity-70">
     </div>
     <div class="absolute left-0 top-0 w-full h-full z-0">
         <img src="<?php echo get_template_directory_uri() ?>/images/armada.png" class="h-full w-full object-cover"
             alt="">
     </div>
-    <div class="container text-white flex justify-between relative z-10">
-        <div>
+    <div class="container text-white flex flex-col md:flex-row justify-between relative z-10">
+        <div class="mb-14 md:mb-0">
             <h2 class="mb-4">Armada Bisnis</h2>
             <p class="body mb-9">Solusi lengkap kebutuhan perusahaan Anda</p>
             <a href="javascript:void(0)" id="open-contact"
@@ -125,13 +125,13 @@ if (false === $external_dealers) {
     if ($services_query->have_posts()):
         ?>
         <div class="py-9">
-            <ul class="flex border-b border-jhl-gray-3 service-tabs">
+            <ul class="flex border-b whitespace-nowrap overflow-auto scroll-m-2 border-jhl-gray-3 service-tabs">
                 <?php
                 $count = 0;
                 while ($services_query->have_posts()):
                     $services_query->the_post();
                     ?>
-                    <li class="pb-4 mx-10 text-beijing-black first:ml-0 cursor-pointer service-tab <?php echo $count === 0 ? 'border-b border-jhl-black font-bold' : ''; ?>"
+                    <li class="pb-4 mx-10 whitespace-nowrap text-beijing-black first:ml-0 cursor-pointer service-tab <?php echo $count === 0 ? 'border-b border-jhl-black font-semibold' : ''; ?>"
                         data-target="service-<?php the_ID(); ?>">
                         <?php the_title(); ?>
                     </li>
@@ -153,11 +153,11 @@ if (false === $external_dealers) {
                 ?>
                 <div id="service-<?php the_ID(); ?>"
                     class="service-content grid md:grid-cols-2 items-center md:gap-20 <?php echo $count === 0 ? '' : 'hidden'; ?>">
-                    <div>
+                    <div class="mb-14 md:mb-0">
                         <img src="<?php echo $featured_img; ?>" alt="<?php the_title(); ?>" class="w-full h-auto rounded-lg">
                     </div>
                     <div>
-                        <h4 class="font-bold text-xl mb-8 max-w-[173px] text-beijing-black"><?php echo $acf_title; ?></h4>
+                        <h4 class="font-bold text-xl mb-8 md:max-w-[247px] text-beijing-black"><?php echo $acf_title; ?></h4>
                         <div class="body">
                             <?php the_content(); ?>
                         </div>
@@ -175,8 +175,8 @@ if (false === $external_dealers) {
                     var target = $(this).data('target');
 
                     // Update tabs
-                    $('.service-tab').removeClass('border-b border-jhl-black font-bold');
-                    $(this).addClass('border-b border-jhl-black font-bold');
+                    $('.service-tab').removeClass('border-b border-jhl-black font-semibold');
+                    $(this).addClass('border-b border-jhl-black font-semibold');
 
                     // Update content
                     $('.service-content').addClass('hidden');
@@ -226,7 +226,7 @@ if (false === $external_dealers) {
         <div class="text-[28px] mb-12 uppercase">ARMADA BISNIS FORM</div>
 
         <div class="cf7-popup-wrapper td-form">
-            <?php echo do_shortcode('[contact-form-7 id="4fa6cd3" title="Armada Bisnis Form"]'); ?>
+            <?php echo do_shortcode('[contact-form-7 id="be408c9" title="ARMADA BISNIS FORM"]'); ?>
         </div>
     </div>
 </div>

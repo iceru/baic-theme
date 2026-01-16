@@ -108,10 +108,11 @@ if (false === $external_promotions) {
     </div>
 </section>
 
-<div id="contact-popup" class="fixed inset-0 z-[100] hidden items-center justify-center">
+<div id="contact-popup" class="fixed inset-0 z-[100]  hidden items-center justify-center">
     <div class="absolute inset-0 bg-black/70" id="close-overlay"></div>
 
-    <div class="relative bg-white w-full max-w-6xl  py-8 px-24 shadow-2xl border-jhl-gray-3 border-5 z-10">
+    <div
+        class="relative bg-white w-full max-w-6xl max-h-[90vh] overflow-y-auto px-4 py-8 md:px-24 shadow-2xl border-jhl-gray-3 border-5 z-10">
         <button id="close-contact" class="absolute top-4 right-4 text-white/50 hover:text-white">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -119,7 +120,7 @@ if (false === $external_promotions) {
             </svg>
         </button>
 
-        <div class="text-[28px] mb-12 uppercase">TEST DRIVE FORM</div>
+        <div class="text-[28px] mb-10 uppercase">TEST DRIVE FORM</div>
 
         <div class="cf7-popup-wrapper td-form">
             <?php echo do_shortcode('[contact-form-7 id="4fa6cd3" title="Test Drive Form"]'); ?>
@@ -128,27 +129,22 @@ if (false === $external_promotions) {
 </div>
 
 <script>
-    $(document).ready(function ($) {
+    jQuery(document).ready(function ($) {
+
         // 1. Open Popup
-        $('#open-contact').on('click', function (e) {
+        $(document).on('click', '#open-contact', function (e) {
             e.preventDefault();
             $('#contact-popup').removeClass('hidden').addClass('flex');
-            $('body').addClass('overflow-hidden'); // Prevent background scrolling
+            $('body').addClass('overflow-hidden');
         });
 
-        // 2. Function to Close Popup
+        // 2. Close Popup
         function closePopup() {
             $('#contact-popup').addClass('hidden').removeClass('flex');
             $('body').removeClass('overflow-hidden');
         }
 
-        // Close via 'X' button
-        $('#close-contact').on('click', function () {
-            closePopup();
-        });
-
-        // Close via clicking the dark overlay background
-        $('#close-overlay').on('click', function () {
+        $(document).on('click', '#close-contact, #close-overlay', function () {
             closePopup();
         });
     });
