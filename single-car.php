@@ -444,19 +444,19 @@ while (have_posts()):
                     <img src="<?php echo get_field('acc_image'); ?>" class="max-h-[478px] w-auto" alt="">
                 </div>
 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <?php if ($accessories):
                         foreach ($accessories as $accessory):
                             $acc_img = get_the_post_thumbnail_url($accessory->ID, 'medium');
                             ?>
-                            <div class="w-full rounded-xl border p-[18px] pb-7 border-jhl-gray-3  mb-6 overflow-hidden">
+                            <div class="w-full rounded-xl border p-[18px] pb-7 border-jhl-gray-3 overflow-hidden">
                                 <h6 class="text-jhl-gray-1 mb-10 font-medium">
                                     <?php echo get_field('name', $accessory->ID) ?>
                                 </h6>
                                 <?php if ($acc_img): ?>
-                                    <div class="px-4">
+                                    <div class="px-4 flex justify-center items-center h-[134px]">
                                         <img src="<?php echo esc_url($acc_img); ?>" alt="<?php echo get_field('name') ?>"
-                                            class="w-full h-full object-contain">
+                                            class="w-full h-full max-h-[134px] object-contain">
                                     </div>
                                 <?php else: ?>
                                     <div class="text-jhl-gray-3 uppercase text-xs">No Image</div>
