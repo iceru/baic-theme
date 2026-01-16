@@ -431,33 +431,42 @@ while (have_posts()):
 
         <section id="accessories" class="py-24 bg-white">
             <div class="container">
-                <h2 class="text-center text-3xl font-light tracking-widest uppercase mb-16">Accessories</h2>
+                <div class="flex justify-between items-center mb-24">
+                    <h2 class="text-3xl uppercase">
+                        Aksesoris
+                    </h2>
+                    <div>
+                        <img src="<?php echo esc_url(get_field('logo')); ?>" alt="">
+                    </div>
+                </div>
+
+                <div class="flex justify-center mb-24">
+                    <img src="<?php echo get_field('acc_image'); ?>" class="max-h-[478px] w-auto" alt="">
+                </div>
 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                     <?php if ($accessories):
                         foreach ($accessories as $accessory):
                             $acc_img = get_the_post_thumbnail_url($accessory->ID, 'medium');
                             ?>
-                            <div class="flex flex-col items-center text-center">
-                                <div
-                                    class="w-full aspect-square bg-[#F1F1F1] rounded-xl flex items-center justify-center mb-6 overflow-hidden">
-                                    <?php if ($acc_img): ?>
-                                        <img src="<?php echo esc_url($acc_img); ?>"
-                                            alt="<?php echo esc_attr($accessory->post_title); ?>"
-                                            class="w-full h-full object-contain p-4 hover:scale-110 transition-transform duration-500">
-                                    <?php else: ?>
-                                        <div class="text-jhl-gray-3 uppercase text-xs">No Image</div>
-                                    <?php endif; ?>
-                                </div>
-                                <h6 class="text-xs font-semibold tracking-widest uppercase text-jhl-black">
-                                    <?php echo $accessory->post_title; ?>
+                            <div class="w-full rounded-xl border p-[18px] pb-7 border-jhl-gray-3  mb-6 overflow-hidden">
+                                <h6 class="text-jhl-gray-1 mb-10 font-medium">
+                                    <?php echo get_field('name', $accessory->ID) ?>
                                 </h6>
+                                <?php if ($acc_img): ?>
+                                    <div class="px-4">
+                                        <img src="<?php echo esc_url($acc_img); ?>" alt="<?php echo get_field('name') ?>"
+                                            class="w-full h-full object-contain">
+                                    </div>
+                                <?php else: ?>
+                                    <div class="text-jhl-gray-3 uppercase text-xs">No Image</div>
+                                <?php endif; ?>
                             </div>
                         <?php endforeach;
                     endif; ?>
                 </div>
             </div>
-        </section> -->
+        </section>
 
     </main>
 
