@@ -8,7 +8,7 @@ while (have_posts()):
     $banners = get_field('car_banner');
     $colors = get_field('colors');
     $price = get_field('price');
-    $specs = get_field('specifications');
+    $specs = get_field('car_specification');
     $accessories = get_field('accessories');
     ?>
 
@@ -151,59 +151,283 @@ while (have_posts()):
                 </p>
         </section>
 
-        <!-- 4. Spec Section -->
-        <!-- <section id="specs" class="py-24 bg-beijing-black text-white">
-            <div class="container">
-                <div class="flex justify-between items-end mb-16">
-                    <h2 class="text-3xl font-light tracking-widest uppercase italic">Specifications</h2>
-                    <a href="#" class="text-xs font-semibold tracking-widest flex items-center uppercase text-jhl-gray-1">
-                        <span>Download Brochure</span>
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/icons/download.png" class="ml-2 w-4"
-                            alt="">
-                    </a>
-                </div>
+        <section class="bg-beijing-black text-white relative min-h-screen" id="specs">
+            <div class="absolute left-0 top-0 h-full w-[40%]">
+                <img src="<?php echo get_template_directory_uri() ?>/images/spec.png" alt=""
+                    class="w-full h-full object-cover">
+            </div>
+            <div class="container flex py-16">
+                <div class="w-[45%]"></div>
+                <div class="w-[55%]">
 
-                <div class="grid md:grid-cols-2 gap-x-32 gap-y-6">
-                    <?php if ($specs):
-                        foreach ($specs as $spec): ?>
-                            <div class="flex justify-between items-center py-4 border-b border-white/10">
-                                <span class="text-sm uppercase tracking-widest text-jhl-gray-1">
-                                    <?php echo esc_html($spec['label']); ?>
+                    <h2 class="text-[28px] uppercase mb-14 leading-[30px]">SPESIFIKASI</h2>
+
+                    <?php
+                    // $specs is the single Post Object defined at the top of your file
+                    if ($specs):
+                        // Access fields from the spec post using its ID
+                        $length_width = get_field('length_width', $specs->ID);
+                        $wheelbase = get_field('wheelbase', $specs->ID);
+                        $fuel_tank_capacity = get_field('fuel_tank', $specs->ID);
+                        $ground_clearance = get_field('ground_clearance', $specs->ID);
+                        $luggage_capacity = get_field('luggage_capacity', $specs->ID);
+                        $approach_angle = get_field('approach_angle', $specs->ID);
+                        $departure_angle = get_field('departure_angle', $specs->ID);
+                        $rampover_angle = get_field('rampover_angle', $specs->ID);
+                        $displacement = get_field('displacement', $specs->ID);
+                        $cylinder_configuration = get_field('cylinder_configuration', $specs->ID);
+                        $emission_standard = get_field('emission_standard', $specs->ID);
+                        $maximum_power = get_field('maximum_power', $specs->ID);
+                        $maximum_torque = get_field('maximum_torque', $specs->ID);
+                        $drivetrain = get_field('drivetrain', $specs->ID);
+                        $transmission = get_field('transmission', $specs->ID);
+                        $front_suspension = get_field('front_suspension', $specs->ID);
+                        $rear_suspension = get_field('rear_suspension', $specs->ID);
+                        ?>
+                        <div class="mb-6 border-b border-white spec-item">
+                            <button class="spec-toggle mb-6 text-xl w-full text-left flex justify-between items-center">
+                                <span>Dimension and Capacity</span>
+                                <span class="toggle inline-block transition-transform duration-300"
+                                    style="transform: rotate(180deg);">
+                                    <img src="<?php echo get_template_directory_uri() ?>/images/toggle-2.svg" alt=""
+                                        class="w-5 h-5">
                                 </span>
-                                <span class="text-lg font-medium italic">
-                                    <?php echo esc_html($spec['value']); ?>
-                                </span>
+                            </button>
+                            <div class="spec-content space-y-6 body mt-2">
+                                <div class="flex">
+                                    <div class="w-[60%]">
+                                        Length x Width x Height (mm)
+                                    </div>
+                                    <div class="w-[40%]">
+                                        <?php echo $length_width; ?>
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div class="w-[60%]">
+                                        Wheelbase (mm)
+                                    </div>
+                                    <div class="w-[40%]">
+                                        <?php echo $wheelbase; ?>
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div class="w-[60%]">
+                                        Fuel tank capacity (l)
+                                    </div>
+                                    <div class="w-[40%]">
+                                        <?php echo $fuel_tank_capacity; ?>
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div class="w-[60%]">
+                                        Ground clearance (mm)
+                                    </div>
+                                    <div class="w-[40%]">
+                                        <?php echo $ground_clearance; ?>
+                                    </div>
+                                </div>
+                                <div class="flex mb-10">
+                                    <div class="w-[60%]">
+                                        Luggage capacity (litres) *seats down
+                                    </div>
+                                    <div class="w-[40%]">
+                                        <?php echo $luggage_capacity; ?>
+                                    </div>
+                                </div>
                             </div>
-                        <?php endforeach;
-                    else: ?>
-                        <div class="flex justify-between items-center py-4 border-b border-white/10">
-                            <span class="text-sm uppercase tracking-widest text-jhl-gray-1">Engine</span>
-                            <span class="text-lg font-medium italic">
-                                <?php echo get_field('engine'); ?>
-                            </span>
                         </div>
-                        <div class="flex justify-between items-center py-4 border-b border-white/10">
-                            <span class="text-sm uppercase tracking-widest text-jhl-gray-1">Transmission</span>
-                            <span class="text-lg font-medium italic">
-                                <?php echo get_field('transmission'); ?>
-                            </span>
+                        <div class="mb-6 border-b border-white spec-item">
+                            <button class="spec-toggle mb-6 text-xl w-full text-left flex justify-between items-center">
+                                <span>Performance & Angles </span>
+                                <span class="toggle inline-block transition-transform duration-300">
+                                    <img src="<?php echo get_template_directory_uri() ?>/images/toggle-2.svg" alt=""
+                                        class="w-5 h-5">
+                                </span>
+                            </button>
+                            <div class="spec-content space-y-6 body hidden mt-4">
+                                <div class="flex">
+                                    <div class="w-[60%]">
+                                        Approach Angle
+                                    </div>
+                                    <div class="w-[40%]">
+                                        <?php echo $approach_angle; ?>
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div class="w-[60%]">
+                                        Departure Angle
+                                    </div>
+                                    <div class="w-[40%]">
+                                        <?php echo $departure_angle; ?>
+                                    </div>
+                                </div>
+                                <div class="flex mb-10">
+                                    <div class="w-[60%]">
+                                        Rampover Angle
+                                    </div>
+                                    <div class="w-[40%]">
+                                        <?php echo $rampover_angle; ?>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="flex justify-between items-center py-4 border-b border-white/10">
-                            <span class="text-sm uppercase tracking-widest text-jhl-gray-1">Max Power</span>
-                            <span class="text-lg font-medium italic">
-                                <?php echo get_field('max_power'); ?>
-                            </span>
+                        <div class="mb-6 border-b border-white spec-item">
+                            <button class="spec-toggle mb-6 text-xl w-full text-left flex justify-between items-center">
+                                <span>Engine Details</span>
+                                <span class="toggle inline-block transition-transform duration-300">
+                                    <img src="<?php echo get_template_directory_uri() ?>/images/toggle-2.svg" alt=""
+                                        class="w-5 h-5">
+                                </span>
+                            </button>
+                            <div class="spec-content space-y-6 body hidden mt-4">
+                                <div class="flex">
+                                    <div class="w-[60%]">
+                                        Displacement
+                                    </div>
+                                    <div class="w-[40%]">
+                                        <?php echo $displacement; ?>
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div class="w-[60%]">
+                                        Cylinder Configuration
+                                    </div>
+                                    <div class="w-[40%]">
+                                        <?php echo $cylinder_configuration; ?>
+                                    </div>
+                                </div>
+                                <div class="flex mb-10">
+                                    <div class="w-[60%]">
+                                        Emission Standard
+                                    </div>
+                                    <div class="w-[40%]">
+                                        <?php echo $emission_standard; ?>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="flex justify-between items-center py-4 border-b border-white/10">
-                            <span class="text-sm uppercase tracking-widest text-jhl-gray-1">Dimensions</span>
-                            <span class="text-lg font-medium italic">
-                                <?php echo get_field('dimensions'); ?>
-                            </span>
+                        <div class="mb-6 border-b border-white spec-item">
+                            <button class="spec-toggle mb-6 text-xl w-full text-left flex justify-between items-center">
+                                <span>Power & Torque</span>
+                                <span class="toggle inline-block transition-transform duration-300">
+                                    <img src="<?php echo get_template_directory_uri() ?>/images/toggle-2.svg" alt=""
+                                        class="w-5 h-5">
+                                </span>
+                            </button>
+                            <div class="spec-content space-y-6 body hidden mt-4">
+                                <div class="flex">
+                                    <div class="w-[60%]">
+                                        Maximum Power
+                                    </div>
+                                    <div class="w-[40%]">
+                                        <?php echo $maximum_power; ?>
+                                    </div>
+                                </div>
+                                <div class="flex mb-10">
+                                    <div class="w-[60%]">
+                                        Maximum Torque
+                                    </div>
+                                    <div class="w-[40%]">
+                                        <?php echo $maximum_torque; ?>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <div class="mb-6 border-b border-white spec-item">
+                            <button class="spec-toggle mb-6 text-xl w-full text-left flex justify-between items-center">
+                                <span>Drivetrain & Transmission</span>
+                                <span class="toggle inline-block transition-transform duration-300">
+                                    <img src="<?php echo get_template_directory_uri() ?>/images/toggle-2.svg" alt=""
+                                        class="w-5 h-5">
+                                </span>
+                            </button>
+                            <div class="spec-content space-y-6 body hidden mt-4">
+                                <div class="flex">
+                                    <div class="w-[60%]">
+                                        Drivetrain
+                                    </div>
+                                    <div class="w-[40%]">
+                                        <?php echo $drivetrain; ?>
+                                    </div>
+                                </div>
+                                <div class="flex mb-10">
+                                    <div class="w-[60%]">
+                                        Transmission
+                                    </div>
+                                    <div class="w-[40%]">
+                                        <?php echo $transmission; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-6 spec-item">
+                            <button class="spec-toggle mb-6 text-xl w-full text-left flex justify-between items-center">
+                                <span>Suspension</span>
+                                <span class="toggle inline-block transition-transform duration-300">
+                                    <img src="<?php echo get_template_directory_uri() ?>/images/toggle-2.svg" alt=""
+                                        class="w-5 h-5">
+                                </span>
+                            </button>
+                            <div class="spec-content space-y-6 body hidden mt-4">
+                                <div class="flex">
+                                    <div class="w-[60%]">
+                                        Front Suspension
+                                    </div>
+                                    <div class="w-[40%]">
+                                        <?php echo $front_suspension; ?>
+                                    </div>
+                                </div>
+                                <div class="flex mb-10">
+                                    <div class="w-[60%]">
+                                        Rear Suspension
+                                    </div>
+                                    <div class="w-[40%]">
+                                        <?php echo $rear_suspension; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="max-w-[422px] mt-24 text-jhl-gray-3 text-[10px] font-medium leading-[16px]">
+                            DISCLAIMER* <br />
+                            Specifications, equipment, colors & Materials shown here may differ every country. Please
+                            check with yours local dealer for the latest information
+                        </div>
+                    <?php else: ?>
+                        <p>No specifications available.</p>
                     <?php endif; ?>
                 </div>
             </div>
         </section>
+
+        <script>
+            jQuery(document).ready(function ($) {
+                $('.spec-toggle').on('click', function () {
+                    const $btn = $(this);
+                    const $parent = $btn.closest('.spec-item');
+                    const $content = $parent.find('.spec-content');
+                    const $icon = $btn.find('.toggle');
+
+                    // 1. If we click an already open item, just close it
+                    if ($parent.hasClass('is-open')) {
+                        $content.slideUp(300);
+                        $parent.removeClass('is-open');
+                        $icon.css('transform', 'rotate(0deg)');
+                    }
+                    // 2. If we click a closed item, close others and open this one
+                    else {
+                        // Close all others
+                        $('.spec-content').slideUp(300);
+                        $('.spec-item').removeClass('is-open');
+                        $('.toggle').css('transform', 'rotate(0deg)');
+
+                        // Open this one
+                        $content.slideDown(300);
+                        $parent.addClass('is-open');
+                        $icon.css('transform', 'rotate(180deg)');
+                    }
+                });
+            });
+        </script>
 
         <section id="accessories" class="py-24 bg-white">
             <div class="container">
@@ -281,7 +505,7 @@ while (have_posts()):
                         slidesToScroll: 1,
                         asNavFor: $main,
                         dots: false,
-                        centerMode: true,
+                        centerMode: false,
                         focusOnSelect: true,
                         arrows: false,
                         infinite: true

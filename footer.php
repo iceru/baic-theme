@@ -49,11 +49,6 @@
                                 Career
                             </a>
                         </li>
-                        <!-- <li>
-                            <a href="/career" class="text-xs !no-underline">
-                                Contact
-                            </a>
-                        </li> -->
                     </ul>
                 </div>
                 <div class="w-[48%] md:w-fit order-3 md:order-2">
@@ -99,7 +94,6 @@
         </div>
     </div>
 </footer>
-</div>
 
 <?php wp_footer(); ?>
 </body>
