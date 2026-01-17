@@ -119,7 +119,7 @@ while (have_posts()):
                                     data-target="color-content-<?php echo $color->ID; ?>"
                                     data-color-name="color-name-<?php echo $color->ID; ?>"
                                     data-swatch-color="<?php echo esc_attr($swatch_color); ?>">
-                                    <div class="w-6 h-6 rounded-full border p-1 transition-all"
+                                    <div class="w-6 h-6 rounded-full border p-[2px] transition-all"
                                         style="background-color: <?php echo esc_attr($swatch_color); ?>; background-clip: content-box; border: 1px solid <?php echo $index === 0 ? esc_attr($active_border) : '#ccc'; ?>;">
                                     </div>
                                 </div>
