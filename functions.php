@@ -41,16 +41,21 @@ tailpress();
 
 function baic_theme_assets()
 {
-    // 1. Enqueue Slick CSS
+    if (!is_admin()) {
+        // 1. De-register the broken/missing local jQuery
+        wp_deregister_script('jquery');
+
+        // 2. Register & Enqueue jQuery CDN in the HEAD (false = head)
+        // This fixes the "(index)" inline errors
+        wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js', false, '3.7.1', false);
+        wp_enqueue_script('jquery');
+    }
+
+    // 3. Slick Assets
     wp_enqueue_style('slick-main', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css');
     wp_enqueue_style('slick-theme', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css');
 
-    // 2. Enqueue Slick JS (Dependencies: jquery)
-    // WordPress already includes jQuery, so we just list 'jquery' as a dependency.
+    // Enqueue Slick JS in the footer (true = footer)
     wp_enqueue_script('slick-js', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js', array('jquery'), '1.9.0', true);
-
-    // 3. Enqueue your custom JS (Change 'main.js' to your actual file name)
-    // This ensures your code runs AFTER jQuery and Slick are ready.
-    wp_enqueue_script('baic-main-scripts', get_template_directory_uri() . '/js/main.js', array('jquery', 'slick-js'), null, true);
 }
-add_action('wp_enqueue_scripts', 'baic_theme_assets');
+add_action('wp_enqueue_scripts', 'baic_theme_assets', 1); // Priority 1 to load early

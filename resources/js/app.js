@@ -11,20 +11,20 @@ window.addEventListener('load', function () {
 })
 
 
-$(document).ready(function ($) {
+jQuery(document).ready(function ($) {
     // Banner Slider
-    $('.banner-slider').slick({
+    jQuery('.banner-slider').slick({
         dots: true,
         arrows: false,
         infinite: true,
         autoplay: true,
         autoplaySpeed: 5000,
-        appendDots: $('#banner-dots-container'),
+        appendDots: jQuery('#banner-dots-container'),
         pauseOnHover: false
     });
 
     // List Cars Slider
-    $('.car-list-slider').slick({
+    jQuery('.car-list-slider').slick({
         centerMode: true,
         centerPadding: '30%', // Shows partials of side cars
         slidesToShow: 1,

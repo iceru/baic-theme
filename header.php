@@ -224,46 +224,46 @@
         </aside>
 
         <script>
-            $(document).ready(function () {
+            jQuery(document).ready(function () {
                 // Function to reset menu state
                 function resetMenu() {
-                    $('#back-container').addClass('invisible opacity-0');
-                    $('[id^="submenu-"]').addClass('hidden').hide();
-                    $('#menu-main').show().css('opacity', '1');
+                    jQuery('#back-container').addClass('invisible opacity-0');
+                    jQuery('[id^="submenu-"]').addClass('hidden').hide();
+                    jQuery('#menu-main').show().css('opacity', '1');
                 }
 
                 // Open Sidebar
-                $('#sidebar-btn').on('click', function () {
-                    $('#main-sidebar').removeClass('-translate-x-full');
+                jQuery('#sidebar-btn').on('click', function () {
+                    jQuery('#main-sidebar').removeClass('-translate-x-full');
                 });
 
                 // Close Sidebar
-                $('#close-sidebar').on('click', function () {
-                    $('#main-sidebar').addClass('-translate-x-full');
+                jQuery('#close-sidebar').on('click', function () {
+                    jQuery('#main-sidebar').addClass('-translate-x-full');
                     // Reset to main menu after slide-out animation completes
                     setTimeout(resetMenu, 300);
                 });
 
                 // Open Submenu
-                $('.submenu-trigger').on('click', function () {
-                    const target = $(this).data('target');
+                jQuery('.submenu-trigger').on('click', function () {
+                    const target = jQuery(this).data('target');
 
-                    $('#menu-main').fadeOut(200, function () {
-                        $('#' + target).removeClass('hidden').fadeIn(200);
+                    jQuery('#menu-main').fadeOut(200, function () {
+                        jQuery('#' + target).removeClass('hidden').fadeIn(200);
                         // Show Back button in header
-                        $('#back-container').removeClass('invisible opacity-0');
+                        jQuery('#back-container').removeClass('invisible opacity-0');
                     });
                 });
 
                 // Back to Main Menu
-                $('.back-to-main').on('click', function () {
-                    const visibleSubmenu = $('[id^="submenu-"]:visible');
+                jQuery('.back-to-main').on('click', function () {
+                    const visibleSubmenu = jQuery('[id^="submenu-"]:visible');
 
                     visibleSubmenu.fadeOut(200, function () {
-                        $(this).addClass('hidden');
-                        $('#menu-main').fadeIn(200);
+                        jQuery(this).addClass('hidden');
+                        jQuery('#menu-main').fadeIn(200);
                         // Hide Back button in header
-                        $('#back-container').addClass('invisible opacity-0');
+                        jQuery('#back-container').addClass('invisible opacity-0');
                     });
                 });
             });
@@ -320,12 +320,12 @@
         </div>
 
         <script>
-            $(document).ready(function ($) {
-                $('#social-toggle').on('click', function () {
-                    const $btn = $(this);
-                    const $container = $('#social-expandable');
-                    const $iconArrow = $('#toggle-icon');
-                    const $iconShare = $('#toggle-share');
+            jQuery(document).ready(function ($) {
+                jQuery('#social-toggle').on('click', function () {
+                    const $btn = jQuery(this);
+                    const $container = jQuery('#social-expandable');
+                    const $iconArrow = jQuery('#toggle-icon');
+                    const $iconShare = jQuery('#toggle-share');
 
                     // Toggle state class
                     $btn.toggleClass('is-open');

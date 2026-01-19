@@ -171,38 +171,38 @@ if (false === $external_dealers) {
 
         <script>
             jQuery(document).ready(function ($) {
-                $('.service-tab').on('click', function () {
-                    var target = $(this).data('target');
+                jQuery('.service-tab').on('click', function () {
+                    var target = jQuery(this).data('target');
 
                     // Update tabs
-                    $('.service-tab').removeClass('border-b border-jhl-black font-semibold');
-                    $(this).addClass('border-b border-jhl-black font-semibold');
+                    jQuery('.service-tab').removeClass('border-b border-jhl-black font-semibold');
+                    jQuery(this).addClass('border-b border-jhl-black font-semibold');
 
                     // Update content
-                    $('.service-content').addClass('hidden');
-                    $('#' + target).removeClass('hidden');
+                    jQuery('.service-content').addClass('hidden');
+                    jQuery('#' + target).removeClass('hidden');
                 });
 
                 // 1. Open Popup
-                $('#open-contact').on('click', function (e) {
+                jQuery('#open-contact').on('click', function (e) {
                     e.preventDefault();
-                    $('#contact-popup').removeClass('hidden').addClass('flex');
-                    $('body').addClass('overflow-hidden'); // Prevent background scrolling
+                    jQuery('#contact-popup').removeClass('hidden').addClass('flex');
+                    jQuery('body').addClass('overflow-hidden'); // Prevent background scrolling
                 });
 
                 // 2. Function to Close Popup
                 function closePopup() {
-                    $('#contact-popup').addClass('hidden').removeClass('flex');
-                    $('body').removeClass('overflow-hidden');
+                    jQuery('#contact-popup').addClass('hidden').removeClass('flex');
+                    jQuery('body').removeClass('overflow-hidden');
                 }
 
                 // Close via 'X' button
-                $('#close-contact').on('click', function () {
+                jQuery('#close-contact').on('click', function () {
                     closePopup();
                 });
 
                 // Close via clicking the dark overlay background
-                $('#close-overlay').on('click', function () {
+                jQuery('#close-overlay').on('click', function () {
                     closePopup();
                 });
             });

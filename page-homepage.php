@@ -132,19 +132,19 @@ if (false === $external_promotions) {
     jQuery(document).ready(function ($) {
 
         // 1. Open Popup
-        $(document).on('click', '#open-contact', function (e) {
+        jQuery(document).on('click', '#open-contact', function (e) {
             e.preventDefault();
-            $('#contact-popup').removeClass('hidden').addClass('flex');
-            $('body').addClass('overflow-hidden');
+            jQuery('#contact-popup').removeClass('hidden').addClass('flex');
+            jQuery('body').addClass('overflow-hidden');
         });
 
         // 2. Close Popup
         function closePopup() {
-            $('#contact-popup').addClass('hidden').removeClass('flex');
-            $('body').removeClass('overflow-hidden');
+            jQuery('#contact-popup').addClass('hidden').removeClass('flex');
+            jQuery('body').removeClass('overflow-hidden');
         }
 
-        $(document).on('click', '#close-contact, #close-overlay', function () {
+        jQuery(document).on('click', '#close-contact, #close-overlay', function () {
             closePopup();
         });
     });

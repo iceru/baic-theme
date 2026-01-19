@@ -404,8 +404,8 @@ while (have_posts()):
 
         <script>
             jQuery(document).ready(function ($) {
-                $('.spec-toggle').on('click', function () {
-                    const $btn = $(this);
+                jQuery('.spec-toggle').on('click', function () {
+                    const $btn = jQuery(this);
                     const $parent = $btn.closest('.spec-item');
                     const $content = $parent.find('.spec-content');
                     const $icon = $btn.find('.toggle');
@@ -419,9 +419,9 @@ while (have_posts()):
                     // 2. If we click a closed item, close others and open this one
                     else {
                         // Close all others
-                        $('.spec-content').slideUp(300);
-                        $('.spec-item').removeClass('is-open');
-                        $('.toggle').css('transform', 'rotate(0deg)');
+                        jQuery('.spec-content').slideUp(300);
+                        jQuery('.spec-item').removeClass('is-open');
+                        jQuery('.toggle').css('transform', 'rotate(0deg)');
 
                         // Open this one
                         $content.slideDown(300);
@@ -550,53 +550,53 @@ while (have_posts()):
     <script>
         jQuery(document).ready(function ($) {
             // Open Popup Logic
-            $('.open-form-popup').on('click', function (e) {
+            jQuery('.open-form-popup').on('click', function (e) {
                 e.preventDefault();
-                const title = $(this).data('title');
-                const formType = $(this).data('form'); // test-drive, brochure, pricelist
+                const title = jQuery(this).data('title');
+                const formType = jQuery(this).data('form'); // test-drive, brochure, pricelist
 
                 // Set Title
-                $('#popup-heading').text(title);
+                jQuery('#popup-heading').text(title);
 
                 // Hide all specific forms first
-                $('#contact-popup .cf7-popup-wrapper').addClass('hidden');
+                jQuery('#contact-popup .cf7-popup-wrapper').addClass('hidden');
 
                 // Show the specific form container
-                $('#form-container-' + formType).removeClass('hidden');
+                jQuery('#form-container-' + formType).removeClass('hidden');
 
                 // Show the modal
-                $('#contact-popup').removeClass('hidden').addClass('flex');
-                $('body').addClass('overflow-hidden');
+                jQuery('#contact-popup').removeClass('hidden').addClass('flex');
+                jQuery('body').addClass('overflow-hidden');
             });
 
             // Function to Close Popup
             function closePopup() {
-                $('#contact-popup').addClass('hidden').removeClass('flex');
-                $('body').removeClass('overflow-hidden');
+                jQuery('#contact-popup').addClass('hidden').removeClass('flex');
+                jQuery('body').removeClass('overflow-hidden');
                 // Optional: Reset form states if needed
             }
 
             // Close events
-            $('#close-contact').on('click', closePopup);
-            $('#close-overlay').on('click', closePopup);
+            jQuery('#close-contact').on('click', closePopup);
+            jQuery('#close-overlay').on('click', closePopup);
         });
         jQuery(document).ready(function ($) {
             // Main Banners Slider
-            $('.banner-slider-main').slick({
+            jQuery('.banner-slider-main').slick({
                 dots: true,
                 arrows: false,
                 infinite: true,
                 autoplay: true,
                 autoplaySpeed: 5000,
-                appendDots: $('#banner-dots-container'),
+                appendDots: jQuery('#banner-dots-container'),
                 pauseOnHover: false
             });
 
             // Color Content Slider
             function initColorSlider() {
-                $('.color-content-item').each(function () {
-                    var $main = $(this).find('.color-slick-slider');
-                    var $nav = $(this).find('.color-nav-slider');
+                jQuery('.color-content-item').each(function () {
+                    var $main = jQuery(this).find('.color-slick-slider');
+                    var $nav = jQuery(this).find('.color-nav-slider');
 
                     $main.slick({
                         slidesToShow: 1,
@@ -634,16 +634,16 @@ while (have_posts()):
             initColorSlider();
 
             // Color Swatch Switcher
-            $('.color-swatch-trigger').on('click', function () {
-                const target = $(this).data('target');
-                const nameTarget = $(this).data('color-name');
-                const swatchColor = $(this).data('swatch-color');
+            jQuery('.color-swatch-trigger').on('click', function () {
+                const target = jQuery(this).data('target');
+                const nameTarget = jQuery(this).data('color-name');
+                const swatchColor = jQuery(this).data('swatch-color');
 
                 // Update trigger UI
-                $('.color-swatch-trigger').removeClass('is-active');
-                $('.color-swatch-trigger').find('> div').css('border-color', '#ccc');
+                jQuery('.color-swatch-trigger').removeClass('is-active');
+                jQuery('.color-swatch-trigger').find('> div').css('border-color', '#ccc');
 
-                $(this).addClass('is-active');
+                jQuery(this).addClass('is-active');
 
                 // Border color logic: use swatch color unless it's white
                 let borderColor = swatchColor;
@@ -651,15 +651,15 @@ while (have_posts()):
                 if (cleanColor === 'ffffff' || cleanColor === 'fff' || cleanColor === 'white') {
                     borderColor = '#000000';
                 }
-                $(this).find('> div').css('border-color', borderColor);
+                jQuery(this).find('> div').css('border-color', borderColor);
 
                 // Update names
-                $('.color-name').removeClass('opacity-100').addClass('opacity-0');
-                $('#' + nameTarget).removeClass('opacity-0').addClass('opacity-100');
+                jQuery('.color-name').removeClass('opacity-100').addClass('opacity-0');
+                jQuery('#' + nameTarget).removeClass('opacity-0').addClass('opacity-100');
 
                 // Update content
-                $('.color-content-item').addClass('hidden');
-                const $target = $('#' + target);
+                jQuery('.color-content-item').addClass('hidden');
+                const $target = jQuery('#' + target);
                 $target.removeClass('hidden');
 
                 // Refresh slick in hidden container
