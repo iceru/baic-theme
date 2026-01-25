@@ -95,6 +95,93 @@
     </div>
 </footer>
 
+
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const isMobile = window.innerWidth < 1024;
+
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            touchMultiplier: 2,
+            infinite: false,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Cache parallax elements
+        const scrollSpeedElements = document.querySelectorAll('[data-scroll-speed]');
+
+        // Add will-change to parallax elements for better performance
+        scrollSpeedElements.forEach(el => {
+            el.style.willChange = 'transform';
+        });
+
+        // Handle ".is-inview" animation triggers
+        if (!isMobile) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const targetClass = entry.target.getAttribute('data-scroll-class') || 'is-inview';
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add(targetClass);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('[data-scroll]').forEach(el => {
+                const delay = el.getAttribute('data-scroll-delay');
+                if (delay) {
+                    el.style.transitionDelay = delay;
+                }
+                observer.observe(el)
+            });
+        } else {
+            document.querySelectorAll('[data-scroll]').forEach(el => {
+                const targetClass = el.getAttribute('data-scroll-class') || 'is-inview';
+                const delay = el.getAttribute('data-scroll-delay');
+                if (delay) {
+                    el.style.transitionDelay = delay;
+                }
+                el.classList.add(targetClass);
+            });
+        }
+
+        // Handle "data-scroll-speed" parallax
+        lenis.on('scroll', (e) => {
+            if (!isMobile && scrollSpeedElements.length > 0) {
+                scrollSpeedElements.forEach(el => {
+                    const speed = parseFloat(el.getAttribute('data-scroll-speed')) || 0;
+                    const yPos = -(e.scroll * speed * 0.05);
+                    el.style.transform = `translate3d(0, ${yPos}px, 0)`;
+                });
+            }
+        });
+
+        window.lenis = lenis;
+
+        // Release scroll lock when fully loaded
+        window.addEventListener('load', () => {
+            document.documentElement.classList.add('loaded');
+            document.body.classList.add('loaded');
+            lenis.resize();
+        });
+    });
+
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 50,
+        disable: 'mobile',
+        easing: 'ease-out-quad'
+    });
+</script>
+
 <?php wp_footer(); ?>
 </body>
 

@@ -33,12 +33,12 @@ if (false === $external_promotions) {
 }
 ?>
 <section id="banners" class="relative overflow-hidden">
-    <div class="banner-slider">
+    <div class="banner-slider zoom-blur-out" data-scroll data-scroll-class="is-inview">
         <?php
         $banners = new WP_Query(['post_type' => 'banner', 'posts_per_page' => 5]);
         while ($banners->have_posts()):
             $banners->the_post(); ?>
-            <div class="relative h-fit md:h-[96vh] max-h-[780px]  w-full">
+            <div class=" relative h-fit md:h-[96vh] max-h-[780px] w-full">
                 <?php the_post_thumbnail('full', ['class' => 'w-full h-full object-cover aspect-video']); ?>
 
             </div>
@@ -50,10 +50,11 @@ if (false === $external_promotions) {
 </section>
 
 <section id="list-cars" class="py-16 overflow-hidden">
-    <div class="text-[28px] uppercase mb-16 md:mb-24 container text-jhl-gray-1">
+    <div class="text-[28px] uppercase mb-16 md:mb-24 container text-jhl-gray-1 fade-down" data-scroll
+        data-scroll-class="is-inview">
         OUR MODELS
     </div>
-    <div class="car-list-slider">
+    <div class="car-list-slider fade-up" data-scroll data-scroll-class="is-inview">
         <?php
         $cars = new WP_Query(['post_type' => 'car', 'posts_per_page' => -1]);
         while ($cars->have_posts()):
@@ -93,16 +94,18 @@ if (false === $external_promotions) {
 <section class="bg-jhl-gray-1 text-white relative block md:flex justify-between">
 
     <div class="container py-14">
-        <h3 class="max-w-[349px] text-4xl leading-[39px] mb-4">
+        <h3 class="max-w-[349px] text-4xl leading-[39px] mb-4 fade-right" data-scroll data-scroll-class="is-inview">
             BUAT JANJI TEST DRIVE ANDA
         </h3>
         <a href="javascript:void(0)" id="open-contact"
-            class="border border-white hover:bg-white/30 transition duration-500 rounded-full px-7 py-[18.5px] inline-flex items-center space-x-4 text-xs font-semibold tracking-wider">
+            class="border border-white hover:bg-white/30 transition duration-500 rounded-full px-7 py-[18.5px] inline-flex items-center space-x-4 text-xs font-semibold tracking-wider fade-right"
+            data-scroll data-scroll-class="is-inview" data-scroll-delay="400ms">
             <span>Hubungi Kami</span>
             <img src="<?php echo get_template_directory_uri() ?>/images/arrow-white.png" alt="">
         </a>
     </div>
-    <div class="right-0 static md:absolute h-full">
+    <div class="right-0 static md:absolute h-full fade-left" data-scroll data-scroll-class="is-inview"
+        data-scroll-delay="400ms">
         <img src="<?php echo get_template_directory_uri() ?>/images/dashboard-car.png"
             class="h-full w-auto object-contain" alt="">
     </div>
@@ -153,14 +156,16 @@ if (false === $external_promotions) {
 
 <section class="py-20 bg-beijing-black" id="promotions">
     <div class="container">
-        <h2 class="text-[28px] md:text-[44px] mb-8 text-white">
+        <h2 class="text-[28px] md:text-[44px] mb-8 text-white fade-down" data-scroll data-scroll-class="is-inview">
             PROMOTIONS
         </h2>
         <div class="flex -mr-4 md:mr-0 overflow-auto md:grid md:grid-cols-5 gap-6">
             <?php if (!empty($external_promotions) && is_array($external_promotions)): ?>
-                <?php foreach ($external_promotions as $promo):
+                <?php foreach ($external_promotions as $index => $promo):
                     $title = $promo->title->rendered;
                     $permalink = $promo->link;
+
+                    $delay = ($index * 100) . 'ms';
 
                     // Get Featured Image
                     $image_url = '';
@@ -168,7 +173,8 @@ if (false === $external_promotions) {
                         $image_url = $promo->_embedded->{'wp:featuredmedia'}[0]->source_url;
                     }
                     ?>
-                    <div class="w-[75%] md:w-full shrink-0">
+                    <div class="w-[75%] md:w-full shrink-0 fade-right" data-scroll data-scroll-class="is-inview"
+                        data-scroll-delay="<?php echo $delay; ?>">
                         <div class="mb-8">
                             <?php if ($image_url): ?>
                                 <img src="<?php echo $image_url; ?>" alt="<?php echo esc_attr($title); ?>"
@@ -201,8 +207,11 @@ if (false === $external_promotions) {
 <section class="py-14 md:py-[100px] text-jhl-gray-1" id="dealers">
     <div class="container">
         <div class="md:text-center mb-10 block md:flex justify-between items-center">
-            <h2 class="text-[28px] font-light mb-9 md:mb-0">FIND A DEALER</h2>
-            <a href="/service" class="inline-flex items-center space-x-[10px] text-sm font-semibold text-jhl-gray-2">
+            <h2 class="text-[28px] font-light mb-9 md:mb-0 fade-down" data-scroll data-scroll-class="is-inview">FIND A
+                DEALER</h2>
+            <a href="/service"
+                class="inline-flex items-center space-x-[10px] text-sm font-semibold text-jhl-gray-2 fade-right"
+                data-scroll data-scroll-class="is-inview" data-scroll-delay="400ms">
                 <div>
                     <img src="<?php echo get_template_directory_uri() ?>/images/chev-right.png" alt="">
                 </div>
@@ -214,10 +223,12 @@ if (false === $external_promotions) {
 
     <div class="flex container pr-0 md:pr-4 overflow-auto md:grid md:grid-cols-4 gap-4">
         <?php if (!empty($external_dealers) && is_array($external_dealers)): ?>
-            <?php foreach ($external_dealers as $post):
+            <?php foreach ($external_dealers as $index => $post):
                 $title = $post->title->rendered;
                 $excerpt = $post->content->rendered;
                 $address = $post->acf->address ?? '';
+
+                $delay = ($index * 100) . 'ms';
 
                 // Get Featured Image from embedded data
                 $image_url = '';
@@ -225,7 +236,8 @@ if (false === $external_promotions) {
                     $image_url = $post->_embedded->{'wp:featuredmedia'}[0]->source_url;
                 }
                 ?>
-                <div class="w-[75%] md:w-full shrink-0">
+                <div class="w-[75%] md:w-full shrink-0 fade-right" data-scroll data-scroll-class="is-inview"
+                    data-scroll-delay="<?php echo $delay; ?>">
                     <div class="mb-4">
                         <?php if ($image_url): ?>
                             <img src="<?php echo $image_url; ?>" class="rounded-lg h-[318px] object-cover w-full"
@@ -252,7 +264,8 @@ if (false === $external_promotions) {
 </section>
 <section class="py-20 bg-beijing-black" id="socials">
     <div class="container">
-        <h2 class="text-[28px] uppercase md:text-[44px] mb-8 text-white">
+        <h2 class="text-[28px] uppercase md:text-[44px] mb-8 text-white fade-down" data-scroll
+            data-scroll-class="is-inview">
             Socials
         </h2>
     </div>

@@ -15,7 +15,7 @@ while (have_posts()):
     <main class="single-car-template">
 
         <section id="banner" class="relative overflow-hidden">
-            <div class="banner-slider-main">
+            <div class="banner-slider-main zoom-blur-out" data-scroll data-scroll-class="is-inview">
                 <?php if ($banners):
                     foreach ($banners as $banner):
                         $banner_img = get_the_post_thumbnail_url($banner->ID, 'full');
@@ -39,15 +39,17 @@ while (have_posts()):
         <section id="colors" class="py-20 bg-white">
             <div class="container">
                 <div class="flex items-center justify-between mb-16">
-                    <h2 class="text-center text-3xl text-jhl-gray-1 ">PILIHAN WARNA</h2>
-                    <div class="hidden md:block">
+                    <h2 class="text-center text-3xl text-jhl-gray-1 fade-down" data-scroll data-scroll-class="is-inview">
+                        PILIHAN WARNA</h2>
+                    <div class="hidden md:block fade-left" data-scroll data-scroll-class="is-inview" data-scroll-delay="200ms">
                         <img src="<?php echo esc_url(get_field('logo')); ?>" alt="">
                     </div>
                 </div>
                 <div class="flex justify-center md:hidden mb-4">
                     <img class="h-3.5" src="<?php echo esc_url(get_field('logo')); ?>" alt="">
                 </div>
-                <div class="color-display-container max-w-5xl mx-auto mb-12">
+                <div class="color-display-container max-w-5xl mx-auto mb-12 fade-up" data-scroll
+                    data-scroll-class="is-inview" data-scroll-delay="400ms">
                     <?php if ($colors):
                         foreach ($colors as $index => $color):
                             $featured_img = get_the_post_thumbnail_url($color->ID, 'full');
@@ -110,15 +112,17 @@ while (have_posts()):
                         <?php if ($colors):
                             foreach ($colors as $index => $color):
                                 $swatch_color = get_field('color', $color->ID);
+                                $delay = ($index * 100) . 'ms';
                                 ?>
                                 <?php
                                 $is_white = (trim(strtolower($swatch_color), '#') === 'ffffff' || trim(strtolower($swatch_color), '#') === 'fff' || strtolower($swatch_color) === 'white');
                                 $active_border = $is_white ? '#000000' : $swatch_color;
                                 ?>
-                                <div class="flex flex-col items-center group cursor-pointer color-swatch-trigger <?php echo $index === 0 ? 'is-active' : ''; ?>"
+                                <div class="flex flex-col items-center group cursor-pointer color-swatch-trigger fade-up <?php echo $index === 0 ? 'is-active' : ''; ?>"
                                     data-target="color-content-<?php echo $color->ID; ?>"
                                     data-color-name="color-name-<?php echo $color->ID; ?>"
-                                    data-swatch-color="<?php echo esc_attr($swatch_color); ?>">
+                                    data-swatch-color="<?php echo esc_attr($swatch_color); ?>" data-scroll
+                                    data-scroll-class="is-inview" data-scroll-delay="<?php echo $delay; ?>">
                                     <div class="w-6 h-6 rounded-full border p-[2px] transition-all"
                                         style="background-color: <?php echo esc_attr($swatch_color); ?>; background-clip: content-box; border: 1px solid <?php echo $index === 0 ? esc_attr($active_border) : '#ccc'; ?>;">
                                     </div>
@@ -127,7 +131,8 @@ while (have_posts()):
                         endif; ?>
                     </div>
 
-                    <div class="color-names-container relative h-4 w-full">
+                    <div class="color-names-container relative h-4 w-full fade-up" data-scroll data-scroll-class="is-inview"
+                        data-scroll-delay="500ms">
                         <?php if ($colors):
                             foreach ($colors as $index => $color): ?>
                                 <span id="color-name-<?php echo $color->ID; ?>"
@@ -144,18 +149,21 @@ while (have_posts()):
         <!-- 3. Price Section -->
         <section id="price" class="pb-16">
             <div class="container text-center">
-                <p class="body text-jhl-gray-1 mb-2">Start from</p>
-                <div class="md:text-5xl font-semibold text-jhl-black text-4xl">
+                <p class="body text-jhl-gray-1 mb-2 fade-up" data-scroll data-scroll-class="is-inview">Start from</p>
+                <div class="md:text-5xl font-semibold text-jhl-black text-4xl fade-up" data-scroll
+                    data-scroll-class="is-inview" data-scroll-delay="200ms">
                     <?php echo $price ? $price : 'Contact for Price'; ?>
                 </div>
-                <p class="text-[10px] max-w-[308px] uppercase text-jhl-gray-1 mx-auto tracking-widest mt-4">
+                <p class="text-[10px] max-w-[308px] uppercase text-jhl-gray-1 mx-auto tracking-widest mt-4 fade-up"
+                    data-scroll data-scroll-class="is-inview" data-scroll-delay="400ms">
                     *Price OTR Jakarta. Terms & conditions apply <br />
                     *CKD Unit Only
                 </p>
         </section>
 
         <section class="bg-beijing-black text-white relative min-h-screen" id="specs">
-            <div class="md:absolute left-0 top-0 h-[380px] w-full md:h-full md:w-[40%]">
+            <div class="md:absolute left-0 top-0 h-[380px] w-full md:h-full md:w-[40%] fade-right" data-scroll
+                data-scroll-class="is-inview">
                 <img src="<?php echo get_template_directory_uri() ?>/images/spec.png" alt=""
                     class="w-full h-full object-top object-cover">
             </div>
@@ -163,7 +171,8 @@ while (have_posts()):
                 <div class="hidden md:block w-[45%]"></div>
                 <div class="w-full md:w-[55%]">
 
-                    <h2 class="text-[28px] uppercase mb-14 leading-[30px]">SPESIFIKASI</h2>
+                    <h2 class="text-[28px] uppercase mb-14 leading-[30px] fade-down" data-scroll
+                        data-scroll-class="is-inview">SPESIFIKASI</h2>
 
                     <?php
                     // $specs is the single Post Object defined at the top of your file
@@ -187,7 +196,8 @@ while (have_posts()):
                         $front_suspension = get_field('front_suspension', $specs->ID);
                         $rear_suspension = get_field('rear_suspension', $specs->ID);
                         ?>
-                        <div class="mb-6 border-b border-white spec-item">
+                        <div class="mb-6 border-b border-white spec-item fade-up" data-scroll data-scroll-class="is-inview"
+                            data-scroll-delay="100ms">
                             <button class="spec-toggle mb-6 text-xl w-full text-left flex justify-between items-center">
                                 <span>Dimension and Capacity</span>
                                 <span class="toggle inline-block transition-transform duration-300"
@@ -239,7 +249,8 @@ while (have_posts()):
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-6 border-b border-white spec-item">
+                        <div class="mb-6 border-b border-white spec-item fade-up" data-scroll data-scroll-class="is-inview"
+                            data-scroll-delay="200ms">
                             <button class="spec-toggle mb-6 text-xl w-full text-left flex justify-between items-center">
                                 <span>Performance & Angles </span>
                                 <span class="toggle inline-block transition-transform duration-300">
@@ -274,7 +285,8 @@ while (have_posts()):
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-6 border-b border-white spec-item">
+                        <div class="mb-6 border-b border-white spec-item fade-up" data-scroll data-scroll-class="is-inview"
+                            data-scroll-delay="300ms">
                             <button class="spec-toggle mb-6 text-xl w-full text-left flex justify-between items-center">
                                 <span>Engine Details</span>
                                 <span class="toggle inline-block transition-transform duration-300">
@@ -309,7 +321,8 @@ while (have_posts()):
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-6 border-b border-white spec-item">
+                        <div class="mb-6 border-b border-white spec-item fade-up" data-scroll data-scroll-class="is-inview"
+                            data-scroll-delay="400ms">
                             <button class="spec-toggle mb-6 text-xl w-full text-left flex justify-between items-center">
                                 <span>Power & Torque</span>
                                 <span class="toggle inline-block transition-transform duration-300">
@@ -336,7 +349,8 @@ while (have_posts()):
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-6 border-b border-white spec-item">
+                        <div class="mb-6 border-b border-white spec-item fade-up" data-scroll data-scroll-class="is-inview"
+                            data-scroll-delay="500ms">
                             <button class="spec-toggle mb-6 text-xl w-full text-left flex justify-between items-center">
                                 <span>Drivetrain & Transmission</span>
                                 <span class="toggle inline-block transition-transform duration-300">
@@ -363,7 +377,8 @@ while (have_posts()):
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-6 spec-item">
+                        <div class="mb-6 spec-item fade-up" data-scroll data-scroll-class="is-inview"
+                            data-scroll-delay="600ms">
                             <button class="spec-toggle mb-6 text-xl w-full text-left flex justify-between items-center">
                                 <span>Suspension</span>
                                 <span class="toggle inline-block transition-transform duration-300">
@@ -435,24 +450,27 @@ while (have_posts()):
         <section id="accessories" class="py-24 bg-white">
             <div class="container">
                 <div class="flex justify-between items-center mb-24">
-                    <h2 class="text-3xl uppercase">
+                    <h2 class="text-3xl uppercase fade-down" data-scroll data-scroll-class="is-inview">
                         Aksesoris
                     </h2>
-                    <div>
+                    <div class="fade-left" data-scroll data-scroll-class="is-inview" data-scroll-delay="200ms">
                         <img src="<?php echo esc_url(get_field('logo')); ?>" alt="">
                     </div>
                 </div>
 
-                <div class="flex justify-center mb-24">
+                <div class="flex justify-center mb-24 zoom-in" data-scroll data-scroll-class="is-inview"
+                    data-scroll-delay="300ms">
                     <img src="<?php echo get_field('acc_image'); ?>" class="max-h-[478px] w-auto" alt="">
                 </div>
 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <?php if ($accessories):
-                        foreach ($accessories as $accessory):
+                        foreach ($accessories as $index => $accessory):
                             $acc_img = get_the_post_thumbnail_url($accessory->ID, 'medium');
+                            $delay = ($index * 100) . 'ms';
                             ?>
-                            <div class="w-full rounded-xl border p-[18px] pb-7 border-jhl-gray-3 overflow-hidden">
+                            <div class="w-full rounded-xl border p-[18px] pb-7 border-jhl-gray-3 overflow-hidden fade-up"
+                                data-scroll data-scroll-class="is-inview" data-scroll-delay="<?php echo $delay; ?>">
                                 <h6 class="text-jhl-gray-1 mb-4 md:mb-10 font-medium">
                                     <?php echo get_field('name', $accessory->ID) ?>
                                 </h6>
@@ -473,7 +491,7 @@ while (have_posts()):
 
         <section class="py-24 md:py-12 bg-jhl-gray-1" id="forms">
             <div class="container flex flex-col md:flex-row justify-center space-y-24 md:space-y-0 md:space-x-6">
-                <div class="flex flex-col justify-center items-center">
+                <div class="flex flex-col justify-center items-center fade-up" data-scroll data-scroll-class="is-inview">
                     <div class="mb-6">
                         <img src="<?php echo get_template_directory_uri() ?>/images/icons/steering.png" alt="test-drive">
                     </div>
@@ -484,7 +502,8 @@ while (have_posts()):
                         <img src="<?php echo get_template_directory_uri() ?>/images/arrow-white.png" alt="arrow-white">
                     </button>
                 </div>
-                <div class="flex flex-col justify-center items-center">
+                <div class="flex flex-col justify-center items-center fade-up" data-scroll data-scroll-class="is-inview"
+                    data-scroll-delay="200ms">
                     <div class="mb-6">
                         <img src="<?php echo get_template_directory_uri() ?>/images/icons/brochure.png" alt="brochure">
                     </div>
@@ -506,7 +525,8 @@ while (have_posts()):
                         </button>
                     <?php endif; ?>
                 </div>
-                <div class="flex flex-col justify-center items-center">
+                <div class="flex flex-col justify-center items-center fade-up" data-scroll data-scroll-class="is-inview"
+                    data-scroll-delay="400ms">
                     <div class="mb-6">
                         <img src="<?php echo get_template_directory_uri() ?>/images/icons/list.png" alt="brochure">
                     </div>

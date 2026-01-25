@@ -57,6 +57,14 @@ body,
 html {
   font-family: "Montserrat", sans-serif;
   color: var(--color-jhl-black);
+  overflow-x: hidden;
+}
+
+/* Prevent scroll until loaded */
+html:not(.loaded),
+body:not(.loaded) {
+  overflow-y: hidden;
+  height: 100%;
 }
 
 h3 {
@@ -216,4 +224,128 @@ a {
 
 .wpcf7-response-output {
   @apply !border-none !p-0 !m-0
+}
+
+
+
+[data-scroll] {
+  transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+  will-change: transform, opacity;
+}
+
+/* 1. Fade In Up (The Classic) */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.fade-up.is-inview {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-right {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.fade-right.is-inview {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Fade Left (Moves from Right to Left) */
+.fade-left {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+.fade-left.is-inview {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Fade Down (Drops from Top) */
+.fade-down {
+  opacity: 0;
+  transform: translateY(-40px);
+}
+
+.fade-down.is-inview {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 2. Zoom In (Elegant & Smooth) */
+.zoom-in {
+  opacity: 0;
+  transform: scale(0.85);
+}
+
+.zoom-in.is-inview {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 3. Reveal from Left/Right */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+.reveal-left.is-inview,
+.reveal-right.is-inview {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 4. Flip In (Premium Look) */
+.flip-in {
+  opacity: 0;
+  transform: perspective(1000px) rotateX(-30deg);
+}
+
+.flip-in.is-inview {
+  opacity: 1;
+  transform: perspective(1000px) rotateX(0);
+}
+
+.zoom-blur-in {
+  opacity: 0;
+  filter: blur(10px);
+  transform: scale(0.8);
+}
+
+.zoom-blur-in.is-inview {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+}
+
+/* Zoom Out + Blur (Starts Large/Close and Recedes) */
+.zoom-blur-out {
+  opacity: 0;
+  filter: blur(10px);
+  transform: scale(1.2);
+}
+
+.zoom-blur-out.is-inview {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+}
+
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

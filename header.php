@@ -138,7 +138,7 @@
         </header>
 
         <aside id="main-sidebar"
-            class="fixed inset-0 z-[100] bg-jhl-gray-1 transform -translate-x-full transition-transform duration-300 ease-in-out">
+            class="fixed inset-0 z-[100] bg-[#171717]/30 backdrop-blur-2xl transform -translate-x-full transition-transform duration-300 ease-in-out">
             <div class="flex flex-col justify-between items-center h-full pt-[22px] pb-24">
 
                 <div class="flex justify-between items-center w-full px-4" id="sidebar-header">

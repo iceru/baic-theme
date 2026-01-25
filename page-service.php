@@ -19,15 +19,16 @@ if (false === $external_dealers) {
 ?>
 
 <section class="py-28 container">
-    <img src="<?php echo get_template_directory_uri() ?>/images/map.png" class="mx-auto w-full" alt="">
+    <img src="<?php echo get_template_directory_uri() ?>/images/map.png" class="mx-auto w-full zoom-blur-out"
+        data-scroll data-scroll-class="is-inview" alt="">
 </section>
 
 <section class="pb-28 container !md:px-0">
-    <h2 class="text-center uppercase mb-14">Authorized Dealers</h2>
+    <h2 class="text-center uppercase mb-14 fade-down" data-scroll data-scroll-class="is-inview">Authorized Dealers</h2>
     <div class="grid md:grid-cols-4 gap-16 md:gap-4">
         <?php
         if (!empty($external_dealers) && is_array($external_dealers)):
-            foreach ($external_dealers as $dealer):
+            foreach ($external_dealers as $index => $dealer):
                 // Extracting data from the REST API object
                 $title = $dealer->title->rendered;
 
@@ -39,13 +40,15 @@ if (false === $external_dealers) {
                 $phone = isset($dealer_acf->phone) ? $dealer_acf->phone : '#';
                 $location = isset($dealer_acf->location) ? $dealer_acf->location : '#';
 
+                $delay = ($index * 100) . 'ms';
+
                 // Get featured image from _embedded if available
                 $image_url = get_template_directory_uri() . '/images/alsut.png'; // Fallback
                 if (!empty($dealer->_embedded->{'wp:featuredmedia'}[0]->source_url)) {
                     $image_url = $dealer->_embedded->{'wp:featuredmedia'}[0]->source_url;
                 }
                 ?>
-                <div>
+                <div class="fade-up" data-scroll data-scroll-class="is-inview" data-scroll-delay="<?php echo $delay; ?>">
                     <div class="mb-[30px]">
                         <img src="<?php echo $image_url; ?>" alt="<?php echo $title; ?>"
                             class="rounded-lg h-[282px] object-cover w-full">
@@ -91,15 +94,17 @@ if (false === $external_dealers) {
     </div>
     <div class="container text-white flex flex-col md:flex-row justify-between relative z-10">
         <div class="mb-14 md:mb-0">
-            <h2 class="mb-4">Armada Bisnis</h2>
-            <p class="body mb-9">Solusi lengkap kebutuhan perusahaan Anda</p>
+            <h2 class="mb-4 fade-down" data-scroll data-scroll-class="is-inview">Armada Bisnis</h2>
+            <p class="body mb-9 fade-down" data-scroll data-scroll-class="is-inview" data-scroll-delay="200ms">Solusi
+                lengkap kebutuhan perusahaan Anda</p>
             <a href="javascript:void(0)" id="open-contact"
-                class="border border-white hover:bg-white/20 transition duration-500 rounded-full px-7 py-[18.5px] inline-flex items-center space-x-4 text-xs font-semibold tracking-wider">
+                class="border border-white hover:bg-white/20 transition duration-500 rounded-full px-7 py-[18.5px] inline-flex items-center space-x-4 text-xs font-semibold tracking-wider fade-up"
+                data-scroll data-scroll-class="is-inview" data-scroll-delay="400ms">
                 <span>Hubungi Kami</span>
                 <img src="<?php echo get_template_directory_uri() ?>/images/arrow-white.png" alt="">
             </a>
         </div>
-        <div class="max-w-[588px]">
+        <div class="max-w-[588px] fade-left" data-scroll data-scroll-class="is-inview" data-scroll-delay="600ms">
             Kami menyediakan layanan pengadaan dan pengelolaan unit yang dirancang khusus untuk berbagai kebutuhan
             bisnis Anda. Dengan layanan personal melalui Account Manager khusus, dapatkan satu titik kontak untuk
             menjawab seluruh kebutuhan Anda. Dari pemilihan unit, kustomisasi, koordinasi servis, hingga penawaran harga
@@ -112,7 +117,7 @@ if (false === $external_dealers) {
 </section>
 
 <section class="py-20 container" id="services">
-    <h2 class="mb-7">LAYANAN</h2>
+    <h2 class="mb-7 fade-down" data-scroll data-scroll-class="is-inview">LAYANAN</h2>
     <?php
     $services_args = array(
         'post_type' => 'service',
@@ -125,7 +130,8 @@ if (false === $external_dealers) {
     if ($services_query->have_posts()):
         ?>
         <div class="py-9">
-            <ul class="flex border-b whitespace-nowrap overflow-auto scroll-m-2 border-jhl-gray-3 service-tabs">
+            <ul class="flex border-b whitespace-nowrap overflow-auto scroll-m-2 border-jhl-gray-3 service-tabs fade-down"
+                data-scroll data-scroll-class="is-inview" data-scroll-delay="200ms">
                 <?php
                 $count = 0;
                 while ($services_query->have_posts()):
@@ -153,12 +159,13 @@ if (false === $external_dealers) {
                 ?>
                 <div id="service-<?php the_ID(); ?>"
                     class="service-content grid md:grid-cols-2 items-center md:gap-20 <?php echo $count === 0 ? '' : 'hidden'; ?>">
-                    <div class="mb-14 md:mb-0">
+                    <div class="mb-14 md:mb-0 fade-right" data-scroll data-scroll-class="is-inview" data-scroll-delay="400ms">
                         <img src="<?php echo $featured_img; ?>" alt="<?php the_title(); ?>" class="w-full h-auto rounded-lg">
                     </div>
                     <div>
-                        <h4 class="font-bold text-xl mb-8 md:max-w-[247px] text-beijing-black"><?php echo $acf_title; ?></h4>
-                        <div class="body">
+                        <h4 class="font-bold text-xl mb-8 md:max-w-[247px] text-beijing-black fade-left" data-scroll
+                            data-scroll-class="is-inview" data-scroll-delay="600ms"><?php echo $acf_title; ?></h4>
+                        <div class="body fade-left" data-scroll data-scroll-class="is-inview" data-scroll-delay="800ms">
                             <?php the_content(); ?>
                         </div>
                     </div>
