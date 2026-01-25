@@ -41,7 +41,8 @@ while (have_posts()):
                 <div class="flex items-center justify-between mb-16">
                     <h2 class="text-center text-3xl text-jhl-gray-1 fade-down" data-scroll data-scroll-class="is-inview">
                         PILIHAN WARNA</h2>
-                    <div class="hidden md:block fade-left" data-scroll data-scroll-class="is-inview" data-scroll-delay="200ms">
+                    <div class="hidden md:block fade-left" data-scroll data-scroll-class="is-inview"
+                        data-scroll-delay="200ms">
                         <img src="<?php echo esc_url(get_field('logo')); ?>" alt="">
                     </div>
                 </div>
@@ -377,8 +378,7 @@ while (have_posts()):
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-6 spec-item fade-up" data-scroll data-scroll-class="is-inview"
-                            data-scroll-delay="600ms">
+                        <div class="mb-6 spec-item fade-up" data-scroll data-scroll-class="is-inview" data-scroll-delay="600ms">
                             <button class="spec-toggle mb-6 text-xl w-full text-left flex justify-between items-center">
                                 <span>Suspension</span>
                                 <span class="toggle inline-block transition-transform duration-300">
@@ -458,7 +458,7 @@ while (have_posts()):
                     </div>
                 </div>
 
-                <div class="flex justify-center mb-24 zoom-in" data-scroll data-scroll-class="is-inview"
+                <div class="flex justify-center mb-24 zoom-blur-in" data-scroll data-scroll-class="is-inview"
                     data-scroll-delay="300ms">
                     <img src="<?php echo get_field('acc_image'); ?>" class="max-h-[478px] w-auto" alt="">
                 </div>

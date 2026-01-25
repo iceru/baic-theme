@@ -63,7 +63,7 @@ html {
 /* Prevent scroll until loaded */
 html:not(.loaded),
 body:not(.loaded) {
-  overflow-y: hidden;
+  overflow-x: hidden;
   height: 100%;
 }
 

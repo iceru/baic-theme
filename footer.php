@@ -172,14 +172,6 @@
             lenis.resize();
         });
     });
-
-    AOS.init({
-        duration: 800,
-        once: true,
-        offset: 50,
-        disable: 'mobile',
-        easing: 'ease-out-quad'
-    });
 </script>
 
 <?php wp_footer(); ?>

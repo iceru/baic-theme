@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="profile" href="https://gmpg.org/xfn/11">
     <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
+
     <?php wp_head(); ?>
 </head>
 
@@ -22,11 +23,11 @@
     <div id="page" class="min-h-screen flex flex-col">
         <?php do_action('tailpress_header'); ?>
 
-        <header class="fixed z-40 top-4 left-1/2 -translate-x-1/2 max-w-[1200px] hidden md:block w-full">
+        <header class="fixed z-40 top-4 left-1/2 -translate-x-1/2 max-w-[1200px] hidden md:block w-full ">
 
-            <div class="flex items-center justify-between text-white rounded-full py-[11px] px-[35px] isolate w-full">
-                <div class="absolute inset-0 bg-[#171717]/30 backdrop-blur-2xl rounded-full -z-10"></div>
-
+            <div data-scroll data-scroll-class="is-inview"
+                class="relative fade-down flex items-center justify-between text-white rounded-full py-[11px] px-[35px] w-full bg-[#171717]/30 backdrop-blur-2xl"
+                style="transition-duration: 1.5s;">
                 <div>
                     <img src="<?php echo get_template_directory_uri() ?>/images/logo.png" class="h-[14px]" alt="">
                 </div>
