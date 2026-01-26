@@ -61,7 +61,7 @@ if (false === $external_promotions) {
             $cars->the_post();
             $logo = get_field('logo');
             ?>
-            <div class="px-0 md:px-8 transition-all duration-700 car-slide-item">
+            <div class="px-0 md:px-8 car-slide-item">
                 <div class="relative flex flex-col items-center">
 
                     <div class="car-active-element opacity-0 transition-opacity duration-500 mb-0 md:mb-16">
@@ -70,7 +70,7 @@ if (false === $external_promotions) {
                         <?php endif; ?>
                     </div>
 
-                    <div class="car-img-container transition-all duration-700 ease-in-out">
+                    <div class="car-img-container">
                         <?php the_post_thumbnail('large', ['class' => 'w-full']); ?>
                     </div>
 

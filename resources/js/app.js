@@ -24,13 +24,18 @@ jQuery(document).ready(function ($) {
     });
 
     // List Cars Slider
-    jQuery('.car-list-slider').slick({
+    const carSlider = jQuery('.car-list-slider').slick({
         centerMode: true,
         centerPadding: '30%', // Shows partials of side cars
         slidesToShow: 1,
         infinite: true,
         arrows: true,
         dots: false,
+        focusOnSelect: true,
+        speed: 200,
+        cssEase: 'cubic-bezier(0.23, 1, 0.32, 1)',
+        useTransform: true,
+        waitForAnimate: false,
         responsive: [
             {
                 breakpoint: 768,
@@ -41,4 +46,20 @@ jQuery(document).ready(function ($) {
             }
         ]
     });
+
+    // Handle center class application more precisely
+    carSlider.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+        // Remove active state from all slides immediately
+        jQuery('.car-list-slider .car-slide-item').removeClass('is-center');
+    });
+
+    carSlider.on('afterChange', function (event, slick, currentSlide) {
+        // Add active state only to the actual center slide after transition completes
+        jQuery('.car-list-slider .slick-center').find('.car-slide-item').addClass('is-center');
+    });
+
+    // Initialize the first slide as centered
+    setTimeout(function () {
+        jQuery('.car-list-slider .slick-center').find('.car-slide-item').addClass('is-center');
+    }, 100);
 });

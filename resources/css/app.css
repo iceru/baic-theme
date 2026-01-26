@@ -130,7 +130,7 @@ p.body,
 }
 
 /* 2. The Active (Center) Car */
-.car-list-slider .slick-center .car-img-container {
+.car-list-slider .is-center .car-img-container {
   transform: scale(1.1);
   opacity: 1;
   margin-top: 0;
@@ -140,6 +140,9 @@ p.body,
   transform: scale(0.9);
   opacity: 1;
   opacity: 40%;
+  cursor: pointer;
+  will-change: transform, opacity;
+  transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .car-list-slider .car-img-container img {
@@ -147,13 +150,13 @@ p.body,
   object-fit: contain;
 }
 
-.car-list-slider .slick-center .car-active-element {
+.car-list-slider .is-center .car-active-element {
   opacity: 1;
   /* Show logo and button */
 }
 
 /* Optional: Add a subtle glow/reflection under the active car */
-.car-list-slider .slick-center .car-img-container::after {
+.car-list-slider .is-center .car-img-container::after {
   content: '';
   position: absolute;
   bottom: -20px;
