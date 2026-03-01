@@ -23,7 +23,7 @@ $external_promotions = get_transient($promo_cache_key);
 // If cache is empty, fetch from API
 if (false === $external_promotions) {
     // orderby=date & order=asc to keep oldest to newest as requested previously
-    $promo_url = 'https://jhl-auto.codeomnia.com/wp-json/wp/v2/promotions?_embed&per_page=5&orderby=date&order=asc';
+    $promo_url = 'https://jhl-auto.codeomnia.com/wp-json/wp/v2/promotions?_embed&per_page=4&orderby=date&order=asc';
     $promo_response = wp_remote_get($promo_url, ['timeout' => 15]);
 
     if (!is_wp_error($promo_response)) {
@@ -165,7 +165,7 @@ if (false === $external_promotions) {
             data-scroll-class="is-inview">
             Penawaran Eksklusif
         </h2>
-        <div class="flex -mr-4 md:mr-0 overflow-auto md:grid md:grid-cols-5 gap-6">
+        <div class="flex -mr-4 md:mr-0 overflow-auto md:grid md:grid-cols-4 gap-6">
             <?php if (!empty($external_promotions) && is_array($external_promotions)): ?>
                 <?php foreach ($external_promotions as $index => $promo):
                     $title = $promo->title->rendered;
@@ -226,7 +226,7 @@ if (false === $external_promotions) {
                 <div>
                     <img src="<?php echo get_template_directory_uri() ?>/images/chev-right.png" alt="">
                 </div>
-                <span>TELUSURI</span>
+                <span>Lihat Detail</span>
             </a>
         </div>
     </div>
