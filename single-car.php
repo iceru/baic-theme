@@ -39,11 +39,12 @@ while (have_posts()):
         <section id="colors" class="py-20 bg-white">
             <div class="container">
                 <div class="flex items-center justify-between mb-16">
-                    <div class="hidden md:block fade-left" data-scroll data-scroll-class="is-inview"
-                        data-scroll-delay="200ms">
+                    <div class="fade-right" data-scroll data-scroll-class="is-inview" data-scroll-delay="200ms">
                         <img src="<?php echo esc_url(get_field('logo')); ?>" alt="">
                     </div>
-                    <div></div>
+                    <div class="fade-left" data-scroll data-scroll-class="is-inview" data-scroll-delay="200ms">
+                        <img src="<?php echo esc_url(get_field('tagline')); ?>" alt="">
+                    </div>
                 </div>
                 <div class="flex justify-center md:hidden mb-4">
                     <img class="h-3.5" src="<?php echo esc_url(get_field('logo')); ?>" alt="">
@@ -147,22 +148,52 @@ while (have_posts()):
         </section>
 
         <!-- 3. Price Section -->
+        <!-- 3. Price Section -->
         <section id="price" class="pb-16">
-            <div class="container ">
-                <p class="body text-jhl-gray-1 mb-2 fade-up text-center" data-scroll data-scroll-class="is-inview">Start
+            <div class="container">
+                <p class="body text-jhl-gray-1 mb-8 fade-up text-center" data-scroll data-scroll-class="is-inview">Start
                     from</p>
-                <div class="mx-auto w-fit">
-                    <div class="md:text-5xl font-semibold text-jhl-black text-4xl fade-up text-center" data-scroll
-                        data-scroll-class="is-inview" data-scroll-delay="200ms">
-                        <?php echo $price ? $price : 'Contact for Price'; ?>
+
+                <div class="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-24 mx-auto w-fit">
+                    <!-- First Price -->
+                    <div class="text-center">
+                        <div class="text-lg text-jhl-gray-2 mb-2 fade-up uppercase tracking-wider font-medium" data-scroll
+                            data-scroll-class="is-inview" data-scroll-delay="100ms">
+                            <?php echo get_field('price_title') ? esc_html(get_field('price_title')) : get_the_title() . ' - CKD'; ?>
+                        </div>
+                        <div class="md:text-5xl font-semibold text-jhl-black text-4xl fade-up" data-scroll
+                            data-scroll-class="is-inview" data-scroll-delay="200ms">
+                            <?php echo $price ? $price : 'Contact for Price'; ?>
+                        </div>
                     </div>
-                    <p class="text-[10px] italic text-jhl-gray-1 mx-auto tracking-widest mt-4 fade-up" data-scroll
-                        data-scroll-class="is-inview" data-scroll-delay="400ms">
+
+                    <!-- Second Price -->
+                    <?php $price_2 = get_field('price_2'); ?>
+                    <?php if ($price_2): ?>
+                        <div class="text-center relative">
+                            <!-- Desktop Divider -->
+                            <div class="hidden md:block absolute -left-12 top-1/2 -translate-y-1/2 w-[1px] h-12 bg-jhl-gray-3">
+                            </div>
+                            <div class="text-lg text-jhl-gray-2 mb-2 fade-up uppercase tracking-wider font-medium" data-scroll
+                                data-scroll-class="is-inview" data-scroll-delay="100ms">
+                                <?php echo get_field('price_title_2') ? esc_html(get_field('price_title_2')) : 'Variant 2'; ?>
+                            </div>
+                            <div class="md:text-5xl font-semibold text-jhl-black text-4xl fade-up" data-scroll
+                                data-scroll-class="is-inview" data-scroll-delay="200ms">
+                                <?php echo esc_html($price_2); ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
+                <div class="mx-auto w-fit mt-10">
+                    <p class="text-[10px] italic text-jhl-gray-1 mx-auto text-center tracking-widest mt-4 fade-up"
+                        data-scroll data-scroll-class="is-inview" data-scroll-delay="400ms">
                         *Price OTR Jakarta <br />
                         *Terms & conditions apply <br />
-                        *CKD Unit Only <br />
                     </p>
                 </div>
+            </div>
         </section>
 
         <section class="bg-beijing-black text-white relative min-h-screen" id="specs">
@@ -376,7 +407,7 @@ while (have_posts()):
                                         4WD System
                                     </div>
                                     <div class="w-[40%]">
-                                        <?php 
+                                        <?php
                                         $four_wd_system = get_field('4wd_system', $specs->ID);
                                         echo $four_wd_system ? $four_wd_system : $drivetrain;
                                         ?>

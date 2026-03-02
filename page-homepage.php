@@ -159,69 +159,19 @@ if (false === $external_promotions) {
 </script>
 
 
-<section class="py-20 bg-beijing-black" id="promotions">
-    <div class="container">
-        <h2 class="text-[28px] md:text-[44px] mb-8 text-white fade-down uppercase" data-scroll
-            data-scroll-class="is-inview">
-            Penawaran Eksklusif
-        </h2>
-        <div class="flex -mr-4 md:mr-0 overflow-auto md:grid md:grid-cols-4 gap-6">
-            <?php if (!empty($external_promotions) && is_array($external_promotions)): ?>
-                <?php foreach ($external_promotions as $index => $promo):
-                    $title = $promo->title->rendered;
-                    $permalink = $promo->link;
-
-                    $delay = ($index * 100) . 'ms';
-
-                    // Get Featured Image
-                    $image_url = '';
-                    if (!empty($promo->_embedded->{'wp:featuredmedia'}[0]->source_url)) {
-                        $image_url = $promo->_embedded->{'wp:featuredmedia'}[0]->source_url;
-                    }
-                    ?>
-                    <div class="w-[75%] md:w-full shrink-0 fade-right" data-scroll data-scroll-class="is-inview"
-                        data-scroll-delay="<?php echo $delay; ?>">
-                        <div class="mb-8">
-                            <?php if ($image_url): ?>
-                                <img src="<?php echo $image_url; ?>" alt="<?php echo esc_attr($title); ?>"
-                                    class="rounded-lg w-full h-auto">
-                            <?php else: ?>
-                                <img src="<?php echo get_template_directory_uri() ?>/images/promo-1.png" alt="" class="rounded-lg">
-                            <?php endif; ?>
-                        </div>
-
-                        <h5 class="leading-[22px] font-medium mb-6 line-clamp-2 !text-white">
-                            <?php echo $title; ?>
-                        </h5>
-
-                        <a href="<?php echo esc_url($permalink); ?>"
-                            class="text-xs text-jhl-gray-1 font-semibold uppercase tracking-wide inline-flex space-x-[10px] items-center">
-                            <div>
-                                <img src="<?php echo get_template_directory_uri() ?>/images/chev-right.png" alt="">
-                            </div>
-                            <span>Lihat Detail</span>
-                        </a>
-                    </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p class="text-white opacity-50">No promotions currently available.</p>
-            <?php endif; ?>
-        </div>
-    </div>
-</section>
-
-<section class="py-14 md:py-[100px] text-jhl-gray-1" id="dealers">
+<section class="py-14 md:py-[100px] bg-beijing-black" id="dealers">
     <div class="container mb-10">
         <div class="md:text-center block md:flex justify-between items-center">
             <div>
-                <h2 class="text-[28px] font-light fade-down uppercase mb-3" data-scroll data-scroll-class="is-inview">
+                <h2 class="text-[28px] font-light fade-down uppercase mb-3 text-white" data-scroll
+                    data-scroll-class="is-inview">
                     Jaringan Dealer BAIC JHL Auto
                 </h2>
-                <p class="body flex">Temukan dealer resmi BAIC JHL Auto di lokasi strategis terdekat Anda.
+                <p class="body flex text-white/80">Temukan dealer resmi BAIC JHL Auto di lokasi strategis terdekat Anda.
                 </p>
             </div>
             <a href="/service"
-                class="inline-flex items-center space-x-[10px] text-sm font-semibold text-jhl-gray-2 fade-right"
+                class="inline-flex items-center space-x-[10px] text-sm font-semibold text-jhl-gray-1 fade-right"
                 data-scroll data-scroll-class="is-inview" data-scroll-delay="400ms">
                 <div>
                     <img src="<?php echo get_template_directory_uri() ?>/images/chev-right.png" alt="">
@@ -259,11 +209,11 @@ if (false === $external_promotions) {
                         <?php endif; ?>
                     </div>
 
-                    <h4 class="leading-7 text-xl mb-4 text-jhl-black">
+                    <h4 class="leading-7 text-xl mb-4 !text-white">
                         <?php echo $title; ?>
                     </h4>
 
-                    <p class="body text-jhl-gray-2 leading-relaxed">
+                    <p class="body text-white/80 leading-relaxed">
                         <?php echo esc_html($address); ?>
                     </p>
                 </div>
@@ -273,14 +223,55 @@ if (false === $external_promotions) {
         <?php endif; ?>
     </div>
 </section>
-<section class="py-20 bg-beijing-black" id="socials">
+
+
+<section class="py-20 text-jhl-gray-1" id="promotions">
     <div class="container">
-        <h2 class="text-[28px] uppercase md:text-[44px] mb-8 text-white fade-down" data-scroll
+        <h2 class="text-[28px] md:text-[44px] mb-12 text-jhl-black fade-down uppercase" data-scroll
             data-scroll-class="is-inview">
-            Socials
+            Penawaran Eksklusif
         </h2>
-        <div>
-            <?php echo do_shortcode('[instagram-feed feed=1]'); ?>
+        <div class="flex -mr-4 md:mr-0 overflow-auto md:grid md:grid-cols-4 gap-6">
+            <?php if (!empty($external_promotions) && is_array($external_promotions)): ?>
+                <?php foreach ($external_promotions as $index => $promo):
+                    $title = $promo->title->rendered;
+                    $permalink = $promo->link;
+
+                    $delay = ($index * 100) . 'ms';
+
+                    // Get Featured Image
+                    $image_url = '';
+                    if (!empty($promo->_embedded->{'wp:featuredmedia'}[0]->source_url)) {
+                        $image_url = $promo->_embedded->{'wp:featuredmedia'}[0]->source_url;
+                    }
+                    ?>
+                    <div class="w-[75%] md:w-full shrink-0 fade-right" data-scroll data-scroll-class="is-inview"
+                        data-scroll-delay="<?php echo $delay; ?>">
+                        <div class="mb-8">
+                            <?php if ($image_url): ?>
+                                <img src="<?php echo $image_url; ?>" alt="<?php echo esc_attr($title); ?>"
+                                    class="rounded-lg w-full h-auto">
+                            <?php else: ?>
+                                <img src="<?php echo get_template_directory_uri() ?>/images/promo-1.png" alt="" class="rounded-lg">
+                            <?php endif; ?>
+                        </div>
+
+                        <h5 class="leading-[22px] font-medium mb-6 line-clamp-2 !text-jhl-black">
+                            <?php echo $title; ?>
+                        </h5>
+
+                        <a href="<?php echo esc_url($permalink); ?>"
+                            class="text-xs text-jhl-gray-2 font-semibold uppercase tracking-wide inline-flex space-x-[10px] items-center">
+                            <div>
+                                <img src="<?php echo get_template_directory_uri() ?>/images/chev-right.png" alt="">
+                            </div>
+                            <span>Lihat Detail</span>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class="col-span-4 text-center">No promotions currently available.</p>
+            <?php endif; ?>
         </div>
     </div>
 </section>
