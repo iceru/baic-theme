@@ -69,10 +69,12 @@ if (false === $external_promotions) {
                             <img src="<?= $logo; ?>" class="h-[17px] w-auto object-contain" alt="brand-logo">
                         <?php endif; ?>
                     </div>
+                    <a href="<?php the_permalink(); ?>">
 
-                    <div class="car-img-container">
-                        <?php the_post_thumbnail('large', ['class' => 'w-full']); ?>
-                    </div>
+                        <div class="car-img-container">
+                            <?php the_post_thumbnail('large', ['class' => 'w-full']); ?>
+                        </div>
+                    </a>
 
                     <div class="car-active-element -mt-12 md:mt-12 opacity-0 z-10 relative transition-opacity duration-500">
                         <a href="<?php the_permalink(); ?>"
