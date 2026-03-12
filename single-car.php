@@ -461,7 +461,7 @@ while (have_posts()):
                                 </div>
                             </div>
                         <?php endif; ?>
-                        <div class="max-w-[422px] mt-24 text-jhl-gray-3 text-[10px] font-medium leading-[16px]">
+                        <div class="max-w-[422px] mt-24 text-jhl-gray-3 text-[10px] font-medium leading-[16px] itlaic">
                             Note* <br />
                             All information content is for advertising display purposes only and is for reference. The actual
                             vehicle shall prevail. BAIC reserves the right to modify the described vehicle models and is not

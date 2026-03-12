@@ -247,8 +247,8 @@ if (false === $external_promotions) {
                         $image_url = $promo->_embedded->{'wp:featuredmedia'}[0]->source_url;
                     }
                     ?>
-                    <div class="w-[75%] md:w-full shrink-0 fade-right" data-scroll data-scroll-class="is-inview"
-                        data-scroll-delay="<?php echo $delay; ?>">
+                    <a href="<?php echo $permalink; ?>" class="w-[75%] md:w-full shrink-0 fade-right" data-scroll
+                        data-scroll-class="is-inview" data-scroll-delay="<?php echo $delay; ?>">
                         <div class="mb-8">
                             <?php if ($image_url): ?>
                                 <img src="<?php echo $image_url; ?>" alt="<?php echo esc_attr($title); ?>"
@@ -262,14 +262,14 @@ if (false === $external_promotions) {
                             <?php echo $title; ?>
                         </h5>
 
-                        <a href="<?php echo esc_url($permalink); ?>"
+                        <div
                             class="text-xs text-jhl-gray-2 font-semibold uppercase tracking-wide inline-flex space-x-[10px] items-center">
                             <div>
                                 <img src="<?php echo get_template_directory_uri() ?>/images/chev-right.png" alt="">
                             </div>
                             <span>Lihat Detail</span>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 <?php endforeach; ?>
             <?php else: ?>
                 <p class="col-span-4 text-center">No promotions currently available.</p>
