@@ -125,6 +125,8 @@
 
         // Handle ".is-inview" animation triggers
         if (!isMobile) {
+            AOS.refresh();
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     const targetClass = entry.target.getAttribute('data-scroll-class') || 'is-inview';
@@ -171,6 +173,13 @@
             document.body.classList.add('loaded');
             lenis.resize();
         });
+    });
+
+    AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100,
+        disable: 'mobile' // Built-in AOS mobile disable
     });
 </script>
 

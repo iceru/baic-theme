@@ -14,6 +14,9 @@
     <link rel="profile" href="https://gmpg.org/xfn/11">
     <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
     <?php wp_head(); ?>
 </head>
 
@@ -23,13 +26,15 @@
     <div id="page" class="min-h-screen flex flex-col">
         <?php do_action('tailpress_header'); ?>
 
-        <header class="fixed z-40 top-4 left-1/2 -translate-x-1/2 max-w-[1200px] hidden md:block w-full ">
+        <header data-aos="fade-down" data-aos-duration="1000"
+            class="fixed z-40 top-4 left-1/2 -translate-x-1/2 max-w-[1200px] hidden md:block w-full">
 
-            <div data-scroll data-scroll-class="is-inview"
-                class="relative fade-down flex items-center justify-between text-white rounded-full py-[11px] px-[35px] w-full bg-[#171717]/30 backdrop-blur-2xl"
-                style="transition-duration: 1.5s;">
+            <div class="flex items-center justify-between text-white py-[11px] px-[35px] w-full isolate">
+                <div class="absolute inset-0 bg-[#171717]/30 backdrop-blur-2xl rounded-full -z-10"></div>
                 <div>
-                    <img src="<?php echo get_template_directory_uri() ?>/images/logo.png" class="h-[14px]" alt="">
+                    <a href="/">
+                        <img src="<?php echo get_template_directory_uri() ?>/images/logo.png" class="h-[14px]" alt="">
+                    </a>
                 </div>
                 <div class="hidden md:block">
                     <nav>
@@ -40,13 +45,13 @@
                                 <div class="uppercase text-[13px] !no-underline cursor-default">Product</div>
 
                                 <ul
-                                    class="absolute left-1/2 -translate-x-[40%] top-full py-6 w-[700px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out">
-                                    <div class="px-10 py-8 space-y-3 isolate relative">
-                                        <div
-                                            class="absolute inset-0 mb-0 bg-[#171717]/30 backdrop-blur-2xl rounded-xl shadow-2xl -z-10 border border-white/10">
+                                    class="absolute left-1/2 translate-y-2 group-hover:translate-y-0 -translate-x-[40%] top-full py-6 w-[700px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out">
+                                    <div class="px-10 py-8 space-y-3 relative isolate">
+                                        <div id="products-popup"
+                                            class="absolute inset-0 mb-0 bg-[#171717]/30 backdrop-blur-2xl rounded-xl shadow-2xl z-0 border border-white/10">
                                         </div>
 
-                                        <div>
+                                        <div class="relative z-10">
                                             <h5 class="!text-white mb-6 text-lg font-semibold">Products</h5>
 
                                             <div class="grid grid-cols-3 gap-14">

@@ -65,8 +65,11 @@ if (false === $external_promotions) {
                 <div class="relative flex flex-col items-center">
 
                     <div class="car-active-element opacity-0 transition-opacity duration-500 mb-0 md:mb-16">
-                        <?php if ($logo): ?>
-                            <img src="<?= $logo; ?>" class="h-[17px] w-auto object-contain" alt="brand-logo">
+                        <?php if ($logo):
+                            $logo_height = get_field('logo_height') ?: '17';
+                            ?>
+                            <img src="<?= $logo; ?>" style="height: <?= $logo_height; ?>px" class="w-auto object-contain"
+                                alt="brand-logo">
                         <?php endif; ?>
                     </div>
                     <a href="<?php the_permalink(); ?>">
