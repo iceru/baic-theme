@@ -5,7 +5,16 @@ while (have_posts()):
     the_post();
     $car_id = get_the_ID();
 
-    $banners = get_field('car_banner');
+    $banners_group = get_field('banners');
+    $banners = false;
+    if ($banners_group) {
+        for ($i = 1; $i <= 5; $i++) {
+            if (!empty($banners_group['banner_' . $i])) {
+                $banners = $banners_group;
+                break;
+            }
+        }
+    }
     $colors = get_field('colors');
     $price = get_field('price');
     $specs = get_field('car_specification');
@@ -17,16 +26,16 @@ while (have_posts()):
         <section id="banner" class="relative overflow-hidden">
             <div class="banner-slider-main zoom-blur-out" data-scroll data-scroll-class="is-inview">
                 <?php if ($banners):
-                    foreach ($banners as $banner):
-                        $banner_img = get_the_post_thumbnail_url($banner->ID, 'full');
-                        ?>
-                        <div class="relative w-full aspect-video">
-                            <?php if ($banner_img): ?>
-                                <img src="<?php echo esc_url($banner_img); ?>" alt="<?php echo esc_attr($banner->post_title); ?>"
+                    for ($i = 1; $i <= 5; $i++):
+                        $banner_img = $banners['banner_' . $i] ?? null;
+                        if ($banner_img): ?>
+                            <div class="relative w-full aspect-video">
+                                <img src="<?php echo esc_url($banner_img); ?>"
+                                    alt="<?php echo esc_attr(get_the_title()); ?> Banner <?php echo $i; ?>"
                                     class="w-full h-full object-cover">
-                            <?php endif; ?>
-                        </div>
-                    <?php endforeach;
+                            </div>
+                        <?php endif;
+                    endfor;
                 else: ?>
                     <div class="relative w-full aspect-video bg-jhl-gray-3 flex items-center justify-center">
                         <?php the_post_thumbnail('full', ['class' => 'w-full h-full object-cover']); ?>
@@ -138,7 +147,7 @@ while (have_posts()):
                             foreach ($colors as $index => $color): ?>
                                 <span id="color-name-<?php echo $color->ID; ?>"
                                     class="color-name absolute left-1/2 -translate-x-1/2 top-0 text-jhl-black px-4 py-2 border font-semibold border-jhl-black  text-center transition-opacity duration-300 <?php echo $index === 0 ? 'opacity-100' : 'opacity-0'; ?>">
-                                    <?php echo $color->post_title; ?>
+                                    <?php echo esc_html(get_field('color_title', $color->ID) ?: $color->post_title); ?>
                                 </span>
                             <?php endforeach;
                         endif; ?>

@@ -193,6 +193,7 @@ if (false === $external_promotions) {
                 $title = $post->title->rendered;
                 $excerpt = $post->content->rendered;
                 $address = $post->acf->address ?? '';
+                $address_2 = $post->acf->address_2 ?? '';
 
                 $delay = ($index * 100) . 'ms';
 
@@ -220,6 +221,7 @@ if (false === $external_promotions) {
 
                     <p class="body text-white/80 leading-relaxed">
                         <?php echo esc_html($address); ?>
+                        <?php echo esc_html($address_2); ?>
                     </p>
                 </div>
             <?php endforeach; ?>
