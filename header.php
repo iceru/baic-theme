@@ -71,32 +71,32 @@
                                                         $car_image = get_field('car_image', get_the_ID());
                                                         ?>
 
-                                                        <div class="flex flex-col items-center text-center space-y-5">
-                                                            <div class="w-full aspect-video overflow-hidden rounded-lg">
-                                                                <?php if ($car_image): ?>
-                                                                    <img src="<?php echo esc_url($car_image); ?>"
-                                                                        alt="<?php the_title(); ?>"
-                                                                        class="w-full h-full object-contain transition-transform duration-300">
-                                                                <?php endif; ?>
-                                                            </div>
+                                                <div class="flex flex-col items-center text-center space-y-5">
+                                                    <div class="w-full aspect-video overflow-hidden rounded-lg">
+                                                        <?php if ($car_image): ?>
+                                                        <img src="<?php echo esc_url($car_image); ?>"
+                                                            alt="<?php the_title(); ?>"
+                                                            class="w-full h-full object-contain transition-transform duration-300">
+                                                        <?php endif; ?>
+                                                    </div>
 
-                                                            <h6 class="text-white font-medium text-sm"><?php the_title(); ?>
-                                                            </h6>
+                                                    <h6 class="text-white font-medium text-sm"><?php the_title(); ?>
+                                                    </h6>
 
-                                                            <a href="<?php the_permalink(); ?>"
-                                                                class="px-4 py-2 border border-white text-white text-[11px] uppercase 
+                                                    <a href="<?php the_permalink(); ?>"
+                                                        class="px-4 py-2 border border-white text-white text-[11px] uppercase 
                                                                 tracking-widest hover:bg-white/20 transition-colors 
                                                                 duration-300 rounded flex items-center space-x-2 group">
-                                                                <img src="<?php echo get_template_directory_uri() ?>/images/chev-right-white.png"
-                                                                    class="" alt="">
-                                                                <span>Explore</span>
-                                                            </a>
-                                                        </div>
+                                                        <img src="<?php echo get_template_directory_uri() ?>/images/chev-right-white.png"
+                                                            class="" alt="">
+                                                        <span>Explore</span>
+                                                    </a>
+                                                </div>
 
-                                                    <?php endwhile;
+                                                <?php endwhile;
                                                     wp_reset_postdata();
                                                 else: ?>
-                                                    <p class="text-white text-sm col-span-3">No cars found.</p>
+                                                <p class="text-white text-sm col-span-3">No cars found.</p>
                                                 <?php endif; ?>
                                             </div>
                                         </div>
@@ -112,7 +112,7 @@
 
 
                             <li>
-                                <a href="https://jhl-auto.codeomnia.com/news"
+                                <a href="https://jhl-auto.codeomnia.cloud/news"
                                     class="uppercase text-[13px] font-medium !no-underline">
                                     Promotion
                                 </a>
@@ -121,7 +121,7 @@
                     </nav>
                 </div>
                 <div>
-                    <a href="https://jhl-auto.codeomnia.com"
+                    <a href="https://jhl-auto.codeomnia.cloud"
                         class="text-[13px] font-medium flex items-center !no-underline space-x-1">
                         <img src="<?php echo get_template_directory_uri() ?>/images/logo-jhl.png" class="h-7 w-auto"
                             alt="">
@@ -196,23 +196,23 @@
                                     $car_image = get_the_post_thumbnail_url(get_the_ID(), 'medium');
                                     ?>
 
-                                    <a href="<?php the_permalink(); ?>"
-                                        class="flex flex-col items-center text-center space-y-5 shrink-0 w-[75%]">
-                                        <div class="w-full aspect-video overflow-hidden rounded-lg">
-                                            <?php if ($car_image): ?>
-                                                <img src="<?php echo esc_url($car_image); ?>" alt="<?php the_title(); ?>"
-                                                    class="w-full h-full object-contain transition-transform duration-300">
-                                            <?php endif; ?>
-                                        </div>
+                            <a href="<?php the_permalink(); ?>"
+                                class="flex flex-col items-center text-center space-y-5 shrink-0 w-[75%]">
+                                <div class="w-full aspect-video overflow-hidden rounded-lg">
+                                    <?php if ($car_image): ?>
+                                    <img src="<?php echo esc_url($car_image); ?>" alt="<?php the_title(); ?>"
+                                        class="w-full h-full object-contain transition-transform duration-300">
+                                    <?php endif; ?>
+                                </div>
 
-                                        <h6 class="text-white font-medium text-sm"><?php the_title(); ?>
-                                        </h6>
-                                    </a>
+                                <h6 class="text-white font-medium text-sm"><?php the_title(); ?>
+                                </h6>
+                            </a>
 
-                                <?php endwhile;
+                            <?php endwhile;
                                 wp_reset_postdata();
                             else: ?>
-                                <p class="text-white text-sm col-span-3">No cars found.</p>
+                            <p class="text-white text-sm col-span-3">No cars found.</p>
                             <?php endif; ?>
                         </div>
                     </div>

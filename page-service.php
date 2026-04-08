@@ -6,7 +6,7 @@ $external_dealers = get_transient($cache_key);
 
 // 2. If the cache is empty, fetch the data from the API
 if (false === $external_dealers) {
-    $source_url = 'https://jhl-auto.codeomnia.com/wp-json/wp/v2/dealers?_embed&per_page=4&orderby=date&order=asc';
+    $source_url = 'https://jhl-auto.codeomnia.cloud/wp-json/wp/v2/dealers?_embed&per_page=4&orderby=date&order=asc';
     $response = wp_remote_get($source_url, ['timeout' => 10]);
 
     if (!is_wp_error($response)) {

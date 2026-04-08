@@ -40,12 +40,12 @@
                     </p>
                     <ul class="text-white space-y-3">
                         <li>
-                            <a href="https://jhl.codeomnia.com/our-story" class="text-xs !no-underline">
+                            <a href="https://jhl.codeomnia.cloud/our-story" class="text-xs !no-underline">
                                 Our Story
                             </a>
                         </li>
                         <li>
-                            <a href="https://jhl.codeomnia.com/career" class="text-xs !no-underline">
+                            <a href="https://jhl.codeomnia.cloud/career" class="text-xs !no-underline">
                                 Career
                             </a>
                         </li>
@@ -62,7 +62,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://jhl.codeomnia.com/service" class="text-xs !no-underline">
+                            <a href="https://jhl.codeomnia.cloud/service" class="text-xs !no-underline">
                                 Service Center
                             </a>
                         </li>
@@ -74,12 +74,12 @@
                     </p>
                     <ul class="text-white space-y-3">
                         <li>
-                            <a href="https://jhl.codeomnia.com/news" class="text-xs !no-underline">
+                            <a href="https://jhl.codeomnia.cloud/news" class="text-xs !no-underline">
                                 News
                             </a>
                         </li>
                         <li>
-                            <a href="https://jhl.codeomnia.com/news?type=promo" class="text-xs !no-underline">
+                            <a href="https://jhl.codeomnia.cloud/news?type=promo" class="text-xs !no-underline">
                                 Promo
                             </a>
                         </li>
@@ -129,12 +129,15 @@
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    const targetClass = entry.target.getAttribute('data-scroll-class') || 'is-inview';
+                    const targetClass = entry.target.getAttribute('data-scroll-class') ||
+                        'is-inview';
                     if (entry.isIntersecting) {
                         entry.target.classList.add(targetClass);
                     }
                 });
-            }, { threshold: 0.1 });
+            }, {
+                threshold: 0.1
+            });
 
             document.querySelectorAll('[data-scroll]').forEach(el => {
                 const delay = el.getAttribute('data-scroll-delay');
