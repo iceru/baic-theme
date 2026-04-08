@@ -18,7 +18,7 @@
         <div class="flex flex-wrap md:flex-nowrap justify-between space-y-24 md:space-y-0">
             <div class="flex flex-wrap md:flex-nowrap items-center" id="logo">
                 <div class="pr-10 mb-14 md:mb-0 md:mr-10 md:border-r border-jhl-gray-2">
-                    <img src="<?php echo get_template_directory_uri() ?>/images/logo-jhl.png" alt="" class="mb-5">
+                    <img src="<?php echo get_template_directory_uri() ?>/images/logo-jhl-auto.png" alt="" class="mb-5">
                     <p class="text-xs text-center">
                         Service You Can Trust, <br /> Peace of Mind You Deserve
                     </p>
@@ -40,12 +40,12 @@
                     </p>
                     <ul class="text-white space-y-3">
                         <li>
-                            <a href="https://jhl.codeomnia.cloud/our-story" class="text-xs !no-underline">
+                            <a href="https://jhl-auto.codeomnia.cloud/our-story" class="text-xs !no-underline">
                                 Our Story
                             </a>
                         </li>
                         <li>
-                            <a href="https://jhl.codeomnia.cloud/career" class="text-xs !no-underline">
+                            <a href="https://jhl-auto.codeomnia.cloud/career" class="text-xs !no-underline">
                                 Career
                             </a>
                         </li>
@@ -62,7 +62,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://jhl.codeomnia.cloud/service" class="text-xs !no-underline">
+                            <a href="https://jhl-auto.codeomnia.cloud/service" class="text-xs !no-underline">
                                 Service Center
                             </a>
                         </li>
@@ -74,12 +74,12 @@
                     </p>
                     <ul class="text-white space-y-3">
                         <li>
-                            <a href="https://jhl.codeomnia.cloud/news" class="text-xs !no-underline">
+                            <a href="https://jhl-auto.codeomnia.cloud/news" class="text-xs !no-underline">
                                 News
                             </a>
                         </li>
                         <li>
-                            <a href="https://jhl.codeomnia.cloud/news?type=promo" class="text-xs !no-underline">
+                            <a href="https://jhl-auto.codeomnia.cloud/news?type=promo" class="text-xs !no-underline">
                                 Promo
                             </a>
                         </li>
