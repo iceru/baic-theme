@@ -6,7 +6,7 @@ $external_dealers = get_transient($cache_key);
 
 // 2. If the cache is empty, fetch the data from the API
 if (false === $external_dealers) {
-    $source_url = 'https://jhl-auto.codeomnia.com/wp-json/wp/v2/dealers?_embed&per_page=4&orderby=date&order=asc';
+    $source_url = 'https://jhl-auto.codeomnia.cloud/wp-json/wp/v2/dealers?_embed&per_page=4&orderby=date&order=asc';
     $response = wp_remote_get($source_url, ['timeout' => 10]);
 
     if (!is_wp_error($response)) {
@@ -23,7 +23,7 @@ $external_promotions = get_transient($promo_cache_key);
 // If cache is empty, fetch from API
 if (false === $external_promotions) {
     // orderby=date & order=asc to keep oldest to newest as requested previously
-    $promo_url = 'https://jhl-auto.codeomnia.com/wp-json/wp/v2/promotions?_embed&per_page=4&orderby=date&order=asc';
+    $promo_url = 'https://jhl-auto.codeomnia.cloud/wp-json/wp/v2/promotions?_embed&per_page=4&orderby=date&order=asc';
     $promo_response = wp_remote_get($promo_url, ['timeout' => 15]);
 
     if (!is_wp_error($promo_response)) {
@@ -38,10 +38,10 @@ if (false === $external_promotions) {
         $banners = new WP_Query(['post_type' => 'banner', 'posts_per_page' => 5]);
         while ($banners->have_posts()):
             $banners->the_post(); ?>
-            <div class=" relative h-fit md:h-[96vh] max-h-[780px] w-full">
-                <?php the_post_thumbnail('full', ['class' => 'w-full h-full object-cover aspect-video']); ?>
+        <div class=" relative h-fit md:h-[96vh] max-h-[780px] w-full">
+            <?php the_post_thumbnail('full', ['class' => 'w-full h-full object-cover aspect-video']); ?>
 
-            </div>
+        </div>
         <?php endwhile;
         wp_reset_postdata(); ?>
     </div>
@@ -61,36 +61,36 @@ if (false === $external_promotions) {
             $cars->the_post();
             $logo = get_field('logo');
             ?>
-            <div class="px-0 md:px-8 car-slide-item">
-                <div class="relative flex flex-col items-center">
+        <div class="px-0 md:px-8 car-slide-item">
+            <div class="relative flex flex-col items-center">
 
-                    <div class="car-active-element opacity-0 transition-opacity duration-500 mb-0 md:mb-16">
-                        <?php if ($logo):
+                <div class="car-active-element opacity-0 transition-opacity duration-500 mb-0 md:mb-16">
+                    <?php if ($logo):
                             $logo_height = get_field('logo_height') ?: '17';
                             ?>
-                            <img src="<?= $logo; ?>" style="height: <?= $logo_height; ?>px" class="w-auto object-contain"
-                                alt="brand-logo">
-                        <?php endif; ?>
-                    </div>
-                    <a href="<?php the_permalink(); ?>">
+                    <img src="<?= $logo; ?>" style="height: <?= $logo_height; ?>px" class="w-auto object-contain"
+                        alt="brand-logo">
+                    <?php endif; ?>
+                </div>
+                <a href="<?php the_permalink(); ?>">
 
-                        <div class="car-img-container">
-                            <?php the_post_thumbnail('large', ['class' => 'w-full']); ?>
+                    <div class="car-img-container">
+                        <?php the_post_thumbnail('large', ['class' => 'w-full']); ?>
+                    </div>
+                </a>
+
+                <div class="car-active-element -mt-12 md:mt-12 opacity-0 z-10 relative transition-opacity duration-500">
+                    <a href="<?php the_permalink(); ?>"
+                        class="flex items-center  text-jhl-gray-1 font-semibold text-xs !no-underline ">
+                        <span>Telusuri <?php the_title(); ?></span>
+                        <div class="relative flex items-center ml-4">
+                            <img src="<?php echo get_template_directory_uri() ?>/images/arrow.png" alt="">
                         </div>
                     </a>
-
-                    <div class="car-active-element -mt-12 md:mt-12 opacity-0 z-10 relative transition-opacity duration-500">
-                        <a href="<?php the_permalink(); ?>"
-                            class="flex items-center  text-jhl-gray-1 font-semibold text-xs !no-underline ">
-                            <span>Telusuri <?php the_title(); ?></span>
-                            <div class="relative flex items-center ml-4">
-                                <img src="<?php echo get_template_directory_uri() ?>/images/arrow.png" alt="">
-                            </div>
-                        </a>
-                    </div>
-
                 </div>
+
             </div>
+        </div>
         <?php endwhile;
         wp_reset_postdata(); ?>
     </div>
@@ -116,8 +116,8 @@ if (false === $external_promotions) {
     </div>
     <div class="right-0 static md:absolute h-full fade-left" data-scroll data-scroll-class="is-inview"
         data-scroll-delay="400ms">
-        <img src="<?php echo get_template_directory_uri() ?>/images/dashboard-car.png"
-            class="h-full w-auto object-contain" alt="">
+        <img src="<?php echo get_template_directory_uri() ?>/images/test-drive.jpg" class="h-full w-auto object-contain"
+            alt="">
     </div>
 </section>
 
@@ -189,7 +189,7 @@ if (false === $external_promotions) {
 
     <div class="flex container pr-0 md:pr-4 overflow-auto md:grid md:grid-cols-4 gap-4">
         <?php if (!empty($external_dealers) && is_array($external_dealers)): ?>
-            <?php foreach ($external_dealers as $index => $post):
+        <?php foreach ($external_dealers as $index => $post):
                 $title = $post->title->rendered;
                 $excerpt = $post->content->rendered;
                 $address = $post->acf->address ?? '';
@@ -203,30 +203,32 @@ if (false === $external_promotions) {
                     $image_url = $post->_embedded->{'wp:featuredmedia'}[0]->source_url;
                 }
                 ?>
-                <div class="w-[75%] md:w-full shrink-0 fade-right" data-scroll data-scroll-class="is-inview"
-                    data-scroll-delay="<?php echo $delay; ?>">
-                    <div class="mb-4">
-                        <?php if ($image_url): ?>
-                            <img src="<?php echo $image_url; ?>" class="rounded-lg h-[318px] object-cover w-full"
-                                alt="<?php echo esc_attr($title); ?>">
-                        <?php else: ?>
-                            <img src="<?php echo get_template_directory_uri() ?>/images/alsut.png"
-                                class="rounded-lg h-[318px] object-cover w-full" alt="">
-                        <?php endif; ?>
-                    </div>
+        <div class="w-[75%] md:w-full shrink-0 fade-right" data-scroll data-scroll-class="is-inview"
+            data-scroll-delay="<?php echo $delay; ?>">
+            <div class="mb-4">
+                <?php if ($image_url): ?>
+                <img src="<?php echo $image_url; ?>" class="rounded-lg h-[318px] object-cover w-full"
+                    alt="<?php echo esc_attr($title); ?>">
+                <?php else: ?>
+                <img src="<?php echo get_template_directory_uri() ?>/images/alsut.png"
+                    class="rounded-lg h-[318px] object-cover w-full" alt="">
+                <?php endif; ?>
+            </div>
 
-                    <h4 class="leading-7 text-xl mb-4 !text-white">
-                        <?php echo $title; ?>
-                    </h4>
+            <h4 class="leading-7 text-xl mb-4 !text-white">
+                <?php echo $title; ?>
+            </h4>
 
-                    <p class="body text-white/80 leading-relaxed">
-                        <?php echo esc_html($address); ?>
-                        <?php echo esc_html($address_2); ?>
-                    </p>
-                </div>
-            <?php endforeach; ?>
+            <p class="body text-white/80 leading-relaxed">
+                <?php echo esc_html($address); ?>
+            </p>
+            <p class="body text-white/80 leading-relaxed">
+                <?php echo esc_html($address_2); ?>
+            </p>
+        </div>
+        <?php endforeach; ?>
         <?php else: ?>
-            <p class="col-span-4 text-center">Unable to load dealers at this time.</p>
+        <p class="col-span-4 text-center">Unable to load dealers at this time.</p>
         <?php endif; ?>
     </div>
 </section>
@@ -240,7 +242,7 @@ if (false === $external_promotions) {
         </h2>
         <div class="flex -mr-4 md:mr-0 overflow-auto md:grid md:grid-cols-4 gap-6">
             <?php if (!empty($external_promotions) && is_array($external_promotions)): ?>
-                <?php foreach ($external_promotions as $index => $promo):
+            <?php foreach ($external_promotions as $index => $promo):
                     $title = $promo->title->rendered;
                     $permalink = $promo->link;
 
@@ -252,32 +254,32 @@ if (false === $external_promotions) {
                         $image_url = $promo->_embedded->{'wp:featuredmedia'}[0]->source_url;
                     }
                     ?>
-                    <a href="<?php echo $permalink; ?>" class="w-[75%] md:w-full shrink-0 fade-right" data-scroll
-                        data-scroll-class="is-inview" data-scroll-delay="<?php echo $delay; ?>">
-                        <div class="mb-8">
-                            <?php if ($image_url): ?>
-                                <img src="<?php echo $image_url; ?>" alt="<?php echo esc_attr($title); ?>"
-                                    class="rounded-lg w-full h-auto">
-                            <?php else: ?>
-                                <img src="<?php echo get_template_directory_uri() ?>/images/promo-1.png" alt="" class="rounded-lg">
-                            <?php endif; ?>
-                        </div>
+            <a href="<?php echo $permalink; ?>" class="w-[75%] md:w-full shrink-0 fade-right" data-scroll
+                data-scroll-class="is-inview" data-scroll-delay="<?php echo $delay; ?>">
+                <div class="mb-8">
+                    <?php if ($image_url): ?>
+                    <img src="<?php echo $image_url; ?>" alt="<?php echo esc_attr($title); ?>"
+                        class="rounded-lg w-full h-auto">
+                    <?php else: ?>
+                    <img src="<?php echo get_template_directory_uri() ?>/images/promo-1.png" alt="" class="rounded-lg">
+                    <?php endif; ?>
+                </div>
 
-                        <h5 class="leading-[22px] font-medium mb-6 line-clamp-2 !text-jhl-black">
-                            <?php echo $title; ?>
-                        </h5>
+                <h5 class="leading-[22px] font-medium mb-6 line-clamp-2 !text-jhl-black">
+                    <?php echo $title; ?>
+                </h5>
 
-                        <div
-                            class="text-xs text-jhl-gray-2 font-semibold uppercase tracking-wide inline-flex space-x-[10px] items-center">
-                            <div>
-                                <img src="<?php echo get_template_directory_uri() ?>/images/chev-right.png" alt="">
-                            </div>
-                            <span>Lihat Detail</span>
-                        </div>
-                    </a>
-                <?php endforeach; ?>
+                <div
+                    class="text-xs text-jhl-gray-2 font-semibold uppercase tracking-wide inline-flex space-x-[10px] items-center">
+                    <div>
+                        <img src="<?php echo get_template_directory_uri() ?>/images/chev-right.png" alt="">
+                    </div>
+                    <span>Lihat Detail</span>
+                </div>
+            </a>
+            <?php endforeach; ?>
             <?php else: ?>
-                <p class="col-span-4 text-center">No promotions currently available.</p>
+            <p class="col-span-4 text-center">No promotions currently available.</p>
             <?php endif; ?>
         </div>
     </div>
