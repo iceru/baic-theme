@@ -23,7 +23,7 @@ $external_promotions = get_transient($promo_cache_key);
 // If cache is empty, fetch from API
 if (false === $external_promotions) {
     // orderby=date & order=asc to keep oldest to newest as requested previously
-    $promo_url = 'https://jhl-auto.codeomnia.cloud/wp-json/wp/v2/promotions?_embed&per_page=4&orderby=date&order=asc';
+    $promo_url = 'https://jhl-auto.codeomnia.cloud/wp-json/wp/v2/promotions?_embed&per_page=4&orderby=date&order=desc';
     $promo_response = wp_remote_get($promo_url, ['timeout' => 15]);
 
     if (!is_wp_error($promo_response)) {
