@@ -48,39 +48,39 @@ if (false === $external_dealers) {
                     $image_url = $dealer->_embedded->{'wp:featuredmedia'}[0]->source_url;
                 }
                 ?>
-                <div class="fade-up" data-scroll data-scroll-class="is-inview" data-scroll-delay="<?php echo $delay; ?>">
-                    <div class="mb-[30px]">
-                        <img src="<?php echo $image_url; ?>" alt="<?php echo $title; ?>"
-                            class="rounded-lg h-[282px] object-cover w-full">
-                    </div>
-                    <h5 class="mb-5 tracking-wider !text-jhl-black">
-                        <?php echo $title; ?>
-                    </h5>
-                    <p class="body mb-4 !text-jhl-gray-1">
-                        <?php echo $address; ?>
-                    </p>
-                    <div class="body text-jhl-black mb-10 h-24">
-                        <span class="font-bold">Business Hours:</span>
-                        <div class="mt-1">
-                            <?php echo nl2br(wp_kses_post($business_hours)); ?>
-                        </div>
-                    </div>
-                    <div class="flex space-x-4">
-                        <a href="<?php echo $whatsapp; ?>" class="bg-jhl-black p-[5px] rounded block">
-                            <img src="<?php echo get_template_directory_uri() ?>/images/WhatsApp.png"
-                                class="h-[22px] w-[22px] object-contain" alt="">
-                        </a>
-                        <a href="<?php echo $phone; ?>" class="bg-jhl-black p-[5px] rounded block">
-                            <img src="<?php echo get_template_directory_uri() ?>/images/Phone.png"
-                                class="h-[22px] w-[22px] object-contain" alt="">
-                        </a>
-                        <a href="<?php echo $location; ?>" class="bg-jhl-black p-[5px] rounded block">
-                            <img src="<?php echo get_template_directory_uri() ?>/images/Location.png"
-                                class="h-[22px] w-[22px] object-contain" alt="">
-                        </a>
-                    </div>
+        <div class="fade-up" data-scroll data-scroll-class="is-inview" data-scroll-delay="<?php echo $delay; ?>">
+            <div class="mb-[30px]">
+                <img src="<?php echo $image_url; ?>" alt="<?php echo $title; ?>"
+                    class="rounded-lg h-[282px] object-cover w-full">
+            </div>
+            <h5 class="mb-5 tracking-wider !text-jhl-black">
+                <?php echo $title; ?>
+            </h5>
+            <p class="body mb-4 !text-jhl-gray-1">
+                <?php echo $address; ?>
+            </p>
+            <div class="body text-jhl-black mb-10 h-24">
+                <span class="font-bold">Business Hours:</span>
+                <div class="mt-1">
+                    <?php echo nl2br(wp_kses_post($business_hours)); ?>
                 </div>
-            <?php endforeach;
+            </div>
+            <div class="flex space-x-4">
+                <a href="<?php echo $whatsapp; ?>" class="bg-jhl-black p-[5px] rounded block">
+                    <img src="<?php echo get_template_directory_uri() ?>/images/WhatsApp.png"
+                        class="h-[22px] w-[22px] object-contain" alt="">
+                </a>
+                <a href="<?php echo $phone; ?>" class="bg-jhl-black p-[5px] rounded block">
+                    <img src="<?php echo get_template_directory_uri() ?>/images/Phone.png"
+                        class="h-[22px] w-[22px] object-contain" alt="">
+                </a>
+                <a href="<?php echo $location; ?>" class="bg-jhl-black p-[5px] rounded block">
+                    <img src="<?php echo get_template_directory_uri() ?>/images/Location.png"
+                        class="h-[22px] w-[22px] object-contain" alt="">
+                </a>
+            </div>
+        </div>
+        <?php endforeach;
         endif; ?>
     </div>
 </section>
@@ -89,7 +89,7 @@ if (false === $external_dealers) {
     <div class="absolute left-0 top-0 w-full h-[80%] bg-gradient-to-b from-jhl-black to-transparent z-[5] opacity-70">
     </div>
     <div class="absolute left-0 top-0 w-full h-full z-0">
-        <img src="<?php echo get_template_directory_uri() ?>/images/armada.png" class="h-full w-full object-cover"
+        <img src="<?php echo get_template_directory_uri() ?>/images/armada.jpg" class="h-full w-full object-cover"
             alt="">
     </div>
     <div class="container text-white flex flex-col md:flex-row justify-between relative z-10">
@@ -144,27 +144,27 @@ if (false === $external_dealers) {
 
     if ($services_query->have_posts()):
         ?>
-        <div class="py-9">
-            <ul class="flex border-b whitespace-nowrap overflow-auto scroll-m-2 border-jhl-gray-3 service-tabs fade-down"
-                data-scroll data-scroll-class="is-inview" data-scroll-delay="200ms">
-                <?php
+    <div class="py-9">
+        <ul class="flex border-b whitespace-nowrap overflow-auto scroll-m-2 border-jhl-gray-3 service-tabs fade-down"
+            data-scroll data-scroll-class="is-inview" data-scroll-delay="200ms">
+            <?php
                 $count = 0;
                 while ($services_query->have_posts()):
                     $services_query->the_post();
                     ?>
-                    <li class="pb-4 mx-10 whitespace-nowrap text-beijing-black first:ml-0 cursor-pointer service-tab <?php echo $count === 0 ? 'border-b border-jhl-black font-semibold' : ''; ?>"
-                        data-target="service-<?php the_ID(); ?>">
-                        <?php the_title(); ?>
-                    </li>
-                    <?php
+            <li class="pb-4 mx-10 whitespace-nowrap text-beijing-black first:ml-0 cursor-pointer service-tab <?php echo $count === 0 ? 'border-b border-jhl-black font-semibold' : ''; ?>"
+                data-target="service-<?php the_ID(); ?>">
+                <?php the_title(); ?>
+            </li>
+            <?php
                     $count++;
                 endwhile;
                 ?>
-            </ul>
-        </div>
+        </ul>
+    </div>
 
-        <div class="service-contents">
-            <?php
+    <div class="service-contents">
+        <?php
             $count = 0;
             $services_query->rewind_posts();
             while ($services_query->have_posts()):
@@ -172,65 +172,65 @@ if (false === $external_dealers) {
                 $acf_title = get_field('title');
                 $featured_img = get_the_post_thumbnail_url(get_the_ID(), 'full');
                 ?>
-                <div id="service-<?php the_ID(); ?>"
-                    class="service-content grid md:grid-cols-2 items-center md:gap-20 <?php echo $count === 0 ? '' : 'hidden'; ?>">
-                    <div class="mb-14 md:mb-0 fade-right" data-scroll data-scroll-class="is-inview" data-scroll-delay="400ms">
-                        <img src="<?php echo $featured_img; ?>" alt="<?php the_title(); ?>" class="w-full h-auto rounded-lg">
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-xl mb-8 md:max-w-[247px] text-beijing-black fade-left" data-scroll
-                            data-scroll-class="is-inview" data-scroll-delay="600ms"><?php echo $acf_title; ?></h4>
-                        <div class="body fade-left" data-scroll data-scroll-class="is-inview" data-scroll-delay="800ms">
-                            <?php the_content(); ?>
-                        </div>
-                    </div>
+        <div id="service-<?php the_ID(); ?>"
+            class="service-content grid md:grid-cols-2 items-center md:gap-20 <?php echo $count === 0 ? '' : 'hidden'; ?>">
+            <div class="mb-14 md:mb-0 fade-right" data-scroll data-scroll-class="is-inview" data-scroll-delay="400ms">
+                <img src="<?php echo $featured_img; ?>" alt="<?php the_title(); ?>" class="w-full h-auto rounded-lg">
+            </div>
+            <div>
+                <h4 class="font-bold text-xl mb-8 md:max-w-[247px] text-beijing-black fade-left" data-scroll
+                    data-scroll-class="is-inview" data-scroll-delay="600ms"><?php echo $acf_title; ?></h4>
+                <div class="body fade-left" data-scroll data-scroll-class="is-inview" data-scroll-delay="800ms">
+                    <?php the_content(); ?>
                 </div>
-                <?php
+            </div>
+        </div>
+        <?php
                 $count++;
             endwhile;
             ?>
-        </div>
+    </div>
 
-        <script>
-            jQuery(document).ready(function ($) {
-                jQuery('.service-tab').on('click', function () {
-                    var target = jQuery(this).data('target');
+    <script>
+        jQuery(document).ready(function ($) {
+            jQuery('.service-tab').on('click', function () {
+                var target = jQuery(this).data('target');
 
-                    // Update tabs
-                    jQuery('.service-tab').removeClass('border-b border-jhl-black font-semibold');
-                    jQuery(this).addClass('border-b border-jhl-black font-semibold');
+                // Update tabs
+                jQuery('.service-tab').removeClass('border-b border-jhl-black font-semibold');
+                jQuery(this).addClass('border-b border-jhl-black font-semibold');
 
-                    // Update content
-                    jQuery('.service-content').addClass('hidden');
-                    jQuery('#' + target).removeClass('hidden');
-                });
-
-                // 1. Open Popup
-                jQuery('#open-contact').on('click', function (e) {
-                    e.preventDefault();
-                    jQuery('#contact-popup').removeClass('hidden').addClass('flex');
-                    jQuery('body').addClass('overflow-hidden'); // Prevent background scrolling
-                });
-
-                // 2. Function to Close Popup
-                function closePopup() {
-                    jQuery('#contact-popup').addClass('hidden').removeClass('flex');
-                    jQuery('body').removeClass('overflow-hidden');
-                }
-
-                // Close via 'X' button
-                jQuery('#close-contact').on('click', function () {
-                    closePopup();
-                });
-
-                // Close via clicking the dark overlay background
-                jQuery('#close-overlay').on('click', function () {
-                    closePopup();
-                });
+                // Update content
+                jQuery('.service-content').addClass('hidden');
+                jQuery('#' + target).removeClass('hidden');
             });
-        </script>
 
-        <?php wp_reset_postdata(); ?>
+            // 1. Open Popup
+            jQuery('#open-contact').on('click', function (e) {
+                e.preventDefault();
+                jQuery('#contact-popup').removeClass('hidden').addClass('flex');
+                jQuery('body').addClass('overflow-hidden'); // Prevent background scrolling
+            });
+
+            // 2. Function to Close Popup
+            function closePopup() {
+                jQuery('#contact-popup').addClass('hidden').removeClass('flex');
+                jQuery('body').removeClass('overflow-hidden');
+            }
+
+            // Close via 'X' button
+            jQuery('#close-contact').on('click', function () {
+                closePopup();
+            });
+
+            // Close via clicking the dark overlay background
+            jQuery('#close-overlay').on('click', function () {
+                closePopup();
+            });
+        });
+    </script>
+
+    <?php wp_reset_postdata(); ?>
     <?php endif; ?>
 </section>
 
