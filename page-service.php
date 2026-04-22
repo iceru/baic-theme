@@ -36,6 +36,7 @@ if (false === $external_dealers) {
                 $dealer_acf = $dealer->acf;
                 $address = isset($dealer_acf->address) ? $dealer_acf->address : '';
                 $address_2 = isset($dealer_acf->address_2) ? $dealer_acf->address_2 : '';
+                $full_address = isset($dealer_acf->full_address) ? $dealer_acf->full_address : '';
                 $business_hours = isset($dealer_acf->business_hours) ? $dealer_acf->business_hours : '';
                 $whatsapp = isset($dealer_acf->whatsapp) ? $dealer_acf->whatsapp : '#';
                 $phone = isset($dealer_acf->phone) ? $dealer_acf->phone : '#';
@@ -58,10 +59,7 @@ if (false === $external_dealers) {
                         <?php echo $title; ?>
                     </h5>
                     <p class="body !text-jhl-gray-1">
-                        <?php echo $address; ?>
-                    </p>
-                    <p class="body mb-4 !text-jhl-gray-1">
-                        <?php echo $address_2; ?>
+                        <?php echo esc_html($full_address); ?>
                     </p>
                     <div class="body text-jhl-black mb-10 h-24">
                         <span class="font-bold">Business Hours:</span>
