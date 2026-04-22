@@ -58,7 +58,7 @@ if (false === $external_dealers) {
                     <h5 class="mb-5 tracking-wider !text-jhl-black">
                         <?php echo $title; ?>
                     </h5>
-                    <p class="body !text-jhl-gray-1">
+                    <p class="body mb-4 !text-jhl-gray-1">
                         <?php echo esc_html($full_address); ?>
                     </p>
                     <div class="body text-jhl-black mb-10 h-24">
