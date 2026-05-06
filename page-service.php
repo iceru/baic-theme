@@ -49,7 +49,7 @@ if (false === $external_dealers) {
                 if (!empty($dealer->_embedded->{'wp:featuredmedia'}[0]->source_url)) {
                     $image_url = $dealer->_embedded->{'wp:featuredmedia'}[0]->source_url;
                 }
-        ?>
+                ?>
                 <div class="fade-up" data-scroll data-scroll-class="is-inview" data-scroll-delay="<?php echo $delay; ?>">
                     <div class="mb-[30px]">
                         <img src="<?php echo $image_url; ?>" alt="<?php echo $title; ?>"
@@ -82,7 +82,7 @@ if (false === $external_dealers) {
                         </a>
                     </div>
                 </div>
-        <?php endforeach;
+            <?php endforeach;
         endif; ?>
     </div>
 </section>
@@ -91,7 +91,7 @@ if (false === $external_dealers) {
     <div class="absolute left-0 top-0 w-full h-[80%] bg-gradient-to-b from-jhl-black to-transparent z-[5] opacity-70">
     </div>
     <div class="absolute left-0 top-0 w-full h-full z-0">
-        <img src="<?php echo get_template_directory_uri() ?>/images/armada.jpg" class="h-full w-full object-cover"
+        <img src="<?php echo get_template_directory_uri() ?>/images/armada-2.jpg" class="h-full w-full object-cover"
             alt="">
     </div>
     <div class="container text-white flex flex-col md:flex-row justify-between relative z-10">
@@ -145,7 +145,7 @@ if (false === $external_dealers) {
     $services_query = new WP_Query($services_args);
 
     if ($services_query->have_posts()):
-    ?>
+        ?>
         <div class="py-9">
             <ul class="flex border-b whitespace-nowrap overflow-auto scroll-m-2 border-jhl-gray-3 service-tabs fade-down"
                 data-scroll data-scroll-class="is-inview" data-scroll-delay="200ms">
@@ -153,12 +153,12 @@ if (false === $external_dealers) {
                 $count = 0;
                 while ($services_query->have_posts()):
                     $services_query->the_post();
-                ?>
+                    ?>
                     <li class="pb-4 mx-10 whitespace-nowrap text-beijing-black first:ml-0 cursor-pointer service-tab <?php echo $count === 0 ? 'border-b border-jhl-black font-semibold' : ''; ?>"
                         data-target="service-<?php the_ID(); ?>">
                         <?php the_title(); ?>
                     </li>
-                <?php
+                    <?php
                     $count++;
                 endwhile;
                 ?>
@@ -173,7 +173,7 @@ if (false === $external_dealers) {
                 $services_query->the_post();
                 $acf_title = get_field('title');
                 $featured_img = get_the_post_thumbnail_url(get_the_ID(), 'full');
-            ?>
+                ?>
                 <div id="service-<?php the_ID(); ?>"
                     class="service-content grid md:grid-cols-2 items-center md:gap-20 <?php echo $count === 0 ? '' : 'hidden'; ?>">
                     <div class="mb-14 md:mb-0 fade-right" data-scroll data-scroll-class="is-inview" data-scroll-delay="400ms">
@@ -187,15 +187,15 @@ if (false === $external_dealers) {
                         </div>
                     </div>
                 </div>
-            <?php
+                <?php
                 $count++;
             endwhile;
             ?>
         </div>
 
         <script>
-            jQuery(document).ready(function($) {
-                jQuery('.service-tab').on('click', function() {
+            jQuery(document).ready(function ($) {
+                jQuery('.service-tab').on('click', function () {
                     var target = jQuery(this).data('target');
 
                     // Update tabs
@@ -208,7 +208,7 @@ if (false === $external_dealers) {
                 });
 
                 // 1. Open Popup
-                jQuery('#open-contact').on('click', function(e) {
+                jQuery('#open-contact').on('click', function (e) {
                     e.preventDefault();
                     jQuery('#contact-popup').removeClass('hidden').addClass('flex');
                     jQuery('body').addClass('overflow-hidden'); // Prevent background scrolling
@@ -221,12 +221,12 @@ if (false === $external_dealers) {
                 }
 
                 // Close via 'X' button
-                jQuery('#close-contact').on('click', function() {
+                jQuery('#close-contact').on('click', function () {
                     closePopup();
                 });
 
                 // Close via clicking the dark overlay background
-                jQuery('#close-overlay').on('click', function() {
+                jQuery('#close-overlay').on('click', function () {
                     closePopup();
                 });
             });
