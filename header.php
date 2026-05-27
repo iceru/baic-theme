@@ -70,7 +70,7 @@
                                                     while ($car_query->have_posts()):
                                                         $car_query->the_post();
                                                         $car_image = get_field('car_image', get_the_ID());
-                                                ?>
+                                                        ?>
 
                                                         <div class="flex flex-col items-center text-center space-y-5">
                                                             <div class="w-full aspect-video overflow-hidden rounded-lg">
@@ -138,7 +138,7 @@
                 <div class="h-[1px] w-8 bg-white"></div>
             </div>
             <div>
-                <a href="/">
+                <a href="https://jhl-auto.codeomnia.cloud">
                     <img src="<?php echo get_template_directory_uri() ?>/images/logo-jhl.png" class="h-7" alt="">
                 </a>
             </div>
@@ -160,7 +160,9 @@
                 </div>
 
                 <div>
-                    <img src="<?php echo get_template_directory_uri() ?>/images/logo-jhl.png" class="h-14" alt="">
+                    <a href="https://jhl-auto.codeomnia.cloud">
+                        <img src="<?php echo get_template_directory_uri() ?>/images/logo-jhl.png" class="h-14" alt="">
+                    </a>
                 </div>
 
                 <div class="w-full relative overflow-hidden h-[300px]">
@@ -195,7 +197,7 @@
                                 while ($car_query->have_posts()):
                                     $car_query->the_post();
                                     $car_image = get_the_post_thumbnail_url(get_the_ID(), 'medium');
-                            ?>
+                                    ?>
 
                                     <a href="<?php the_permalink(); ?>"
                                         class="flex flex-col items-center text-center space-y-5 shrink-0 w-[75%]">
@@ -231,7 +233,7 @@
         </aside>
 
         <script>
-            jQuery(document).ready(function() {
+            jQuery(document).ready(function () {
                 // Function to reset menu state
                 function resetMenu() {
                     jQuery('#back-container').addClass('invisible opacity-0');
@@ -240,22 +242,22 @@
                 }
 
                 // Open Sidebar
-                jQuery('#sidebar-btn').on('click', function() {
+                jQuery('#sidebar-btn').on('click', function () {
                     jQuery('#main-sidebar').removeClass('-translate-x-full');
                 });
 
                 // Close Sidebar
-                jQuery('#close-sidebar').on('click', function() {
+                jQuery('#close-sidebar').on('click', function () {
                     jQuery('#main-sidebar').addClass('-translate-x-full');
                     // Reset to main menu after slide-out animation completes
                     setTimeout(resetMenu, 300);
                 });
 
                 // Open Submenu
-                jQuery('.submenu-trigger').on('click', function() {
+                jQuery('.submenu-trigger').on('click', function () {
                     const target = jQuery(this).data('target');
 
-                    jQuery('#menu-main').fadeOut(200, function() {
+                    jQuery('#menu-main').fadeOut(200, function () {
                         jQuery('#' + target).removeClass('hidden').fadeIn(200);
                         // Show Back button in header
                         jQuery('#back-container').removeClass('invisible opacity-0');
@@ -263,10 +265,10 @@
                 });
 
                 // Back to Main Menu
-                jQuery('.back-to-main').on('click', function() {
+                jQuery('.back-to-main').on('click', function () {
                     const visibleSubmenu = jQuery('[id^="submenu-"]:visible');
 
-                    visibleSubmenu.fadeOut(200, function() {
+                    visibleSubmenu.fadeOut(200, function () {
                         jQuery(this).addClass('hidden');
                         jQuery('#menu-main').fadeIn(200);
                         // Hide Back button in header
@@ -295,19 +297,22 @@
                         alt="Email">
                 </a>
 
-                <a href="<?php echo get_field('instagram_url', 'option') ?: 'https://www.instagram.com/baic.jhlauto/'; ?>" target="_blank"
+                <a href="<?php echo get_field('instagram_url', 'option') ?: 'https://www.instagram.com/baic.jhlauto/'; ?>"
+                    target="_blank"
                     class="w-11 h-11 rounded-full bg-jhl-gray-1 flex items-center justify-center shadow-md hover:bg-[#808285] transition-colors">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/icons/instagram.png" class="w-5 h-5"
                         alt="Instagram">
                 </a>
 
-                <a href="<?php echo get_field('tiktok_url', 'option') ?: 'https://www.tiktok.com/@baic.jhlauto'; ?>" target="_blank"
+                <a href="<?php echo get_field('tiktok_url', 'option') ?: 'https://www.tiktok.com/@baic.jhlauto'; ?>"
+                    target="_blank"
                     class="w-11 h-11 rounded-full bg-jhl-gray-1 flex items-center justify-center shadow-md hover:bg-[#808285] transition-colors">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/icons/tiktok.png" class="w-5 h-5"
                         alt="TikTok">
                 </a>
 
-                <a href="<?php echo get_field('facebook_url', 'option') ?: 'https://www.facebook.com/profile.php?id=61576658541187'; ?>" target="_blank"
+                <a href="<?php echo get_field('facebook_url', 'option') ?: 'https://www.facebook.com/profile.php?id=61576658541187'; ?>"
+                    target="_blank"
                     class="w-11 h-11 rounded-full bg-jhl-gray-1 flex items-center justify-center shadow-md hover:bg-[#808285] transition-colors">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/icons/facebook.png" class="w-5 h-5"
                         alt="Facebook">
@@ -327,8 +332,8 @@
         </div>
 
         <script>
-            jQuery(document).ready(function($) {
-                jQuery('#social-toggle').on('click', function() {
+            jQuery(document).ready(function ($) {
+                jQuery('#social-toggle').on('click', function () {
                     const $btn = jQuery(this);
                     const $container = jQuery('#social-expandable');
                     const $iconArrow = jQuery('#toggle-icon');

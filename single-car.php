@@ -47,17 +47,17 @@ while (have_posts()):
 
         <section id="colors" class="py-20 bg-white">
             <div class="container">
-                <div class="flex items-center justify-between mb-16">
+                <div class="block md:flex items-center justify-between mb-16">
                     <div class="fade-right" data-scroll data-scroll-class="is-inview" data-scroll-delay="200ms">
-                        <img src="<?php echo esc_url(get_field('logo')); ?>" alt="">
+                        <img src="<?php echo esc_url(get_field('logo')); ?>" class="w-[150px] lg:w-full" alt="">
                     </div>
                     <div class="fade-left" data-scroll data-scroll-class="is-inview" data-scroll-delay="200ms">
-                        <img src="<?php echo esc_url(get_field('tagline')); ?>" alt="">
+                        <img src="<?php echo esc_url(get_field('tagline')); ?>" class="w-[200px] lg:w-full" alt="">
                     </div>
                 </div>
-                <div class="flex justify-center md:hidden mb-4">
+                <!-- <div class="flex justify-center md:hidden mb-4">
                     <img class="h-3.5" src="<?php echo esc_url(get_field('logo')); ?>" alt="">
-                </div>
+                </div> -->
                 <div class="color-display-container max-w-5xl mx-auto mb-12 fade-up" data-scroll
                     data-scroll-class="is-inview" data-scroll-delay="400ms">
                     <?php if ($colors):
@@ -521,7 +521,7 @@ while (have_posts()):
                             Aksesoris
                         </h2>
                         <div class="fade-left" data-scroll data-scroll-class="is-inview" data-scroll-delay="200ms">
-                            <img src="<?php echo esc_url(get_field('logo')); ?>" alt="">
+                            <img src="<?php echo esc_url(get_field('logo')); ?>" class="w-[90px] lg:w-full" alt="">
                         </div>
                     </div>
 
