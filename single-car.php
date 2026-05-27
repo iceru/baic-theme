@@ -17,6 +17,7 @@ while (have_posts()):
     }
     $colors = get_field('colors');
     $price = get_field('price');
+    $price_note = get_field('price_note');
     $specs = get_field('car_specification');
     $accessories = get_field('accessories');
     ?>
@@ -198,8 +199,7 @@ while (have_posts()):
                 <div class="mx-auto w-fit mt-10">
                     <p class="text-[10px] italic text-jhl-gray-1 mx-auto text-center tracking-widest mt-4 fade-up"
                         data-scroll data-scroll-class="is-inview" data-scroll-delay="400ms">
-                        *Price OTR Jakarta <br />
-                        *Terms & conditions apply <br />
+                        <?php echo $price_note ? nl2br(esc_html($price_note)) : "*Price OTR Jakarta <br />\n*Terms & conditions apply <br />"; ?>
                     </p>
                 </div>
             </div>
