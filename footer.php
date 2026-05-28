@@ -17,11 +17,8 @@
     <div class="container">
         <div class="flex flex-wrap md:flex-nowrap justify-between space-y-24 md:space-y-0">
             <div class="flex flex-wrap md:flex-nowrap items-center" id="logo">
-                <div class="pr-10 mb-14 md:mb-0 md:mr-10 md:border-r border-jhl-gray-2">
-                    <a href="https://jhl-auto.codeomnia.cloud/">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/logo-jhl.png" alt="JHL Auto Logo"
-                            class="w-24">
-                    </a>
+                <div class="pr-10 mr-10 md:border-r border-jhl-gray-2 mb-16 lg:mb-0">
+                    <img src="<?php echo get_template_directory_uri() ?>/images/logo-jhl.png" alt="" class="mb-5">
                     <p class="text-xs text-center">
                         Service You Can Trust, <br /> Peace of Mind You Deserve
                     </p>
