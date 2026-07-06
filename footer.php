@@ -49,6 +49,11 @@
                                 Career
                             </a>
                         </li>
+                        <li>
+                            <a href="javascript:void(0)" class="open-contact-popup text-xs !no-underline">
+                                Contact
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div class="w-[48%] md:w-fit order-3 md:order-2">

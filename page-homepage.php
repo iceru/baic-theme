@@ -145,7 +145,7 @@ if (false === $external_promotions) {
     jQuery(document).ready(function ($) {
 
         // 1. Open Popup
-        jQuery(document).on('click', '#open-contact', function (e) {
+        jQuery(document).on('click', '.open-contact-popup, #open-contact', function (e) {
             e.preventDefault();
             jQuery('#contact-popup').removeClass('hidden').addClass('flex');
             jQuery('body').addClass('overflow-hidden');
