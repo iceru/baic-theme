@@ -102,8 +102,8 @@ if (false === $external_dealers) {
             <p class="body mb-9 fade-down" data-scroll data-scroll-class="is-inview" data-scroll-delay="200ms">
                 Solusi Armada Korporasi Terintegrasi
             </p>
-            <a href="javascript:void(0)" id="open-contact"
-                class="border border-white hover:bg-white/20 transition duration-500 rounded-full px-7 py-[18.5px] inline-flex items-center space-x-4 text-xs font-semibold tracking-wider fade-up"
+            <a href="javascript:void(0)"
+                class="open-contact-popup border border-white hover:bg-white/20 transition duration-500 rounded-full px-7 py-[18.5px] inline-flex items-center space-x-4 text-xs font-semibold tracking-wider fade-up"
                 data-scroll data-scroll-class="is-inview" data-scroll-delay="400ms">
                 <span>Hubungi Kami</span>
                 <img src="<?php echo get_template_directory_uri() ?>/images/arrow-white.png" alt="">
@@ -193,45 +193,6 @@ if (false === $external_dealers) {
             ?>
         </div>
 
-        <script>
-            jQuery(document).ready(function ($) {
-                jQuery('.service-tab').on('click', function () {
-                    var target = jQuery(this).data('target');
-
-                    // Update tabs
-                    jQuery('.service-tab').removeClass('border-b border-jhl-black font-semibold');
-                    jQuery(this).addClass('border-b border-jhl-black font-semibold');
-
-                    // Update content
-                    jQuery('.service-content').addClass('hidden');
-                    jQuery('#' + target).removeClass('hidden');
-                });
-
-                // 1. Open Popup
-                jQuery('#open-contact').on('click', function (e) {
-                    e.preventDefault();
-                    jQuery('#contact-popup').removeClass('hidden').addClass('flex');
-                    jQuery('body').addClass('overflow-hidden'); // Prevent background scrolling
-                });
-
-                // 2. Function to Close Popup
-                function closePopup() {
-                    jQuery('#contact-popup').addClass('hidden').removeClass('flex');
-                    jQuery('body').removeClass('overflow-hidden');
-                }
-
-                // Close via 'X' button
-                jQuery('#close-contact').on('click', function () {
-                    closePopup();
-                });
-
-                // Close via clicking the dark overlay background
-                jQuery('#close-overlay').on('click', function () {
-                    closePopup();
-                });
-            });
-        </script>
-
         <?php wp_reset_postdata(); ?>
     <?php endif; ?>
 </section>
@@ -240,7 +201,7 @@ if (false === $external_dealers) {
     <div class="absolute inset-0 bg-black/70" id="close-overlay"></div>
 
     <div class="relative bg-white w-full max-w-6xl  py-8 px-24 shadow-2xl border-jhl-gray-3 border-5 z-10">
-        <button id="close-contact" class="absolute top-4 right-4 text-white/50 hover:text-white">
+        <button id="close-contact" class="absolute top-4 right-4 text-black/50 hover:text-black">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -254,5 +215,34 @@ if (false === $external_dealers) {
         </div>
     </div>
 </div>
+
+<script>
+    jQuery(document).ready(function ($) {
+        jQuery(document).on('click', '.service-tab', function () {
+            var target = jQuery(this).data('target');
+
+            jQuery('.service-tab').removeClass('border-b border-jhl-black font-semibold');
+            jQuery(this).addClass('border-b border-jhl-black font-semibold');
+
+            jQuery('.service-content').addClass('hidden');
+            jQuery('#' + target).removeClass('hidden');
+        });
+
+        jQuery(document).on('click', '.open-contact-popup, #open-contact', function (e) {
+            e.preventDefault();
+            jQuery('#contact-popup').removeClass('hidden').addClass('flex');
+            jQuery('body').addClass('overflow-hidden');
+        });
+
+        function closePopup() {
+            jQuery('#contact-popup').addClass('hidden').removeClass('flex');
+            jQuery('body').removeClass('overflow-hidden');
+        }
+
+        jQuery(document).on('click', '#close-contact, #close-overlay', function () {
+            closePopup();
+        });
+    });
+</script>
 
 <?php get_footer(); ?>
