@@ -40,12 +40,12 @@
                     </p>
                     <ul class="text-white space-y-3">
                         <li>
-                            <a href="https://jhl-auto.codeomnia.cloud/our-story" class="text-xs !no-underline">
+                            <a href="https://jhlauto.co.id/our-story" class="text-xs !no-underline">
                                 Our Story
                             </a>
                         </li>
                         <li>
-                            <a href="https://jhl-auto.codeomnia.cloud/career" class="text-xs !no-underline">
+                            <a href="https://jhlauto.co.id/career" class="text-xs !no-underline">
                                 Career
                             </a>
                         </li>
@@ -67,7 +67,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://jhl-auto.codeomnia.cloud/service" class="text-xs !no-underline">
+                            <a href="https://jhlauto.co.id/service" class="text-xs !no-underline">
                                 Service Center
                             </a>
                         </li>
@@ -79,12 +79,12 @@
                     </p>
                     <ul class="text-white space-y-3">
                         <li>
-                            <a href="https://jhl-auto.codeomnia.cloud/news" class="text-xs !no-underline">
+                            <a href="https://jhlauto.co.id/news" class="text-xs !no-underline">
                                 News
                             </a>
                         </li>
                         <li>
-                            <a href="https://jhl-auto.codeomnia.cloud/news?type=promo" class="text-xs !no-underline">
+                            <a href="https://jhlauto.co.id/news?type=promo" class="text-xs !no-underline">
                                 Promo
                             </a>
                         </li>

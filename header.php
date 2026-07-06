@@ -70,7 +70,7 @@
                                                     while ($car_query->have_posts()):
                                                         $car_query->the_post();
                                                         $car_image = get_field('car_image', get_the_ID());
-                                                        ?>
+                                                ?>
 
                                                         <div class="flex flex-col items-center text-center space-y-5">
                                                             <div class="w-full aspect-video overflow-hidden rounded-lg">
@@ -113,7 +113,7 @@
 
 
                             <li>
-                                <a href="https://jhl-auto.codeomnia.cloud/news"
+                                <a href="https://jhlauto.co.id/news"
                                     class="uppercase text-[13px] font-medium !no-underline">
                                     Promotion
                                 </a>
@@ -197,7 +197,7 @@
                                 while ($car_query->have_posts()):
                                     $car_query->the_post();
                                     $car_image = get_the_post_thumbnail_url(get_the_ID(), 'medium');
-                                    ?>
+                            ?>
 
                                     <a href="<?php the_permalink(); ?>"
                                         class="flex flex-col items-center text-center space-y-5 shrink-0 w-[75%]">
@@ -233,7 +233,7 @@
         </aside>
 
         <script>
-            jQuery(document).ready(function () {
+            jQuery(document).ready(function() {
                 // Function to reset menu state
                 function resetMenu() {
                     jQuery('#back-container').addClass('invisible opacity-0');
@@ -242,22 +242,22 @@
                 }
 
                 // Open Sidebar
-                jQuery('#sidebar-btn').on('click', function () {
+                jQuery('#sidebar-btn').on('click', function() {
                     jQuery('#main-sidebar').removeClass('-translate-x-full');
                 });
 
                 // Close Sidebar
-                jQuery('#close-sidebar').on('click', function () {
+                jQuery('#close-sidebar').on('click', function() {
                     jQuery('#main-sidebar').addClass('-translate-x-full');
                     // Reset to main menu after slide-out animation completes
                     setTimeout(resetMenu, 300);
                 });
 
                 // Open Submenu
-                jQuery('.submenu-trigger').on('click', function () {
+                jQuery('.submenu-trigger').on('click', function() {
                     const target = jQuery(this).data('target');
 
-                    jQuery('#menu-main').fadeOut(200, function () {
+                    jQuery('#menu-main').fadeOut(200, function() {
                         jQuery('#' + target).removeClass('hidden').fadeIn(200);
                         // Show Back button in header
                         jQuery('#back-container').removeClass('invisible opacity-0');
@@ -265,10 +265,10 @@
                 });
 
                 // Back to Main Menu
-                jQuery('.back-to-main').on('click', function () {
+                jQuery('.back-to-main').on('click', function() {
                     const visibleSubmenu = jQuery('[id^="submenu-"]:visible');
 
-                    visibleSubmenu.fadeOut(200, function () {
+                    visibleSubmenu.fadeOut(200, function() {
                         jQuery(this).addClass('hidden');
                         jQuery('#menu-main').fadeIn(200);
                         // Hide Back button in header
@@ -332,8 +332,8 @@
         </div>
 
         <script>
-            jQuery(document).ready(function ($) {
-                jQuery('#social-toggle').on('click', function () {
+            jQuery(document).ready(function($) {
+                jQuery('#social-toggle').on('click', function() {
                     const $btn = jQuery(this);
                     const $container = jQuery('#social-expandable');
                     const $iconArrow = jQuery('#toggle-icon');

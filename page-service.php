@@ -6,7 +6,7 @@ $external_dealers = get_transient($cache_key);
 
 // 2. If the cache is empty, fetch the data from the API
 if (false === $external_dealers) {
-    $source_url = 'https://jhl-auto.codeomnia.cloud/wp-json/wp/v2/dealers?_embed&per_page=4&orderby=date&order=asc';
+    $source_url = 'https://jhlauto.co.id/wp-json/wp/v2/dealers?_embed&per_page=4&orderby=date&order=asc';
     $response = wp_remote_get($source_url, ['timeout' => 10]);
 
     if (!is_wp_error($response)) {
@@ -49,7 +49,7 @@ if (false === $external_dealers) {
                 if (!empty($dealer->_embedded->{'wp:featuredmedia'}[0]->source_url)) {
                     $image_url = $dealer->_embedded->{'wp:featuredmedia'}[0]->source_url;
                 }
-                ?>
+        ?>
                 <div class="fade-up" data-scroll data-scroll-class="is-inview" data-scroll-delay="<?php echo $delay; ?>">
                     <div class="mb-[30px]">
                         <img src="<?php echo $image_url; ?>" alt="<?php echo $title; ?>"
@@ -82,7 +82,7 @@ if (false === $external_dealers) {
                         </a>
                     </div>
                 </div>
-            <?php endforeach;
+        <?php endforeach;
         endif; ?>
     </div>
 </section>
@@ -145,7 +145,7 @@ if (false === $external_dealers) {
     $services_query = new WP_Query($services_args);
 
     if ($services_query->have_posts()):
-        ?>
+    ?>
         <div class="py-9">
             <ul class="flex border-b whitespace-nowrap overflow-auto scroll-m-2 border-jhl-gray-3 service-tabs fade-down"
                 data-scroll data-scroll-class="is-inview" data-scroll-delay="200ms">
@@ -153,12 +153,12 @@ if (false === $external_dealers) {
                 $count = 0;
                 while ($services_query->have_posts()):
                     $services_query->the_post();
-                    ?>
+                ?>
                     <li class="pb-4 mx-10 whitespace-nowrap text-beijing-black first:ml-0 cursor-pointer service-tab <?php echo $count === 0 ? 'border-b border-jhl-black font-semibold' : ''; ?>"
                         data-target="service-<?php the_ID(); ?>">
                         <?php the_title(); ?>
                     </li>
-                    <?php
+                <?php
                     $count++;
                 endwhile;
                 ?>
@@ -173,7 +173,7 @@ if (false === $external_dealers) {
                 $services_query->the_post();
                 $acf_title = get_field('title');
                 $featured_img = get_the_post_thumbnail_url(get_the_ID(), 'full');
-                ?>
+            ?>
                 <div id="service-<?php the_ID(); ?>"
                     class="service-content grid md:grid-cols-2 items-center md:gap-20 <?php echo $count === 0 ? '' : 'hidden'; ?>">
                     <div class="mb-14 md:mb-0 fade-right" data-scroll data-scroll-class="is-inview" data-scroll-delay="400ms">
@@ -187,7 +187,7 @@ if (false === $external_dealers) {
                         </div>
                     </div>
                 </div>
-                <?php
+            <?php
                 $count++;
             endwhile;
             ?>
@@ -217,8 +217,8 @@ if (false === $external_dealers) {
 </div>
 
 <script>
-    jQuery(document).ready(function ($) {
-        jQuery(document).on('click', '.service-tab', function () {
+    jQuery(document).ready(function($) {
+        jQuery(document).on('click', '.service-tab', function() {
             var target = jQuery(this).data('target');
 
             jQuery('.service-tab').removeClass('border-b border-jhl-black font-semibold');
@@ -228,7 +228,7 @@ if (false === $external_dealers) {
             jQuery('#' + target).removeClass('hidden');
         });
 
-        jQuery(document).on('click', '.open-contact-popup, #open-contact', function (e) {
+        jQuery(document).on('click', '.open-contact-popup, #open-contact', function(e) {
             e.preventDefault();
             jQuery('#contact-popup').removeClass('hidden').addClass('flex');
             jQuery('body').addClass('overflow-hidden');
@@ -239,7 +239,7 @@ if (false === $external_dealers) {
             jQuery('body').removeClass('overflow-hidden');
         }
 
-        jQuery(document).on('click', '#close-contact, #close-overlay', function () {
+        jQuery(document).on('click', '#close-contact, #close-overlay', function() {
             closePopup();
         });
     });
