@@ -320,7 +320,7 @@
             </div>
 
 
-            <a href="https://wa.me/<?php echo get_field('whatsapp_number', 'option') ?: '628123456789'; ?>"
+            <a href="https://wa.me/<?php echo get_field('whatsapp_number', 'option') ?: '6281292353853'; ?>"
                 target="_blank" class="flex items-center  rounded-md  transition-all group !no-underline">
                 <div class="bg-jhl-black rounded-full p-1 mr-3 h-16 w-16 flex justify-center items-center">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/icons/whatsapp.png" class="w-9 h-9"
