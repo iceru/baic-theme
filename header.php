@@ -122,7 +122,7 @@
                     </nav>
                 </div>
                 <div>
-                    <a href="https://jhl-auto.codeomnia.cloud"
+                    <a href="https://jhlauto.co.id"
                         class="text-[13px] font-medium flex items-center !no-underline space-x-1">
                         <img src="<?php echo get_template_directory_uri() ?>/images/logo-jhl.png" class="h-7 w-auto"
                             alt="">
@@ -138,7 +138,7 @@
                 <div class="h-[1px] w-8 bg-white"></div>
             </div>
             <div>
-                <a href="https://jhl-auto.codeomnia.cloud">
+                <a href="https://jhlauto.co.id">
                     <img src="<?php echo get_template_directory_uri() ?>/images/logo-jhl.png" class="h-7" alt="">
                 </a>
             </div>
@@ -160,7 +160,7 @@
                 </div>
 
                 <div>
-                    <a href="https://jhl-auto.codeomnia.cloud">
+                    <a href="https://jhlauto.co.id">
                         <img src="<?php echo get_template_directory_uri() ?>/images/logo-jhl.png" class="h-14" alt="">
                     </a>
                 </div>
